@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<bnb:BottomBarPage
+    x:Class="BottomNavBarXf.Home"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bnb="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms">
+
+    
+
+
+    <ContentPage
+        Title="Home"
+        bnb:BottomBarPageExtensions.TabColor="Crimson"
+        Icon="explore.png">
+        <Label
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            Text="Home Page"
+            VerticalOptions="Center" />
+    </ContentPage>
+    <ContentPage
+        Title="Favorities"
+        bnb:BottomBarPageExtensions.TabColor="Goldenrod"
+        Icon="collections.png">
+        <Label
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            Text="Favorities"
+            VerticalOptions="Center" />
+    </ContentPage>
+
+    <ContentPage
+        Title="Cart"
+        bnb:BottomBarPageExtensions.TabColor="ForestGreen"
+        Icon="shop.png">
+        <Label
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            Text="Shopping Cart"
+            VerticalOptions="Center" />
+    </ContentPage>
+
+    <ContentPage
+        Title="Profile"
+        bnb:BottomBarPageExtensions.TabColor="DarkViolet"
+        Icon="user.png">
+        <Label
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            Text="Profile"
+            VerticalOptions="Center" />
+    </ContentPage>
+
+</bnb:BottomBarPage>
