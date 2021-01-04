@@ -15,6 +15,7 @@ namespace OrderFood.Components
         public Login()
         {
             InitializeComponent();
+           
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -24,8 +25,8 @@ namespace OrderFood.Components
             var password = passwordLogin.Text;
             if (username == "ad" && password == "ad")
             {
-                //Navigation.PushAsync(new BottomNavBarXf.Home());
-                Application.Current.MainPage = new BottomNavBarXf.Home();
+                Navigation.PushAsync(new BottomNavBarXf.Home());
+                //Application.Current.MainPage = new BottomNavBarXf.Home();
 
             }
             else

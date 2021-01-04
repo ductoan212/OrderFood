@@ -9,7 +9,7 @@
             <Label Text="User Name" TextColor="#F8A03F" FontSize="17" Padding="10"/>
             <Entry Placeholder="User Name" x:Name="usernameLogin" />
             <Label Text="Password" TextColor="#F8A03F" FontSize="17" Padding="10"/>
-            <Entry IsPassword="True" Margin="0, 0, 50, 0" x:Name="passwordLogin"/>
+            <Entry IsPassword="True" Margin="0, 0, 50, 0" x:Name="passwordLogin" Placeholder="Password"/>
             <Button Text="Sign In" CornerRadius="100" TextColor="White" BackgroundColor="#F8A03F" Clicked="Button_Clicked"/>
             <Button Text="Register" CornerRadius="100" TextColor="White" BackgroundColor="#F8A03F"  HeightRequest="50"/>
         </StackLayout>
