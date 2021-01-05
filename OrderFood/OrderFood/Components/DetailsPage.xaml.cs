@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BottomBar.XamarinForms;
+using OrderFood.Modals;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +18,13 @@ namespace OrderFood.Components
         {
             InitializeComponent();
         }
+
+    private void Button_Clicked(object sender, EventArgs e)
+        {
+        Burger item = (Burger)caroulitem.CurrentItem;
+            Navigation.PushAsync(new BottomNavBarXf.Home(item));
+            
+        }
     }
+        
 }

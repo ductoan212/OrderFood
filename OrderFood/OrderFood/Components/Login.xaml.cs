@@ -17,7 +17,12 @@ namespace OrderFood.Components
             InitializeComponent();
            
         }
-
+        public Login(string user,string pass)
+        {
+            InitializeComponent();
+            usernameLogin.Text = user;
+            passwordLogin.Text = pass;
+        }
         private void Button_Clicked(object sender, EventArgs e)
         {
 
@@ -33,6 +38,13 @@ namespace OrderFood.Components
             {
                 DisplayAlert("Notification", "User name or Password incorrect!", "OK");
             }
+        }
+
+        
+
+        private void Button_Clicked_2(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Register());
         }
     }
 }

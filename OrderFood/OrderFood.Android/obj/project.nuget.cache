@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mofHmbUE7VccM/Vr1623Tq0YUjil4t76bAXR7EdHT9mD2EY/xAnypIGHaSKFRStydfUtRGc38BbazWJUF+4bxg==",
+  "dgSpecHash": "Zgp/HilEQeNk+qlpirrataYEaSx6emMh0Sl9VU8TWvQxWjYhJQT4yusWj/XNZqG+qr/BYcSVM5qyxDHnZdX2rQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood.Android\\OrderFood.Android.csproj",
+  "projectFilePath": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood.Android\\OrderFood.Android.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASUS\\.nuget\\packages\\bottomnavigationbar\\1.1.2\\bottomnavigationbar.1.1.2.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\newtonsoft.json\\8.0.3\\newtonsoft.json.8.0.3.nupkg.sha512",

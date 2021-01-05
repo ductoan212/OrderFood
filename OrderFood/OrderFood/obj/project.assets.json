@@ -659,11 +659,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj",
+      "projectUniqueName": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj",
       "projectName": "OrderFood",
-      "projectPath": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj",
+      "projectPath": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood\\obj\\",
+      "outputPath": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

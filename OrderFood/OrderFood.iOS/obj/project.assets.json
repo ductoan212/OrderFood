@@ -1039,11 +1039,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood.iOS\\OrderFood.iOS.csproj",
+      "projectUniqueName": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood.iOS\\OrderFood.iOS.csproj",
       "projectName": "OrderFood.iOS",
-      "projectPath": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood.iOS\\OrderFood.iOS.csproj",
+      "projectPath": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood.iOS\\OrderFood.iOS.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood.iOS\\obj\\",
+      "outputPath": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -1064,8 +1064,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj": {
-              "projectPath": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj"
+            "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj": {
+              "projectPath": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj"
             }
           }
         }

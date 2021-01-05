@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BottomBar.XamarinForms;
+using OrderFood.Modals;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +17,21 @@ namespace BottomNavBarXf
         {
             InitializeComponent();
         }
+
+       
+         static List<Burger> ListBurgers = new List<Burger>();
+        public Home(Burger burger)
+            {
+
+                InitializeComponent();
+            KhoiTaoCart(burger);
+            }
+        public void KhoiTaoCart(Burger burger)
+        {
+
+            ListBurgers.Add(burger);
+            lstfoods.ItemsSource = ListBurgers;
+        }
     }
+    
 }

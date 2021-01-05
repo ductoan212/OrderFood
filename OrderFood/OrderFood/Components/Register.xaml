@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OrderFood.Components.Register">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="Register" TextColor="#F8A03F" FontSize="50" Margin="30,0,30,0" FontAttributes="Bold"  HorizontalTextAlignment="Center"/>
+            <Entry x:Name="username" Placeholder="User Name" Margin="0,17,0,0"/>
+            <Entry x:Name="password" Placeholder="Password" IsPassword="True" Margin="0,17,0,0"/>
+            <Entry x:Name="address" Placeholder="Address" Margin="0,17,0,0"/>
+            <Entry x:Name="email" Placeholder="Email" Margin="0,17,0,0"/>
+            <Entry x:Name="phone" Placeholder="Phone" Margin="0,17,0,0"/>
+            <Entry x:Name="age" Placeholder="Age" Margin="0,17,0,0"/>
+            <Button Text="Register Now" BackgroundColor="#F8A03F" CornerRadius="100" TextColor="White" Clicked="Button_Clicked" Margin="0,17,0,0"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

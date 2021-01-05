@@ -52,34 +52,7 @@ namespace OrderFood.Modals
             }
         }
 
-        public ICommand ChangePositionCommand => new Command(ChangePosition);
-
-        private void ChangePosition(object obj)
-        {
-            string direction = (string)obj;
-
-            if (direction == "L")
-            {
-                if (position == 0)
-                {
-                    Position = burgers.Count - 1;
-                    return;
-                }
-
-                Position -= 1;
-            }
-            else if (direction == "R")
-            {
-                if (position == burgers.Count - 1)
-                {
-                    Position = 0;
-                    return;
-                }
-
-                Position += 1;
-            }
-
-        }
+        
 
     }
 }

@@ -33,7 +33,7 @@
                     <Label Text="LIMITED TIME OFFER!" TextColor="White" Opacity="0.75" FontFamily="LightFont" FontSize="12" 
                            HorizontalOptions="Center"/>
                 </StackLayout>
-                <CarouselView Grid.Row="1" ItemsSource="{Binding Burgers}" HeightRequest="260" HorizontalOptions="FillAndExpand" 
+                <CarouselView x:Name="caroulitem" Grid.Row="1" ItemsSource="{Binding Burgers}" HeightRequest="260" HorizontalOptions="FillAndExpand" 
                           CurrentItem="{Binding SelectedBurger}" IsScrollAnimated="True" IsSwipeEnabled="True">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
@@ -58,7 +58,7 @@
                     <Label Text="{Binding SelectedBurger.Description}" TextColor="White" WidthRequest="250" 
                            FontFamily="LightFont" FontSize="12" HorizontalOptions="End" HorizontalTextAlignment="End"/>
                     <Button Text="ORDER NOW" TextColor="Black" Padding="20,5" HeightRequest="35" CornerRadius="17" 
-                            BackgroundColor="#F9B522" FontFamily="ThemeFont" HorizontalOptions="End"/>
+                            BackgroundColor="#F9B522" FontFamily="ThemeFont" HorizontalOptions="End" Clicked="Button_Clicked"/>
                 </StackLayout>
             </Grid>
         </ScrollView>

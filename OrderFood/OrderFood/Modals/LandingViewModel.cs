@@ -41,9 +41,9 @@ namespace OrderFood.Modals
        
         private void DisplayBurger()
         {
+                foods = null;
             if (selectedBurger != null)
             {
-
                 if (selectedBurger.Category == "breakfast")
                 {
                     foods = GetBreakFast();
@@ -63,8 +63,13 @@ namespace OrderFood.Modals
                 {
                     foods = GetDesserts();
                 }
+                else if (selectedBurger.Category == "supper")
+                {
+                    foods = GetSnack();
+                }
 
-
+                Console.WriteLine(selectedBurger.Category);
+                Console.ReadLine();
                 var viewModel = new DetailsViewModel { SelectedBurger = foods[0], Burgers = foods, Position = 0 };
                 var detailsPage = new DetailsPage { BindingContext = viewModel };
 
@@ -102,6 +107,17 @@ namespace OrderFood.Modals
                 
                 new Burger { Name = "Pizza",Category = "lunch", Price = 17.29f, Image = "pizza.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
                 
+            };
+        }
+        private ObservableCollection<Burger> GetSupper()
+        {
+            return new ObservableCollection<Burger>
+            {
+
+                new Burger { Name = "Pizza",Category = "supper", Price = 17.29f, Image = "pizza.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
+
+                new Burger { Name = "Pizza",Category = "supper", Price = 17.29f, Image = "pizza.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
+
             };
         }
         private ObservableCollection<Burger> GetDinner()

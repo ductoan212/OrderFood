@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood.Android\\OrderFood.Android.csproj": {}
+    "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood.Android\\OrderFood.Android.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood.Android\\OrderFood.Android.csproj": {
+    "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood.Android\\OrderFood.Android.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood.Android\\OrderFood.Android.csproj",
+        "projectUniqueName": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood.Android\\OrderFood.Android.csproj",
         "projectName": "OrderFood.Android",
-        "projectPath": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood.Android\\OrderFood.Android.csproj",
+        "projectPath": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood.Android\\OrderFood.Android.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood.Android\\obj\\",
+        "outputPath": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -32,8 +32,8 @@
         "frameworks": {
           "monoandroid90": {
             "projectReferences": {
-              "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj": {
-                "projectPath": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj"
+              "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj": {
+                "projectPath": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj"
               }
             }
           }
@@ -54,14 +54,14 @@
         }
       }
     },
-    "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj": {
+    "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj",
+        "projectUniqueName": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj",
         "projectName": "OrderFood",
-        "projectPath": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj",
+        "projectPath": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood\\OrderFood.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood\\obj\\",
+        "outputPath": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

@@ -71,7 +71,7 @@
         <Label
             FontSize="Large"
             HorizontalTextAlignment="Center"
-            Text="Favorities"
+            Text="Shopping Cart"
             VerticalOptions="Center" />
     </ContentPage>
 
@@ -79,11 +79,38 @@
         Title="Cart"
         bnb:BottomBarPageExtensions.TabColor="ForestGreen"
         Icon="shop.png">
-        <Label
-            FontSize="Large"
-            HorizontalTextAlignment="Center"
-            Text="Shopping Cart"
-            VerticalOptions="Center" />
+
+            
+        <ContentPage.Content>
+            <StackLayout>
+                <Label Text="Order List" TextColor="#F8A03F" FontSize="50" HorizontalTextAlignment="Center" FontAttributes="Bold" Padding="0,30,0,30" BackgroundColor="Black"/>
+                <ListView x:Name="lstfoods" HasUnevenRows="True"   BackgroundColor="Black">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="0,20,0,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" CornerRadius="100" IsClippedToBounds="True" BackgroundColor="#131313" >
+                                    <Image Source="{Binding Image}" />
+                                </Frame>
+                                <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" TextColor="#F8A03F" VerticalTextAlignment="Center" FontSize="30"/>
+                                <Label Text="{Binding Price}" Grid.Row="0" Grid.Column="2" TextColor="Green" FontSize="30"  VerticalTextAlignment="Center"/>
+                                <Label Text="{Binding Description}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            </StackLayout>
+        </ContentPage.Content>
     </ContentPage>
 
     <ContentPage

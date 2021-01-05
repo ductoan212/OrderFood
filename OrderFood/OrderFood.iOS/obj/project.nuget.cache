@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PNx8iq8dACn7fig9WAH5qTnlFSq9Fo16RNRhxprb3QTI1wOkDqFG9yPsimB80shk4Jt1fE49ftuZWJxaNutn+A==",
+  "dgSpecHash": "Fi4qONTR7jFIcjelIPhzikVM+8zubLCqc+Nec4I8PB1+efitwqz0kyDZ+XtJh5uyCFk2o1l7Hq1/eN2oQY7GEg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASUS\\source\\repos\\OrderFood\\OrderFood\\OrderFood.iOS\\OrderFood.iOS.csproj",
+  "projectFilePath": "E:\\MyApp\\Github\\OrderFood\\OrderFood\\OrderFood.iOS\\OrderFood.iOS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASUS\\.nuget\\packages\\thrivegmbh.bottomnavigationbar.xf\\1.0.2\\thrivegmbh.bottomnavigationbar.xf.1.0.2.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
