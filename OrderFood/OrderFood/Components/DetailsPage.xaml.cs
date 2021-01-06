@@ -22,8 +22,20 @@ namespace OrderFood.Components
     private void Button_Clicked(object sender, EventArgs e)
         {
         Burger item = (Burger)caroulitem.CurrentItem;
-            Navigation.PushAsync(new BottomNavBarXf.Home(item));
+            Navigation.PushAsync(new BottomNavBarXf.Home(item,"cart"));
             
+        }
+
+        private void ImageButton_Clicked(object sender, EventArgs e)
+        {
+        
+            Navigation.PushAsync(new BottomNavBarXf.Home());
+        }
+
+        private void ImageButton_Clicked_1(object sender, EventArgs e)
+        {
+            Burger item = (Burger)caroulitem.CurrentItem;
+            Navigation.PushAsync(new BottomNavBarXf.Home(item,"fav"));
         }
     }
         

@@ -1,4 +1,5 @@
 ﻿using BottomBar.XamarinForms;
+using OrderFood.Components;
 using OrderFood.Modals;
 using System;
 using System.Collections.Generic;
@@ -16,21 +17,70 @@ namespace BottomNavBarXf
         public Home()
         {
             InitializeComponent();
+            InitUser();
+        }
+        static User currentUser = new User();
+        public Home(User user)
+        {
+            InitializeComponent();
+            currentUser = user;
+            InitUser();
         }
 
-       
-         static List<Burger> ListBurgers = new List<Burger>();
-        public Home(Burger burger)
+        static List<Burger> ListBurgers = new List<Burger>();
+        static List<Burger> ListFav = new List<Burger>();
+        public Home(Burger burger, string str)
             {
 
                 InitializeComponent();
-            KhoiTaoCart(burger);
+            KhoiTaoCart(burger,str);
+            InitUser();
             }
-        public void KhoiTaoCart(Burger burger)
+        public void InitUser()
         {
+            usernameProfile.Text = currentUser.UserName;
+            ageProfile.Text = "Age : "+currentUser.Age;
+            addressProfile.Text = currentUser.Address;
+            emailProfile.Text = currentUser.Email;
+            phoneProfile.Text = currentUser.Phone;
+        }
+        public void KhoiTaoCart(Burger burger,string str)
+        {
+            if (str == "cart")
+            {
+                bool check = ListBurgers.Any(item=>item.Name==burger.Name);
+                if (check==true)
+                {
+                    DisplayAlert("Notify", "Food existed in order list!", "OK");
+                }
+                else
+                {
 
-            ListBurgers.Add(burger);
+                ListBurgers.Add(burger);
+                }
             lstfoods.ItemsSource = ListBurgers;
+                lstfavorities.ItemsSource = ListFav;
+            }
+            else if (str == "fav")
+            {
+                bool check = ListFav.Any(item => item.Name == burger.Name);
+                if (check ==true)
+                {
+                    DisplayAlert("Notify", "Food existed in favorities!", "OK");
+                }
+                else
+                {
+
+                    ListFav.Add(burger);
+                }
+                lstfavorities.ItemsSource = ListFav;
+                lstfoods.ItemsSource = ListBurgers;
+            }
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Login());
         }
     }
     

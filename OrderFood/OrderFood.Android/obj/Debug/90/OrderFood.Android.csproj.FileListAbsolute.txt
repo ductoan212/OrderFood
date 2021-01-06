@@ -988,3 +988,5 @@ E:\MyApp\Github\OrderFood\OrderFood\OrderFood.Android\obj\Debug\90\stamp\_Conver
 E:\MyApp\Github\OrderFood\OrderFood\OrderFood.Android\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 E:\MyApp\Github\OrderFood\OrderFood\OrderFood.Android\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 E:\MyApp\Github\OrderFood\OrderFood\OrderFood.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
+E:\MyApp\Github\OrderFood\OrderFood\OrderFood.Android\obj\Debug\90\res\drawable\back.png
+E:\MyApp\Github\OrderFood\OrderFood\OrderFood.Android\obj\Debug\90\res\drawable\heart.png

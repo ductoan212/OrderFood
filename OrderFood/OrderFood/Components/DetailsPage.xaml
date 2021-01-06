@@ -2,25 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OrderFood.Components.DetailsPage"
+             NavigationPage.HasNavigationBar="False"
              >
-<!--NavigationPage.HasNavigationBar="False"-->
     <Grid Padding="30" BackgroundColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Padding="0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid Padding="0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Grid.Row="0" >
+            <ImageButton Source="back.png"  CornerRadius="100" HeightRequest="50" WidthRequest="30"
+                        BackgroundColor="#F8A03F" Clicked="ImageButton_Clicked"/>
+        </Grid>
+        <Grid Padding="0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Grid.Row="1" >
             <StackLayout Spacing="20" HorizontalOptions="Start" VerticalOptions="Center">
-                <Image Source="search.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
+               
                 <Image Source="user.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
-                <Image Source="cart.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
+                <ImageButton Source="heart.png" BackgroundColor="#F8A03F" CornerRadius="100" Aspect="AspectFit" WidthRequest="35" HeightRequest="35" Clicked="ImageButton_Clicked_1"/>
             </StackLayout>
             <StackLayout Spacing="0" HorizontalOptions="End" VerticalOptions="Start">
                 <Label Text="ORDERFOOD" TextColor="#F8A03F" FontFamily="ThemeFont" FontSize="25" HorizontalOptions="End"/>
                 <Label Text="SPOT" TextColor="White" Opacity="0.5" FontFamily="LightFont" FontSize="12" HorizontalOptions="End"/>
             </StackLayout>
         </Grid>
-        <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand">
+        <ScrollView Grid.Row="2" HorizontalOptions="FillAndExpand">
             <Grid RowSpacing="50" HorizontalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

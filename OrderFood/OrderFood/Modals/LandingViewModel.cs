@@ -41,7 +41,6 @@ namespace OrderFood.Modals
        
         private void DisplayBurger()
         {
-                foods = null;
             if (selectedBurger != null)
             {
                 if (selectedBurger.Category == "breakfast")
@@ -65,11 +64,8 @@ namespace OrderFood.Modals
                 }
                 else if (selectedBurger.Category == "supper")
                 {
-                    foods = GetSnack();
+                    foods = GetSupper();
                 }
-
-                Console.WriteLine(selectedBurger.Category);
-                Console.ReadLine();
                 var viewModel = new DetailsViewModel { SelectedBurger = foods[0], Burgers = foods, Position = 0 };
                 var detailsPage = new DetailsPage { BindingContext = viewModel };
 
@@ -93,8 +89,11 @@ namespace OrderFood.Modals
         {
             return new ObservableCollection<Burger>
             {
+             
                 new Burger { Name = "Break",Category = "breakfast",  Price = 12.99f, Image = "breakfast.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
                 new Burger { Name = "Noodle",Category = "breakfast",  Price = 19.99f, Image = "noodle.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
+
+            
                 
             };
         }
@@ -155,6 +154,11 @@ namespace OrderFood.Modals
                 new Burger { Name = "cow", Category = "desserts",Price = 13.99f, Image = "noodle.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
             };
         }
-
+        private ObservableCollection<Burger> GetTemp()
+        {
+            ObservableCollection<Burger> ListBurger = new ObservableCollection<Burger>();
+            ListBurger.Add(new Burger { Name = "cow", Category = "desserts", Price = 13.99f, Image = "noodle.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies" });
+            return ListBurger;
+        }
     }
 }

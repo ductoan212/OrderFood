@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderFood.Modals;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace OrderFood.Components
         {
             InitializeComponent();
         }
-
+        static List<User> ListUsers = new List<User>();
         private void Button_Clicked(object sender, EventArgs e)
         {
             
@@ -27,10 +28,18 @@ namespace OrderFood.Components
             }
             else
             {
-                string user=username.Text, pass=password.Text;
+                User user = new User { UserName=username.Text,Password=password.Text,Address=address.Text,Email=email.Text,Phone=phone.Text,Age=age.Text};
+                if (ListUsers.Any(item => item.UserName == user.UserName) == true)
+                {
 
-            Navigation.PushAsync(new Login(user,pass));
-            DisplayAlert("Notify", "Register success!!!", "OK");
+                    DisplayAlert("Notify", "Account already exists!", "OK");
+                }
+                else
+                {
+                    ListUsers.Add(user);
+                    Navigation.PushAsync(new Login(ListUsers,user));
+                    DisplayAlert("Notify", "Register success!!!", "OK");
+                }
             }
         }
     }
