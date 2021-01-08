@@ -1,17 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OrderFood.Components.Register">
+             x:Class="OrderFood.Components.Register"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout Padding="20">
-            <Label Text="Register" TextColor="#F8A03F" FontSize="50" Margin="30,0,30,0" FontAttributes="Bold"  HorizontalTextAlignment="Center"/>
-            <Entry x:Name="username" Placeholder="User Name" Margin="0,17,0,0"/>
-            <Entry x:Name="password" Placeholder="Password" IsPassword="True" Margin="0,17,0,0"/>
-            <Entry x:Name="address" Placeholder="Address" Margin="0,17,0,0"/>
-            <Entry x:Name="email" Placeholder="Email" Margin="0,17,0,0"/>
-            <Entry x:Name="phone" Placeholder="Phone" Margin="0,17,0,0"/>
-            <Entry x:Name="age" Placeholder="Age" Margin="0,17,0,0"/>
-            <Button Text="Register Now" BackgroundColor="#F8A03F" CornerRadius="100" TextColor="White" Clicked="Button_Clicked" Margin="0,17,0,0"/>
-        </StackLayout>
+        <AbsoluteLayout VerticalOptions="CenterAndExpand">
+            <ScrollView Padding="0,0" AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                         AbsoluteLayout.LayoutFlags="All">
+                <StackLayout Padding="20">
+                    <Image Source="icon.png"/>
+                    <Label Text="FoodOrder" TextColor="#F8A03F" 
+                                   FontSize="40" FontAttributes="Bold" 
+                                   HorizontalTextAlignment="Center" 
+                                   Margin="0, 0, 0, 15"/>
+                    <Label Text="Đăng ký để có những trãi nghiệm tốt nhất!!!" 
+                                   TextColor="#F8A03F" FontSize="20" 
+                                   HorizontalTextAlignment="Center" 
+                                   Margin="0, 0, 0, 20"/>
+                    <Entry x:Name="username" Placeholder="Tên đăng nhập" Margin="0,0,0,5"/>
+                    <Entry x:Name="password" Placeholder="Mật khẩu" IsPassword="True" Margin="0,0,0,5"/>
+                    <Entry x:Name="fullname" Placeholder="Họ tên" Margin="0,0,0,5"/>
+                    <Entry x:Name="email" Placeholder="Email" Margin="0,0,0,5"/>
+                    <Entry x:Name="address" Placeholder="Địa chỉ" Margin="0,0,0,5"/>
+                    <!--<Entry x:Name="age" Placeholder="Tuổi" Margin="0,0,0,5"/>-->
+                    <Entry x:Name="phone" Placeholder="Điện thoại" Margin="0,5,0,20"/>
+                    <!--<Switch x:Name="sex" Margin="0,0,0,5"/>
+                    <Picker x:Name="sex" Title="Giới tính" HorizontalOptions="FillAndExpand" Margin="0,0,0,5">
+                        <Picker.Items>
+                            <x:String>Nữ</x:String>
+                            <x:String>Nam</x:String>
+                        </Picker.Items>
+                    </Picker>-->
+                    <!--<Button Text="Register Now" BackgroundColor="#F8A03F" CornerRadius="100" TextColor="White" Clicked="Button_Clicked" Margin="0,10,0,0"/>-->
+                    <Button x:Name="btnRegister" Text="Đăng ký" CornerRadius="100" 
+                        TextColor="White" BackgroundColor="#F8A03F"  
+                        FontSize="20" HeightRequest="50" 
+                        Margin="0, 0, 0, 10"
+                        Clicked="btnRegister_Clicked"/>
+                    <Button x:Name="btnLogin" Text="Đăng nhập" CornerRadius="100" 
+                        TextColor="#F8A03F" BackgroundColor="White"
+                        BorderColor="#F8A03F" BorderWidth="2"
+                        FontSize="20"
+                        Clicked="btnLogin_Clicked"/>
+                </StackLayout>
+            </ScrollView>
+                    
+            <ContentView x:Name="popupLoadingView" Padding="20,0" AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                         AbsoluteLayout.LayoutFlags="All"
+                         IsVisible="false">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical">
+                        <ActivityIndicator x:Name="activityIndicator" Margin="10"
+                                           VerticalOptions="Center" HorizontalOptions="Center"
+                                           Color="#F8A03F" IsRunning="True"
+                                           WidthRequest="150" HeightRequest="150"></ActivityIndicator>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

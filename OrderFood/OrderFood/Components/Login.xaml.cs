@@ -1,7 +1,9 @@
-﻿using OrderFood.Modals;
+﻿using Newtonsoft.Json;
+using OrderFood.Modals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,54 +15,48 @@ namespace OrderFood.Components
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Login : ContentPage
     {
+        //List<User> ListUsersLogin = new List<User>();
         public Login()
         {
             InitializeComponent();
            
         }
-        List<User> ListUsersLogin = new List<User>();
-        public Login(List<User> list,User user)
+        public Login(User user)
         {
             InitializeComponent();
             InitAccount(user);
-            ListUsersLogin = list;
-
         }
         public void InitAccount(User user)
         {
-            usernameLogin.Text = user.UserName;
-            passwordLogin.Text = user.Password;
+            usernameLogin.Text = user.TenDN;
+            passwordLogin.Text = user.MatKhau;
         }
-        private void Button_Clicked(object sender, EventArgs e)
+        public async void CheckLogin(string TenDN, string MatKhau)
         {
-
-            var username = usernameLogin.Text;
-            var password = passwordLogin.Text;
-            User user = ListUsersLogin.Find(item => item.UserName == username);
-            if (username == "ad" && password == "ad")
+            popupLoadingView.IsVisible = true;
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/checkDangNhap?TenDN=" + TenDN + "&MatKhau=" + MatKhau);
+            if(response == "true")
             {
-                User admin = new User {UserName="ADMIN", Password="ad",Phone="123456789",Email="VietNam@gmail.vn",Address="Thu Duc district,HCM city,Viet Nam",Age="18"};
-                Navigation.PushAsync(new BottomNavBarXf.Home(admin));
-            }
-            else if (user!=null)
-            {
-
-            if (username == user.UserName && password == user.Password||username =="ad"&&password=="ad")
-            {
-                Navigation.PushAsync(new BottomNavBarXf.Home(user));
-                //Application.Current.MainPage = new BottomNavBarXf.Home();
-
+                var response2 = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getKhachHangTheoTenDN?TenDN=" + TenDN);
+                List<User> user = JsonConvert.DeserializeObject<List<User>>(response2);
+                Navigation.PushAsync(new BottomNavBarXf.Home(user[0]));
             }
             else
             {
-                DisplayAlert("Notification", "User name or Password incorrect!", "OK");
+                await DisplayAlert("Thông báo", "Tên đăng nhập hoặc mật khẩu sai!", "OK");
             }
-            }
+            popupLoadingView.IsVisible = false;
         }
 
-        
+        private void btnLogin_Clicked(object sender, EventArgs e)
+        {
+            var username = usernameLogin.Text;
+            var password = passwordLogin.Text;
+            CheckLogin(username, password);
+        }
 
-        private void Button_Clicked_2(object sender, EventArgs e)
+        private void btnRegister_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Register());
         }
