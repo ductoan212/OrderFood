@@ -20,7 +20,6 @@ namespace OrderFood.Components
         static List<User> ListUsers = new List<User>();
         private void Button_Clicked(object sender, EventArgs e)
         {
-            
             if(username.Text==null|| password.Text==null || address.Text==null || email.Text==null || phone.Text==null || age.Text==null)
             {
                 DisplayAlert("Notify", "Please fill in full!", "OK");

@@ -51,10 +51,9 @@
                             </Grid.RowDefinitions>
                             <Image Aspect="AspectFill" Source="{Binding Image}" Margin="10" WidthRequest="125" HeightRequest="110" 
                                HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Grid.Row="1" Text="{Binding Name}" TextColor="#F9B522" FontFamily="ThemeFont" 
-                               VerticalOptions="End" HorizontalOptions="Start"/>
-                            <Label Grid.Row="1" Text="{Binding Price, StringFormat='${0}'}" TextColor="White" FontFamily="ThemeFont"
-                               VerticalOptions="End" HorizontalOptions="End"/>
+                            <Label Grid.Row="1" Text="{Binding Name}" TextColor="Black" FontFamily="ThemeFont" 
+                               VerticalOptions="End" HorizontalOptions="Center"/>
+                            
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -162,8 +161,8 @@
                 VerticalOptions="Fill" />
                 <BoxView
                 Grid.Row="0"
-                BackgroundColor="Black"
-                Opacity="0.3" />
+                BackgroundColor="White"
+                 />
                 <StackLayout
                 Grid.Row="0"
                 Padding="18,25"

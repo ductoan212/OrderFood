@@ -16,9 +16,9 @@ namespace OrderFood.Modals
             burgers = GetBurgers();
         }
 
-        ObservableCollection<Burger> burgers;
+        ObservableCollection<Category> burgers;
         ObservableCollection<Burger> foods;
-        public ObservableCollection<Burger> Burgers
+        public ObservableCollection<Category> Burgers
         {
             get { return burgers; }
             set
@@ -27,8 +27,8 @@ namespace OrderFood.Modals
                 OnPropertyChanged();
             }
         }
-        private Burger selectedBurger;
-        public Burger SelectedBurger
+        private Category selectedBurger;
+        public Category SelectedBurger
         {
             get { return selectedBurger; }
             set
@@ -43,26 +43,26 @@ namespace OrderFood.Modals
         {
             if (selectedBurger != null)
             {
-                if (selectedBurger.Category == "breakfast")
+                if (selectedBurger.CategoryName == "breakfast")
                 {
                     foods = GetBreakFast();
-                }else if(selectedBurger.Category == "lunch")
+                }else if(selectedBurger.CategoryName == "lunch")
                 {
                     foods = GetLunch();
                 }
-                else if (selectedBurger.Category == "dinner")
+                else if (selectedBurger.CategoryName == "dinner")
                 {
                     foods = GetDinner();
                 }
-                else if (selectedBurger.Category == "snack")
+                else if (selectedBurger.CategoryName == "snack")
                 {
                     foods = GetSnack();
                 }
-                else if (selectedBurger.Category == "desserts")
+                else if (selectedBurger.CategoryName == "desserts")
                 {
                     foods = GetDesserts();
                 }
-                else if (selectedBurger.Category == "supper")
+                else if (selectedBurger.CategoryName == "supper")
                 {
                     foods = GetSupper();
                 }
@@ -73,16 +73,16 @@ namespace OrderFood.Modals
                 navigation.PushAsync(detailsPage, true);
             }
         }
-        private ObservableCollection<Burger> GetBurgers()
+        private ObservableCollection<Category> GetBurgers()
         {
-            return new ObservableCollection<Burger>
+            return new ObservableCollection<Category>
             {
-                new Burger { Name = "BREAKFAST",Category = "breakfast", Price = 12.99f, Image = "breakfast.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
-                new Burger { Name = "LUNCH",Category = "lunch", Price = 19.99f, Image = "noodle.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
-                new Burger { Name = "DINNER", Category = "dinner",Price = 17.29f, Image = "pizza.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
-                new Burger { Name = "SNACK",Category = "snack", Price = 15.99f, Image = "vegetable.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
-                new Burger { Name = "SUPPER", Category = "supper",Price = 11.99f, Image = "breakfast.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
-                new Burger { Name = "DESSERTS",Category = "desserts", Price = 13.99f, Image = "noodle.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"}
+                new Category { Name = "BREAKFAST",CategoryName = "breakfast",  Image = "breakfast.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
+                new Category { Name = "LUNCH",CategoryName = "lunch", Image = "noodle.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
+                new Category { Name = "DINNER", CategoryName = "dinner", Image = "pizza.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
+                new Category { Name = "SNACK",CategoryName = "snack",  Image = "vegetable.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
+                new Category { Name = "SUPPER", CategoryName = "supper",Image = "breakfast.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
+                new Category { Name = "DESSERTS",CategoryName = "desserts",  Image = "noodle.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"}
             };
         }
         private ObservableCollection<Burger> GetBreakFast()
