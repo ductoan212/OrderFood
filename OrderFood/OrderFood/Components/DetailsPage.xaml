@@ -18,7 +18,7 @@
             <StackLayout Spacing="20" HorizontalOptions="Start" VerticalOptions="Center">
                
                 <Image Source="user.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
-                <ImageButton Source="heart.png" BackgroundColor="Transparent"  Aspect="AspectFit" WidthRequest="35" HeightRequest="35" Clicked="ImageButton_Clicked_1"/>
+                <ImageButton Source="heart.png" BackgroundColor="Transparent"   WidthRequest="40" HeightRequest="40" Clicked="ImageButton_Clicked_1"/>
             </StackLayout>
             <StackLayout Spacing="0" HorizontalOptions="End" VerticalOptions="Start">
                 <Label Text="ORDERFOOD" TextColor="#F8A03F" FontFamily="ThemeFont" FontSize="25" HorizontalOptions="End"/>
