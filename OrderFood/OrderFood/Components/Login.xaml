@@ -4,14 +4,14 @@
              x:Class="OrderFood.Components.Login"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" Padding="20,100,20,100"  BackgroundColor="Black">
+        <StackLayout VerticalOptions="CenterAndExpand" Padding="20,100,20,100"  BackgroundColor="White">
             
             <Label Text="FoodOrder" TextColor="#F8A03F" FontSize="50" FontAttributes="Bold" HorizontalTextAlignment="Center" />
             <Label Text="Sign in to your account" TextColor="White" FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="0, 0, 0, 50"/>
             <Label Text="User Name" TextColor="#F8A03F" FontSize="17" />
-            <Entry Placeholder="User Name" x:Name="usernameLogin" PlaceholderColor="gray" TextColor="White" Margin="0, 0, 0, 30" BackgroundColor="#131313" />
+            <Entry Placeholder="User Name" x:Name="usernameLogin" PlaceholderColor="gray" TextColor="Black" Margin="0, 0, 0, 30"/>
             <Label Text="Password" TextColor="#F8A03F" FontSize="17" />
-            <Entry IsPassword="True" Margin="0, 0, 0, 50" x:Name="passwordLogin" Placeholder="Password" PlaceholderColor="gray" TextColor="White" BackgroundColor="#131313" />
+            <Entry IsPassword="True" Margin="0, 0, 0, 50" x:Name="passwordLogin" Placeholder="Password" PlaceholderColor="gray" TextColor="Black"  />
             <Button Text="Sign In" CornerRadius="100" TextColor="White" BackgroundColor="#F8A03F" Clicked="Button_Clicked"/>
             <Button Text="Register" CornerRadius="100" TextColor="White" BackgroundColor="#F8A03F"  HeightRequest="50" Clicked="Button_Clicked_2"/>
         </StackLayout>

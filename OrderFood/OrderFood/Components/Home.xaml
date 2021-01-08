@@ -19,7 +19,7 @@
             <vm:LandingViewModel />
         </ContentPage.BindingContext>
 
-        <Grid Padding="30" BackgroundColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid Padding="30" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -44,7 +44,7 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="10" BackgroundColor="#131313" WidthRequest="145" HeightRequest="160">
+                        <Grid Padding="10" BackgroundColor="#F9B522" WidthRequest="145" HeightRequest="160">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
@@ -70,8 +70,8 @@
         Icon="collections.png">
         <ContentPage.Content>
             <StackLayout>
-                <Label Text="Favorities List" TextColor="#F8A03F" FontSize="50" HorizontalTextAlignment="Center" FontAttributes="Bold" Padding="0,30,0,30" BackgroundColor="Black"/>
-                <ListView x:Name="lstfavorities" HasUnevenRows="True"   BackgroundColor="Black">
+                <Label Text="Favorities List" TextColor="#F8A03F" FontSize="50" HorizontalTextAlignment="Center" FontAttributes="Bold" Padding="0,30,0,30" BackgroundColor="White"/>
+                <ListView x:Name="lstfavorities" HasUnevenRows="True"   BackgroundColor="White">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -108,8 +108,8 @@
             
         <ContentPage.Content>
             <StackLayout>
-                <Label Text="Order List" TextColor="#F8A03F" FontSize="50" HorizontalTextAlignment="Center" FontAttributes="Bold" Padding="0,30,0,30" BackgroundColor="Black"/>
-                <ListView x:Name="lstfoods" HasUnevenRows="True"   BackgroundColor="Black">
+                <Label Text="Order List" TextColor="#F8A03F" FontSize="50" HorizontalTextAlignment="Center" FontAttributes="Bold" Padding="0,30,0,30" BackgroundColor="White"/>
+                <ListView x:Name="lstfoods" HasUnevenRows="True"   BackgroundColor="White">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -163,7 +163,7 @@
                 <BoxView
                 Grid.Row="0"
                 BackgroundColor="Black"
-                Opacity="0.7" />
+                Opacity="0.3" />
                 <StackLayout
                 Grid.Row="0"
                 Padding="18,25"
