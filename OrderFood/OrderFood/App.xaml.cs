@@ -11,7 +11,7 @@ namespace OrderFood
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Login());
+            MainPage = new NavigationPage(new Register());
             //MainPage =new Login();
 
         }

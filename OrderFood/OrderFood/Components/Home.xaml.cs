@@ -38,11 +38,11 @@ namespace BottomNavBarXf
             }
         public void InitUser()
         {
-            usernameProfile.Text = currentUser.UserName;
-            ageProfile.Text = "Age : "+currentUser.Age;
-            addressProfile.Text = currentUser.Address;
+            usernameProfile.Text = currentUser.TenDN;
+            ageProfile.Text = "Age : "+currentUser.Tuoi.ToString();
+            addressProfile.Text = currentUser.DiaChi;
             emailProfile.Text = currentUser.Email;
-            phoneProfile.Text = currentUser.Phone;
+            phoneProfile.Text = currentUser.Sdt;
         }
         public void KhoiTaoCart(Burger burger,string str)
         {
@@ -80,7 +80,7 @@ namespace BottomNavBarXf
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Login());
+            Application.Current.MainPage = new Login();
         }
     }
     

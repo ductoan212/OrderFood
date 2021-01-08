@@ -4,16 +4,54 @@
              x:Class="OrderFood.Components.Login"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" Padding="20,100,20,100"  BackgroundColor="White">
-            
-            <Label Text="FoodOrder" TextColor="#F8A03F" FontSize="50" FontAttributes="Bold" HorizontalTextAlignment="Center" />
-            <Label Text="Sign in to your account" TextColor="White" FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="0, 0, 0, 50"/>
-            <Label Text="User Name" TextColor="#F8A03F" FontSize="17" />
-            <Entry Placeholder="User Name" x:Name="usernameLogin" PlaceholderColor="gray" TextColor="Black" Margin="0, 0, 0, 30"/>
-            <Label Text="Password" TextColor="#F8A03F" FontSize="17" />
-            <Entry IsPassword="True" Margin="0, 0, 0, 50" x:Name="passwordLogin" Placeholder="Password" PlaceholderColor="gray" TextColor="Black"  />
-            <Button Text="Sign In" CornerRadius="100" TextColor="White" BackgroundColor="#F8A03F" Clicked="Button_Clicked"/>
-            <Button Text="Register" CornerRadius="100" TextColor="White" BackgroundColor="#F8A03F"  HeightRequest="50" Clicked="Button_Clicked_2"/>
-        </StackLayout>
+        <AbsoluteLayout VerticalOptions="Center">
+            <StackLayout VerticalOptions="Center" Padding="20,0,20,0">
+                <Image Source="icon.png"/>
+                <Label Text="FoodOrder" TextColor="#F8A03F" 
+                       FontSize="40" FontAttributes="Bold" 
+                       HorizontalTextAlignment="Center" 
+                       Margin="0, 0, 0, 15"/>
+                <Label Text="Đăng nhập bằng tài khoản của bạn" 
+                       TextColor="#F8A03F" FontSize="20" 
+                       HorizontalTextAlignment="Center" 
+                       Margin="0, 0, 0, 20"/>
+                <!--<Label Text="Tên đăng nhập" 
+                       TextColor="#F8A03F" FontSize="17" />-->
+                <Entry x:Name="usernameLogin" Placeholder="Tên đăng nhập..."  
+                       PlaceholderColor="gray" TextColor="Black" 
+                       Margin="0, 0, 0, 20"/>
+                <!--<Label Text="Mật khẩu" 
+                       TextColor="#F8A03F" FontSize="17" />-->
+                <Entry x:Name="passwordLogin" IsPassword="True" 
+                       Margin="0, 0, 0, 30" Placeholder="Mật khẩu..." 
+                       PlaceholderColor="gray" TextColor="Black"/>
+                <Button x:Name="btnLogin" Text="Đăng nhập" CornerRadius="100" 
+                        TextColor="White" BackgroundColor="#F8A03F" 
+                        FontSize="20" Margin="0, 0, 0, 10"
+                        Clicked="btnLogin_Clicked"/>
+                <Button x:Name="btnRegister" Text="Đăng ký" CornerRadius="100" 
+                        TextColor="#F8A03F" BackgroundColor="White"
+                        BorderColor="#F8A03F" BorderWidth="2"
+                        FontSize="20" HeightRequest="50" 
+                        Clicked="btnRegister_Clicked"/>
+                <Label Text="Quên mật khẩu???"
+                       TextColor="#F8A03F"
+                       TextDecorations="Underline"
+                       HorizontalTextAlignment="Center"/>
+            </StackLayout>
+
+            <ContentView x:Name="popupLoadingView" Padding="20,0" AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                         AbsoluteLayout.LayoutFlags="All"
+                         IsVisible="false">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical">
+                        <ActivityIndicator x:Name="activityIndicator" Margin="10"
+                                           VerticalOptions="Center" HorizontalOptions="Center"
+                                           Color="#F8A03F" IsRunning="True"
+                                           WidthRequest="150" HeightRequest="150"></ActivityIndicator>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
