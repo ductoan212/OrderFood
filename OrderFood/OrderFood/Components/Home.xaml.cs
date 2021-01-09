@@ -39,10 +39,16 @@ namespace BottomNavBarXf
         public void InitUser()
         {
             usernameProfile.Text = currentUser.TenDN;
-            ageProfile.Text = "Age : "+currentUser.Tuoi.ToString();
+            ageProfile.Text = "Age : " + currentUser.Tuoi.ToString();
             addressProfile.Text = currentUser.DiaChi;
             emailProfile.Text = currentUser.Email;
             phoneProfile.Text = currentUser.Sdt;
+
+            //usernameProfile.Text = "ductoan212";
+            //ageProfile.Text = "20";
+            //addressProfile.Text = "Hồ Chí Minh";
+            //emailProfile.Text = "ductoan20102000@gmail.com";
+            //phoneProfile.Text = "0123456789";
         }
         public void KhoiTaoCart(Burger burger,string str)
         {
