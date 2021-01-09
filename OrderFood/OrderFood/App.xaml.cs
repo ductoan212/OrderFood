@@ -11,8 +11,8 @@ namespace OrderFood
         {
             InitializeComponent();
 
+            //MainPage = new NavigationPage(new BottomNavBarXf.Home());
             MainPage = new NavigationPage(new Login());
-            //MainPage =new Login();
 
         }
 
