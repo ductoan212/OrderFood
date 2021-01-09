@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -44,12 +44,14 @@ namespace OrderFood.Components
 
         private void btnRegister_Clicked(object sender, EventArgs e)
         {
+            var current = Connectivity.NetworkAccess;
+            
             //if (username.Text == null || password.Text == null || address.Text == null || email.Text == null || phone.Text == null || age.Text == null)
             if (username.Text == null || password.Text == null || address.Text == null || email.Text == null || phone.Text == null)
             {
                 DisplayAlert("Thông báo", "Bạn chưa điền đủ thông tin", "OK");
             }
-            else
+            else if (current == NetworkAccess.Internet)
             {
                 User user = new User
                 {
@@ -66,11 +68,16 @@ namespace OrderFood.Components
                 };
                 CheckRegister(user);
             }
+            else
+            {
+                DisplayAlert("Thông báo", "Bạn cần kết nối Internet để thực hiện thao tác", "OK");
+
+            }
         }
 
         private void btnLogin_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Login());
+            Navigation.PopAsync();
         }
     }
 }

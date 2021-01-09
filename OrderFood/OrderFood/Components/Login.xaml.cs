@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -53,7 +53,21 @@ namespace OrderFood.Components
         {
             var username = usernameLogin.Text;
             var password = passwordLogin.Text;
-            CheckLogin(username, password);
+            var current = Connectivity.NetworkAccess;
+            if (username == null || password == null ||
+                username == "" || password == "")
+            {
+                DisplayAlert("Thông báo", "Bạn chưa điền đủ thông tin", "OK");
+            }
+            else if (current == NetworkAccess.Internet)
+            {
+                CheckLogin(username, password);
+            }
+            else
+            {
+                DisplayAlert("Thông báo", "Bạn cần kết nối Internet để thực hiện thao tác", "OK");
+            }
+            
         }
 
         private void btnRegister_Clicked(object sender, EventArgs e)
