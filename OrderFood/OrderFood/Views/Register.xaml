@@ -9,12 +9,12 @@
                          AbsoluteLayout.LayoutFlags="All">
                 <StackLayout Padding="20">
                     <Image Source="icon.png"/>
-                    <Label Text="FoodOrder" TextColor="#F8A03F" 
+                    <Label Text="FoodOrder" TextColor="#F9B522" 
                                    FontSize="40" FontAttributes="Bold" 
                                    HorizontalTextAlignment="Center" 
                                    Margin="0, 0, 0, 15"/>
                     <Label Text="Đăng ký để có những trãi nghiệm tốt nhất!!!" 
-                                   TextColor="#F8A03F" FontSize="20" 
+                                   TextColor="#F9B522" FontSize="20" 
                                    HorizontalTextAlignment="Center" 
                                    Margin="0, 0, 0, 20"/>
                     <Entry x:Name="username" Placeholder="Tên đăng nhập" Margin="0,0,0,5"/>
@@ -31,15 +31,15 @@
                             <x:String>Nam</x:String>
                         </Picker.Items>
                     </Picker>-->
-                    <!--<Button Text="Register Now" BackgroundColor="#F8A03F" CornerRadius="100" TextColor="White" Clicked="Button_Clicked" Margin="0,10,0,0"/>-->
+                    <!--<Button Text="Register Now" BackgroundColor="#F9B522" CornerRadius="100" TextColor="White" Clicked="Button_Clicked" Margin="0,10,0,0"/>-->
                     <Button x:Name="btnRegister" Text="Đăng ký" CornerRadius="100" 
-                        TextColor="White" BackgroundColor="#F8A03F"  
+                        TextColor="White" BackgroundColor="#F9B522"  
                         FontSize="20" HeightRequest="50" 
                         Margin="0, 0, 0, 10"
                         Clicked="btnRegister_Clicked"/>
                     <Button x:Name="btnLogin" Text="Đăng nhập" CornerRadius="100" 
-                        TextColor="#F8A03F" BackgroundColor="White"
-                        BorderColor="#F8A03F" BorderWidth="2"
+                        TextColor="#F9B522" BackgroundColor="White"
+                        BorderColor="#F9B522" BorderWidth="2"
                         FontSize="20"
                         Clicked="btnLogin_Clicked"/>
                 </StackLayout>
@@ -52,7 +52,7 @@
                     <StackLayout Orientation="Vertical">
                         <ActivityIndicator x:Name="activityIndicator" Margin="10"
                                            VerticalOptions="Center" HorizontalOptions="Center"
-                                           Color="#F8A03F" IsRunning="True"
+                                           Color="#F9B522" IsRunning="True"
                                            WidthRequest="150" HeightRequest="150"></ActivityIndicator>
                     </StackLayout>
                 </StackLayout>

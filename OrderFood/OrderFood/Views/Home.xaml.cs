@@ -14,41 +14,41 @@ namespace BottomNavBarXf
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Home 
     {
+        static User currentUser = new User();
+        static List<Burger> ListBurgers = new List<Burger>();
+        static List<Burger> ListFav = new List<Burger>();
+
         public Home()
         {
             InitializeComponent();
             InitUser();
         }
-        static User currentUser = new User();
         public Home(User user)
         {
             InitializeComponent();
             currentUser = user;
             InitUser();
         }
-
-        static List<Burger> ListBurgers = new List<Burger>();
-        static List<Burger> ListFav = new List<Burger>();
         public Home(Burger burger, string str)
-            {
+        {
 
-                InitializeComponent();
+            InitializeComponent();
             KhoiTaoCart(burger,str);
             InitUser();
-            }
+        }
         public void InitUser()
         {
-            usernameProfile.Text = currentUser.TenDN;
-            ageProfile.Text = "Age : " + currentUser.Tuoi.ToString();
-            addressProfile.Text = currentUser.DiaChi;
-            emailProfile.Text = currentUser.Email;
-            phoneProfile.Text = currentUser.Sdt;
+            //usernameProfile.Text = currentUser.TenDN;
+            //ageProfile.Text = "Age : " + currentUser.Tuoi.ToString();
+            //addressProfile.Text = currentUser.DiaChi;
+            //emailProfile.Text = currentUser.Email;
+            //phoneProfile.Text = currentUser.Sdt;
 
-            //usernameProfile.Text = "ductoan212";
-            //ageProfile.Text = "20";
-            //addressProfile.Text = "Hồ Chí Minh";
-            //emailProfile.Text = "ductoan20102000@gmail.com";
-            //phoneProfile.Text = "0123456789";
+            usernameProfile.Text = "ductoan212";
+            ageProfile.Text = "20";
+            addressProfile.Text = "Hồ Chí Minh";
+            emailProfile.Text = "ductoan20102000@gmail.com";
+            phoneProfile.Text = "0123456789";
         }
         public void KhoiTaoCart(Burger burger,string str)
         {
