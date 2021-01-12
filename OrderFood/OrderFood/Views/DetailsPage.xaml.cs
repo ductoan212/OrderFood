@@ -1,5 +1,5 @@
 ﻿using BottomBar.XamarinForms;
-using OrderFood.Modals;
+using OrderFood.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +17,7 @@ namespace OrderFood.Components
         public DetailsPage()
         {
             InitializeComponent();
+            Title = "DS Món ăn";
         }
 
     private void Button_Clicked(object sender, EventArgs e)

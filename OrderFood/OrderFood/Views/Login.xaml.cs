@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using OrderFood.Modals;
+using OrderFood.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +40,7 @@ namespace OrderFood.Components
             {
                 var response2 = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getKhachHangTheoTenDN?TenDN=" + TenDN);
                 List<User> user = JsonConvert.DeserializeObject<List<User>>(response2);
-                Navigation.PushAsync(new BottomNavBarXf.Home(user[0]));
+                Application.Current.MainPage = new NavigationPage (new BottomNavBarXf.Home(user[0]));
             }
             else
             {

@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using OrderFood.Modals;
+using OrderFood.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

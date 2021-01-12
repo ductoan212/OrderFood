@@ -3,7 +3,8 @@
     x:Class="BottomNavBarXf.Home"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:bnb="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms" xmlns:vm="clr-namespace:OrderFood.Modals"
+    xmlns:bnb="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms" 
+    xmlns:vm="clr-namespace:OrderFood.ViewModels"
     NavigationPage.HasNavigationBar="False"
     >
 
@@ -11,7 +12,9 @@
         Title="Home"
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
         Icon="explore.png">
-        
+        <ContentPage.BindingContext>
+            <vm:LoaiMonViewModel />
+        </ContentPage.BindingContext>
         <StackLayout Spacing="0" >
             <Frame BackgroundColor="#F9B522"
                    Padding="10" HasShadow="True" Margin="0">
@@ -34,8 +37,8 @@
                         </StackLayout>
                     </Frame>
                     <Label Text="Hãy chọn lọi món!!!" FontSize="20"/>
-                    <CollectionView x:Name="burgerList" Margin="0,0,0,0" Grid.Row="1" ItemsSource="{Binding Burgers}" SelectionMode="Single" 
-                        SelectedItem="{Binding SelectedBurger}" VerticalScrollBarVisibility="Never" 
+                    <CollectionView x:Name="burgerList" Margin="0,0,0,0" Grid.Row="1" ItemsSource="{Binding loaimons}" SelectionMode="Single" 
+                        SelectedItem="{Binding selectedBurger}" VerticalScrollBarVisibility="Never" 
                         SelectionChangedCommand="{Binding SelectionCommand}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Orientation="Vertical"  Span="2"/>
@@ -55,10 +58,10 @@
                                             <!--<Image Aspect="AspectFill" Source="{Binding Image}" Margin="0"
                                                    HeightRequest="150"
                                                     HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>-->
-                                            <Image Aspect="AspectFill" Source="https://media-cdn.tripadvisor.com/media/photo-s/15/03/79/e3/otto-s-anatolian-food.jpg" Margin="0"
+                                            <Image Aspect="AspectFill" Source="{Binding Hinh}" Margin="0"
                                                    HeightRequest="150" WidthRequest="150"
                                                     HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                            <Label Grid.Row="1" Text="{Binding Name}" TextColor="Black" FontFamily="ThemeFont" 
+                                            <Label Grid.Row="1" Text="{Binding TenLM}" TextColor="Black" FontFamily="ThemeFont" 
                                                     VerticalOptions="End" HorizontalOptions="Center"
                                                    Margin="10,0,10,10"/>
                                         </Grid>
@@ -116,6 +119,8 @@
         Title="Cart"
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
         Icon="shop.png">
+
+            
         <ContentPage.Content>
             <StackLayout>
                 <Label Text="Order List" TextColor="#F9B522" FontSize="50" HorizontalTextAlignment="Center" FontAttributes="Bold" Padding="0,30,0,30" BackgroundColor="White"/>

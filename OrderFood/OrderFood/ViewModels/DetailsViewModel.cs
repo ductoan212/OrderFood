@@ -1,58 +1,55 @@
-﻿using System;
+﻿using OrderFood.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace OrderFood.Modals
+namespace OrderFood.ViewModels
 {
     public class DetailsViewModel : BaseViewModel
     {
-        ObservableCollection<Burger> burgers;
-        public ObservableCollection<Burger> Burgers
+        ObservableCollection<MonAn> _monans;
+        public ObservableCollection<MonAn> monans
         {
-            get { return burgers; }
+            get { return _monans; }
             set
             {
-                burgers = value;
+                _monans = value;
                 OnPropertyChanged();
             }
         }
 
-        private Burger selectedBurger;
-        public Burger SelectedBurger
+        private MonAn _selectedMonAn;
+        public MonAn selectedMonAn
         {
-            get { return selectedBurger; }
+            get { return _selectedMonAn; }
             set
             {
-                
-                selectedBurger = value;
+                _selectedMonAn = value;
                 OnPropertyChanged();
             }
         }
 
-        private int position;
-        public int Position
-        {
-            get
-            {
-                if (position != burgers.IndexOf(selectedBurger))
-                    return burgers.IndexOf(selectedBurger);
+        //private int _position;
+        //public int position
+        //{
+        //    get
+        //    {
+        //        if (_position != _monans.IndexOf(_selectedMonAn))
+        //            return _monans.IndexOf(_selectedMonAn);
 
-                return position;
-            }
-            set
-            {
-                position = value;
-                selectedBurger = burgers[position];
+        //        return _position;
+        //    }
+        //    set
+        //    {
+        //        _position = value;
+        //        _selectedMonAn = _monans[_position];
 
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(SelectedBurger));
-            }
-        }
-
-        
-
+        //        OnPropertyChanged();
+        //        OnPropertyChanged(nameof(selectedMonAn));
+        //    }
+        //}
     }
 }
