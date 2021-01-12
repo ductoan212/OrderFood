@@ -22,7 +22,7 @@ namespace OrderFood.Components
 
     private void Button_Clicked(object sender, EventArgs e)
         {
-        Burger item = (Burger)caroulitem.CurrentItem;
+            MonAn item = (MonAn)caroulitem.CurrentItem;
             Navigation.PushAsync(new BottomNavBarXf.Home(item,"cart"));
             
         }
@@ -35,7 +35,7 @@ namespace OrderFood.Components
 
         private void ImageButton_Clicked_1(object sender, EventArgs e)
         {
-            Burger item = (Burger)caroulitem.CurrentItem;
+            MonAn item = (MonAn)caroulitem.CurrentItem;
             Navigation.PushAsync(new BottomNavBarXf.Home(item,"fav"));
         }
     }

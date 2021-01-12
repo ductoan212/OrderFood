@@ -2,10 +2,7 @@
 using OrderFood.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -36,16 +33,18 @@ namespace OrderFood.Components
             popupLoadingView.IsVisible = true;
             var httpClient = new HttpClient();
             var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/checkDangNhap?TenDN=" + TenDN + "&MatKhau=" + MatKhau);
-            if(response == "true")
+            
+            if (response == "true")
             {
                 var response2 = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getKhachHangTheoTenDN?TenDN=" + TenDN);
                 List<User> user = JsonConvert.DeserializeObject<List<User>>(response2);
-                Application.Current.MainPage = new NavigationPage (new BottomNavBarXf.Home(user[0]));
+                Application.Current.MainPage = new NavigationPage(new BottomNavBarXf.Home(user[0]));
             }
             else
             {
                 await DisplayAlert("Thông báo", "Tên đăng nhập hoặc mật khẩu sai!", "OK");
             }
+
             popupLoadingView.IsVisible = false;
         }
 

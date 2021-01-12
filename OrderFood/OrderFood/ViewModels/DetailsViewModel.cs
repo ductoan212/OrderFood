@@ -21,8 +21,8 @@ namespace OrderFood.ViewModels
             }
         }
 
-        private MonAn _selectedMonAn;
-        public MonAn selectedMonAn
+        public MonAn _selectedMonAn;
+        public MonAn SelectedBurger
         {
             get { return _selectedMonAn; }
             set
@@ -32,24 +32,24 @@ namespace OrderFood.ViewModels
             }
         }
 
-        //private int _position;
-        //public int position
-        //{
-        //    get
-        //    {
-        //        if (_position != _monans.IndexOf(_selectedMonAn))
-        //            return _monans.IndexOf(_selectedMonAn);
+        private int _position;
+        public int position
+        {
+            get
+            {
+                if (_position != _monans.IndexOf(_selectedMonAn))
+                    return _monans.IndexOf(_selectedMonAn);
 
-        //        return _position;
-        //    }
-        //    set
-        //    {
-        //        _position = value;
-        //        _selectedMonAn = _monans[_position];
+                return _position;
+            }
+            set
+            {
+                _position = value;
+                _selectedMonAn = _monans[_position];
 
-        //        OnPropertyChanged();
-        //        OnPropertyChanged(nameof(selectedMonAn));
-        //    }
-        //}
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedBurger));
+            }
+        }
     }
 }

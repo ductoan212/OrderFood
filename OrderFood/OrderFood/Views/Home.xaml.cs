@@ -15,8 +15,8 @@ namespace BottomNavBarXf
     public partial class Home 
     {
         static User currentUser = new User();
-        static List<Burger> ListBurgers = new List<Burger>();
-        static List<Burger> ListFav = new List<Burger>();
+        static List<MonAn> ListBurgers = new List<MonAn>();
+        static List<MonAn> ListFav = new List<MonAn>();
 
         public Home()
         {
@@ -29,7 +29,7 @@ namespace BottomNavBarXf
             currentUser = user;
             InitUser();
         }
-        public Home(Burger burger, string str)
+        public Home(MonAn burger, string str)
         {
 
             InitializeComponent();
@@ -52,11 +52,11 @@ namespace BottomNavBarXf
             //phoneProfile.Text = "0123456789";
             //userName.Text = "Xin chào Toàn";
         }
-        public void KhoiTaoCart(Burger burger,string str)
+        public void KhoiTaoCart(MonAn burger,string str)
         {
             if (str == "cart")
             {
-                bool check = ListBurgers.Any(item=>item.Name==burger.Name);
+                bool check = ListBurgers.Any(item=>item.TenMA==burger.TenMA);
                 if (check==true)
                 {
                     DisplayAlert("Notify", "Food existed in order list!", "OK");
@@ -71,7 +71,7 @@ namespace BottomNavBarXf
             }
             else if (str == "fav")
             {
-                bool check = ListFav.Any(item => item.Name == burger.Name);
+                bool check = ListFav.Any(item => item.TenMA == burger.TenMA);
                 if (check ==true)
                 {
                     DisplayAlert("Notify", "Food existed in favorities!", "OK");

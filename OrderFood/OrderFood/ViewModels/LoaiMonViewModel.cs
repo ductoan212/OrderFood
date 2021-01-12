@@ -42,7 +42,7 @@ namespace OrderFood.ViewModels
         }
 
         private LoaiMon _selectedBurger;
-        public LoaiMon selectedBurger
+        public LoaiMon SelectedBurger
         {
             get { return _selectedBurger; }
             set
@@ -58,7 +58,11 @@ namespace OrderFood.ViewModels
             if (_selectedBurger != null)
             {
                 monans = GetBreakFast();
-                var viewModel = new DetailsViewModel { selectedMonAn = monans[0], monans = monans};
+                Console.WriteLine("Here Result Print!!!!!!!!!!!!!!!!");
+                Console.WriteLine(monans[0]);
+                Console.WriteLine(monans[0].Hinh);
+                Console.ReadLine();
+                var viewModel = new DetailsViewModel { _selectedMonAn = monans[0], monans = monans, position = 0 };
                 var detailsPage = new DetailsPage { BindingContext = viewModel };
 
                 var navigation = Application.Current.MainPage as NavigationPage;
@@ -99,8 +103,8 @@ namespace OrderFood.ViewModels
                 //new MonAn { Name = "Break",LoaiMon = "breakfast",  Price = 12.99f, Image = "breakfast.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
                 //new MonAn { Name = "Noodle",LoaiMon = "breakfast",  Price = 19.99f, Image = "noodle.jpg", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies"},
 
-                new MonAn { MaLM = 1, TenMA = "Bánh mì", MaMA = 1, DanhGia = 8, Gia = 50000, Hinh = "abc", MoTa = "Đây là mô tả món ăn" },
-                new MonAn { MaLM = 1, TenMA = "Bánh mì", MaMA = 1, DanhGia = 8, Gia = 50000, Hinh = "abc", MoTa = "Đây là mô tả món ăn" },
+                new MonAn { MaLM = 1, TenMA = "Bánh mì", MaMA = 1, DanhGia = 8, Gia = 50000, Hinh = "https://aseasyasapplepie.com/wp-content/uploads/2018/01/healthy-breakfast-bowl-500x500.jpg", MoTa = "Đây là mô tả món ăn" },
+                new MonAn { MaLM = 1, TenMA = "Bánh mì", MaMA = 1, DanhGia = 8, Gia = 50000, Hinh = "https://aseasyasapplepie.com/wp-content/uploads/2018/01/healthy-breakfast-bowl-500x500.jpg", MoTa = "Đây là mô tả món ăn" },
             };
         }
         private ObservableCollection<MonAn> GetLunch()
