@@ -77,7 +77,6 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="120"/>
                                         <ColumnDefinition/>
-                                        <ColumnDefinition Width="50"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="{Binding Hinh}" 
                                        Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
@@ -86,16 +85,10 @@
                                     <Label Text="{Binding TenMA}" 
                                        Grid.Row="0" Grid.Column="1"
                                            LineBreakMode="TailTruncation"/>
-                                <ImageButton Source="heart.png" BackgroundColor="Transparent"   
-                                                 WidthRequest="40" HeightRequest="40" 
-                                                 Grid.Row="0" Grid.Column="2"
-                                                 Clicked="ImageButton_Clicked_1" />
-                                <Label Text="{Binding Gia, StringFormat='${0}'}" 
-                                       Grid.Row="1" Grid.Column="1"
-                                       Grid.ColumnSpan="2"/>
+                                <Label Text="{Binding Gia, StringFormat='${0}'}"
+                                       Grid.Row="1" Grid.Column="1"/>
                                     <Label Text="{Binding MoTa}"
-                                       Grid.Row="2" Grid.Column="1"
-                                       Grid.ColumnSpan="2"/>
+                                       Grid.Row="2" Grid.Column="1"/>
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding BindingContext.DisplayDetailMonAnCommand, Source={Reference root}}"
                                                         CommandParameter="{Binding .}"></TapGestureRecognizer>

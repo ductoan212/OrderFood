@@ -10,8 +10,10 @@
             </Frame>
             <Image Source="{Binding monan.Hinh}"/>
             <ImageButton Source="heart.png" BackgroundColor="Transparent"   
-                                                 WidthRequest="40" HeightRequest="40" 
-                                                 Clicked="ImageButton_Clicked"/>
+                         WidthRequest="40" HeightRequest="40" 
+                         Clicked="ImageButton_Clicked"
+                         Command="{Binding AddMonAnFavCommand}"
+                         CommandParameter="{Binding monan}"/>
             <Label Text="{Binding monan.Gia}"/>
             <Label Text="{Binding monan.MoTa}"/>
             <Entry/>
