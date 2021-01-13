@@ -23,7 +23,7 @@
             </Frame>
             <ScrollView Padding="20,0,20,20" Margin="0">
                 <StackLayout>
-                    <Label x:Name="userName" Text="Xin chào bạn Toàn"
+                    <Label x:Name="userName" Text="Xin chào bạn dToàn"
                            FontSize="25" FontAttributes="Bold"/>
                     <Frame BackgroundColor="#fff6e3" Padding="20"
                            CornerRadius="10" HasShadow="False">
@@ -83,28 +83,43 @@
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
         Icon="collections.png">
         <ContentPage.Content>
-            <StackLayout>
-                <Label Text="Favorities List" TextColor="#F9B522" FontSize="50" HorizontalTextAlignment="Center" FontAttributes="Bold" Padding="0,30,0,30" BackgroundColor="White"/>
+            <StackLayout Spacing="0" >
+                <Frame BackgroundColor="#F9B522"
+                   Padding="10" HasShadow="True" Margin="0" >
+                    <Label Text="Yêu thích"
+                       TextColor="White" FontSize="25"/>
+                </Frame>
+                <!--<Label Text="Favorities List" TextColor="#F9B522" FontSize="50" HorizontalTextAlignment="Center" FontAttributes="Bold" Padding="0,30,0,30" BackgroundColor="White"/>-->
                 <ListView x:Name="lstfavorities" HasUnevenRows="True"   BackgroundColor="White">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <Grid Margin="0,5,0,10">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="40"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" CornerRadius="100" IsClippedToBounds="True" BackgroundColor="#131313" >
-                                        <Image Source="{Binding Hinh}" />
+                                    <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" 
+                                           CornerRadius="150" IsClippedToBounds="True" 
+                                           BackgroundColor="#131313"
+                                           Padding="0">
+                                        <Image Source="{Binding Hinh}" 
+                                               WidthRequest="150" HeightRequest="150" 
+                                               Aspect="AspectFill"/>
                                     </Frame>
-                                    <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"/>
-                                    <Label Text="{Binding Gia}" Grid.Row="0" Grid.Column="2" TextColor="Green" FontSize="30"  VerticalTextAlignment="Center"/>
-                                    <Label Text="{Binding MoTa}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" />
+                                    <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"
+                                           BackgroundColor="Red" HorizontalOptions="StartAndExpand"/>
+                                    <Label Text="{Binding Gia}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
+                                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                                           HorizontalOptions="StartAndExpand" BackgroundColor="Yellow"/>
+                                    <Label Text="{Binding MoTa}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" 
+                                           HorizontalOptions="StartAndExpand"
+                                           BackgroundColor="Blue"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

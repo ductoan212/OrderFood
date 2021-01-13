@@ -1,9 +1,11 @@
 ﻿using BottomBar.XamarinForms;
+using Newtonsoft.Json;
 using OrderFood.Components;
 using OrderFood.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,17 +23,27 @@ namespace BottomNavBarXf
         public Home()
         {
             InitializeComponent();
-            InitUser();
+            ListFav = null;
+            try
+            {
+                InitUser();
+                InitFavorite();
+            }
+            catch
+            {
+                DisplayAlert("Lỗi", "Cần kết nối mạng để sử dụng app!!!", "OK");
+            }
         }
         public Home(User user)
         {
             InitializeComponent();
             currentUser = user;
+            ListFav = null;
             InitUser();
+            InitFavorite();
         }
         public Home(MonAn burger, string str)
         {
-
             InitializeComponent();
             KhoiTaoCart(burger,str);
             InitUser();
@@ -51,6 +63,14 @@ namespace BottomNavBarXf
             //emailProfile.Text = "ductoan20102000@gmail.com";
             //phoneProfile.Text = "0123456789";
             //userName.Text = "Xin chào Toàn";
+            //currentUser.MaKH = 1;
+        }
+        public async void InitFavorite()
+        {
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH.ToString());
+            ListFav =  JsonConvert.DeserializeObject<List<MonAn>>(response);
+            lstfavorities.ItemsSource = ListFav;
         }
         public void KhoiTaoCart(MonAn burger,string str)
         {
@@ -63,8 +83,7 @@ namespace BottomNavBarXf
                 }
                 else
                 {
-
-                ListBurgers.Add(burger);
+                    ListBurgers.Add(burger);
                 }
             lstfoods.ItemsSource = ListBurgers;
                 lstfavorities.ItemsSource = ListFav;
@@ -78,8 +97,10 @@ namespace BottomNavBarXf
                 }
                 else
                 {
-
                     ListFav.Add(burger);
+                    var httpClient = new HttpClient();
+                    var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createYeuThich?MaKH=" + currentUser.MaKH.ToString() +
+                        "&MaMA=" + burger.MaMA.ToString() + "&GhiChu=abc");
                 }
                 lstfavorities.ItemsSource = ListFav;
                 lstfoods.ItemsSource = ListBurgers;
