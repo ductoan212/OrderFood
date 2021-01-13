@@ -1,6 +1,7 @@
 ﻿using BottomBar.XamarinForms;
 using OrderFood.Components;
 using OrderFood.Models;
+using OrderFood.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace BottomNavBarXf
             currentUser = user;
             InitUser();
         }
+      
         public Home(MonAn burger, string str)
         {
 
@@ -89,6 +91,18 @@ namespace BottomNavBarXf
         private void btnLogout_Clicked(object sender, EventArgs e)
         {
             Application.Current.MainPage = new NavigationPage(new Login());
+        }
+
+        private void checkouted_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new DaThanhToan());
+        }
+
+        private void checkout_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new DaThanhToan(ListBurgers));
+            ListBurgers.Clear();
+
         }
     }
     

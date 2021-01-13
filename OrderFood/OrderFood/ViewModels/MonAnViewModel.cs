@@ -1,7 +1,11 @@
-﻿using OrderFood.Models;
+﻿using BottomNavBarXf;
+using OrderFood.Models;
+using OrderFood.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace OrderFood.ViewModels
 {
@@ -15,6 +19,19 @@ namespace OrderFood.ViewModels
             {
                 _monan = value;
                 OnPropertyChanged();
+            }
+        }
+        public ICommand OrderMonAnCommand => new Command<MonAn>(AddToOrder);
+
+        private async void AddToOrder(MonAn monAn)
+        {
+            if (monAn != null)
+            {
+              
+                var detailsPage = new BottomNavBarXf.Home(monAn,"cart");
+                
+                var navigation = Application.Current.MainPage as NavigationPage;
+                await navigation.PushAsync(detailsPage, true);
             }
         }
     }

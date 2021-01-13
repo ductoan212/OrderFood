@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OrderFood.Views.DaThanhToan">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Đã Thanh Toán" TextColor="#F9B522" FontSize="50" HorizontalTextAlignment="Center" FontAttributes="Bold" Padding="0,30,0,30" BackgroundColor="White"/>
+            <ListView x:Name="lstcheckout" HasUnevenRows="True"   BackgroundColor="White">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="0,20,0,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" CornerRadius="100" IsClippedToBounds="True" BackgroundColor="#131313"  HeightRequest="50">
+                                    <Image Source="{Binding Hinh}" />
+                                </Frame>
+                                <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"/>
+                                <Label Text="{Binding Gia}" Grid.Row="0" Grid.Column="2" TextColor="Green" FontSize="30"  VerticalTextAlignment="Center"/>
+                                <Label Text="{Binding MoTa}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

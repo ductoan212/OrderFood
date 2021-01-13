@@ -55,7 +55,11 @@ namespace OrderFood.ViewModels
                 //Console.WriteLine("Here Result Print!!!!!!!!!!!!!!!!");
                 //Console.WriteLine(monans[0]);
                 //Console.WriteLine(monans[0].Hinh);
+                for (int i = 0; i < monans.Count; i++)
+                {
 
+                    monans[i].Gia = Convert.ToInt32(monans[i].Gia);
+                }
                 var viewModel = new DetailsViewModel { _selectedMonAn = monans[0], monans = monans, position = 0 , tenloaimon = _selectedBurger.TenLM};
                 var detailsPage = new DetailsPage { BindingContext = viewModel };
 

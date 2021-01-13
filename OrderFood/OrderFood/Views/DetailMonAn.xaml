@@ -16,7 +16,9 @@
             <Label Text="{Binding monan.MoTa}"/>
             <Entry/>
             <Button Text="ORDER NOW" TextColor="Black" Padding="20,5" HeightRequest="35" CornerRadius="17" 
-                            BackgroundColor="#F9B522" FontFamily="ThemeFont" HorizontalOptions="End" Clicked="Button_Clicked"/>
+                            BackgroundColor="#F9B522" FontFamily="ThemeFont" HorizontalOptions="End" Clicked="Button_Clicked"
+                    Command="{Binding OrderMonAnCommand}"
+                    CommandParameter="{Binding monan}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
