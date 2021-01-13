@@ -1,4 +1,5 @@
 ﻿using OrderFood.Models;
+using OrderFood.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -49,6 +50,45 @@ namespace OrderFood.ViewModels
 
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(SelectedBurger));
+            }
+        }
+
+        private string _tenloaimon;
+        public string tenloaimon
+        {
+            get { return _tenloaimon; }
+            set
+            {
+                _tenloaimon = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void listItem__ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (SelectedBurger != null)
+            {
+                var viewModel = new MonAnViewModel { monan = SelectedBurger };
+                var detailsPage = new DetailMonAn { BindingContext = viewModel };
+                
+                var navigation = Application.Current.MainPage as NavigationPage;
+                navigation.PushAsync(detailsPage, true);
+                SelectedBurger = null;
+            }
+        }
+
+        public ICommand DisplayDetailMonAnCommand => new Command<MonAn>(DisplayDetailMonAn);
+
+        private async void DisplayDetailMonAn(MonAn monAn)
+        {
+            if (monAn != null)
+            {
+                var viewModel = new MonAnViewModel { monan = monAn };
+                var detailsPage = new DetailMonAn { BindingContext = viewModel };
+
+                var navigation = Application.Current.MainPage as NavigationPage;
+                await navigation.PushAsync(detailsPage, true);
+                SelectedBurger = null;
             }
         }
     }

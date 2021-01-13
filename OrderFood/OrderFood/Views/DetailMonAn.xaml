@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OrderFood.Views.DetailMonAn"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame>
+                <Label Text="{Binding monan.TenMA}"/>
+            </Frame>
+            <Image Source="{Binding monan.Hinh}"/>
+            <ImageButton Source="heart.png" BackgroundColor="Transparent"   
+                                                 WidthRequest="40" HeightRequest="40" 
+                                                 Clicked="ImageButton_Clicked"/>
+            <Label Text="{Binding monan.Gia}"/>
+            <Label Text="{Binding monan.MoTa}"/>
+            <Entry/>
+            <Button Text="ORDER NOW" TextColor="Black" Padding="20,5" HeightRequest="35" CornerRadius="17" 
+                            BackgroundColor="#F9B522" FontFamily="ThemeFont" HorizontalOptions="End" Clicked="Button_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

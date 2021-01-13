@@ -17,7 +17,7 @@
         </ContentPage.BindingContext>
         <StackLayout Spacing="0" >
             <Frame BackgroundColor="#F9B522"
-                   Padding="10" HasShadow="True" Margin="0">
+                   Padding="10" HasShadow="True" Margin="0" >
                 <Label Text="OrderFood"
                        TextColor="White" FontSize="25"/>
             </Frame>
@@ -36,10 +36,10 @@
                             </Frame>
                         </StackLayout>
                     </Frame>
-                    <Label Text="Hãy chọn lọi món!!!" FontSize="20"/>
+                    <Label Text="Hãy chọn loại món!!!" FontSize="20"/>
                     <CollectionView x:Name="burgerList" Margin="0,0,0,0" Grid.Row="1" ItemsSource="{Binding loaimons}" SelectionMode="Single" 
-                        SelectedItem="{Binding SelectedBurger}" VerticalScrollBarVisibility="Never" 
-                        SelectionChangedCommand="{Binding SelectionCommand}">
+                            SelectedItem="{Binding SelectedBurger}" VerticalScrollBarVisibility="Never" 
+                            SelectionChangedCommand="{Binding SelectionCommand}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Orientation="Vertical"  Span="2"/>
                         </CollectionView.ItemsLayout>
@@ -59,7 +59,7 @@
                                                    HeightRequest="150"
                                                     HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>-->
                                             <Image Aspect="AspectFill" Source="{Binding Hinh}" Margin="0"
-                                                   HeightRequest="150" WidthRequest="150"
+                                                   HeightRequest="150" WidthRequest="500"
                                                     HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                             <Label Grid.Row="1" Text="{Binding TenLM}" TextColor="Black" FontFamily="ThemeFont" 
                                                     VerticalOptions="End" HorizontalOptions="Center"
@@ -76,7 +76,6 @@
                 </StackLayout>
             </ScrollView>
         </StackLayout>
-        
     </ContentPage>
     
     <ContentPage
@@ -231,12 +230,12 @@
                            TextColor="#F9B522"
                            VerticalOptions="Center" />
 
-                    <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+                    <Button x:Name="btnLogout" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
                             Text="Đăng xuất" CornerRadius="100" 
                             TextColor="#F9B522" BackgroundColor="White"
                             BorderColor="#F9B522" BorderWidth="2"
-                            FontSize="20" HeightRequest="50" 
-                            Clicked="Button_Clicked"/>
+                            FontSize="20" HeightRequest="50"
+                            Clicked="btnLogout_Clicked"/>
                 </Grid>
             </ScrollView>
         </StackLayout>

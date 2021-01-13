@@ -3,30 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OrderFood.Components.DetailsPage"
              NavigationPage.HasNavigationBar="False"
+             x:Name="root"
              >
-    <Grid Padding="30" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <StackLayout Padding="20,20,20,0" 
+          HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <Grid Padding="0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Grid.Row="0" >
             <ImageButton Source="back.png"  CornerRadius="100" HeightRequest="50" WidthRequest="30"
                         BackgroundColor="#F8A03F" Clicked="ImageButton_Clicked"/>
         </Grid>
         <Grid Padding="0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Grid.Row="1" >
-            <StackLayout Spacing="20" HorizontalOptions="Start" VerticalOptions="Center">
-               
+            <!--<StackLayout Spacing="20" HorizontalOptions="Start" VerticalOptions="Center">
                 <Image Source="user.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
                 <ImageButton Source="heart.png" BackgroundColor="Transparent"   WidthRequest="40" HeightRequest="40" Clicked="ImageButton_Clicked_1"/>
-            </StackLayout>
+            </StackLayout>-->
             <StackLayout Spacing="0" HorizontalOptions="End" VerticalOptions="Start">
-                <Label Text="ORDERFOOD" TextColor="#F8A03F" FontFamily="ThemeFont" FontSize="25" HorizontalOptions="End"/>
-                <Label Text="SPOT" TextColor="White" Opacity="0.5" FontFamily="LightFont" FontSize="12" HorizontalOptions="End"/>
+                <Label Text="{Binding tenloaimon}" TextColor="#F8A03F" FontFamily="ThemeFont" FontSize="25" HorizontalOptions="Start"/>
+                <Label Text="SPOT" TextColor="#F8A03F" Opacity="0.5" FontFamily="LightFont" FontSize="12" HorizontalOptions="End"/>
             </StackLayout>
         </Grid>
-        <ScrollView Grid.Row="2" HorizontalOptions="FillAndExpand">
-            <Grid RowSpacing="50" HorizontalOptions="FillAndExpand">
+        
+        <!--<ScrollView Grid.Row="2" HorizontalOptions="FillAndExpand">-->
+            <!--<Grid RowSpacing="50" HorizontalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -62,7 +59,53 @@
                     <Button Text="ORDER NOW" TextColor="Black" Padding="20,5" HeightRequest="35" CornerRadius="17" 
                             BackgroundColor="#F9B522" FontFamily="ThemeFont" HorizontalOptions="End" Clicked="Button_Clicked"/>
                 </StackLayout>
-            </Grid>
-        </ScrollView>
-    </Grid>
+            </Grid>-->
+        <ListView  x:Name="listItem" 
+                   ItemsSource="{Binding monans}"
+                   RowHeight="120">
+            <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame BackgroundColor="#fff6e3" Padding="0" Margin="2,10" CornerRadius="5">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                      Padding="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="50"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding Hinh}" 
+                                       Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+                                       WidthRequest="150" HeightRequest="150" 
+                                       Aspect="AspectFill" BackgroundColor="AliceBlue"/>
+                                    <Label Text="{Binding TenMA}" 
+                                       Grid.Row="0" Grid.Column="1"
+                                           LineBreakMode="TailTruncation"/>
+                                <ImageButton Source="heart.png" BackgroundColor="Transparent"   
+                                                 WidthRequest="40" HeightRequest="40" 
+                                                 Grid.Row="0" Grid.Column="2"
+                                                 Clicked="ImageButton_Clicked_1" />
+                                <Label Text="{Binding Gia, StringFormat='${0}'}" 
+                                       Grid.Row="1" Grid.Column="1"
+                                       Grid.ColumnSpan="2"/>
+                                    <Label Text="{Binding MoTa}"
+                                       Grid.Row="2" Grid.Column="1"
+                                       Grid.ColumnSpan="2"/>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.DisplayDetailMonAnCommand, Source={Reference root}}"
+                                                        CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        <!--</ScrollView>-->
+    </StackLayout>
 </ContentPage>
