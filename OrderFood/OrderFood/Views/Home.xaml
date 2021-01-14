@@ -89,7 +89,6 @@
                     <Label Text="Yêu thích"
                        TextColor="White" FontSize="25"/>
                 </Frame>
-                <!--<Label Text="Favorities List" TextColor="#F9B522" FontSize="50" HorizontalTextAlignment="Center" FontAttributes="Bold" Padding="0,30,0,30" BackgroundColor="White"/>-->
                 <ListView x:Name="lstfavorities" HasUnevenRows="True"   BackgroundColor="White">
                     <ListView.ItemTemplate>
                         <DataTemplate>

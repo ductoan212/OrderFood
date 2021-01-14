@@ -123,7 +123,6 @@ namespace BottomNavBarXf
         {
             Navigation.PushAsync(new DaThanhToan(ListBurgers));
             ListBurgers.Clear();
-
         }
     }
     
