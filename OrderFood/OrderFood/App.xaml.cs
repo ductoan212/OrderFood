@@ -1,4 +1,5 @@
 ﻿using OrderFood.Components;
+using OrderFood.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,10 +11,8 @@ namespace OrderFood
         public App()
         {
             InitializeComponent();
-
             //MainPage = new NavigationPage(new BottomNavBarXf.Home());
             MainPage = new NavigationPage(new Login());
-
         }
 
         protected override void OnStart()

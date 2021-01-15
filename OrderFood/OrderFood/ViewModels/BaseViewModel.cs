@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace OrderFood.Modals
+namespace OrderFood.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

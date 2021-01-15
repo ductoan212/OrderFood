@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using OrderFood.Modals;
+using OrderFood.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,20 +24,28 @@ namespace OrderFood.Components
         {
             popupLoadingView.IsVisible = true;
             var httpClient = new HttpClient();
-            var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/checkTenDNTonTai?TenDN=" + user.TenDN);
-            if (response == "true")
+            try
             {
-                await DisplayAlert("Thông báo", "Tên đăng nhập đã tồn tại!", "OK");
-            }
-            else
-            {
-                await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createKhachHang?TenDN=" 
+                var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/checkTenDNTonTai?TenDN=" + user.TenDN);
+                if (response == "true")
+                {
+                    await DisplayAlert("Thông báo", "Tên đăng nhập đã tồn tại!", "OK");
+                }
+                else
+                {
+                
+                    await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createKhachHang?TenDN="
                                                 + user.TenDN + "&MatKhau=" + user.MatKhau + "&HoTen=" + user.HoTen +
                                                 "&Email=" + user.Email + "&DiaChi=" + user.DiaChi +
                                                 "&Tuoi=" + user.Tuoi + "&Sdt=" + user.Sdt +
                                                 "&GioiTinh=" + user.GioiTinh);
-                await Navigation.PushAsync(new Login(user));
-                await DisplayAlert("Thông báo", "Đăng ký thành công!!!", "OK");
+                    await Navigation.PushAsync(new Login(user));
+                    await DisplayAlert("Thông báo", "Đăng ký thành công!!!", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Thông báo", "Bạn cần kết nối Internet để thực hiện thao tác", "OK");
             }
             popupLoadingView.IsVisible = false;
         }
@@ -51,7 +59,7 @@ namespace OrderFood.Components
             {
                 DisplayAlert("Thông báo", "Bạn chưa điền đủ thông tin", "OK");
             }
-            else if (current == NetworkAccess.Internet)
+            else
             {
                 User user = new User
                 {
@@ -67,11 +75,6 @@ namespace OrderFood.Components
                     GioiTinh = true
                 };
                 CheckRegister(user);
-            }
-            else
-            {
-                DisplayAlert("Thông báo", "Bạn cần kết nối Internet để thực hiện thao tác", "OK");
-
             }
         }
 

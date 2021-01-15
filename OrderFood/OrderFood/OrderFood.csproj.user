@@ -4,7 +4,7 @@
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Components\Login.xaml">
+    <EmbeddedResource Update="Views\Login.xaml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

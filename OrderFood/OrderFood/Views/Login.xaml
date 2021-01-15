@@ -7,35 +7,35 @@
         <AbsoluteLayout VerticalOptions="Center">
             <StackLayout VerticalOptions="Center" Padding="20,0,20,0">
                 <Image Source="icon.png"/>
-                <Label Text="FoodOrder" TextColor="#F8A03F" 
+                <Label Text="FoodOrder" TextColor="#F9B522" 
                        FontSize="40" FontAttributes="Bold" 
                        HorizontalTextAlignment="Center" 
                        Margin="0, 0, 0, 15"/>
                 <Label Text="Đăng nhập bằng tài khoản của bạn" 
-                       TextColor="#F8A03F" FontSize="20" 
+                       TextColor="#F9B522" FontSize="20" 
                        HorizontalTextAlignment="Center" 
                        Margin="0, 0, 0, 20"/>
                 <!--<Label Text="Tên đăng nhập" 
-                       TextColor="#F8A03F" FontSize="17" />-->
+                       TextColor="#F9B522" FontSize="17" />-->
                 <Entry x:Name="usernameLogin" Placeholder="Tên đăng nhập..."  
                        PlaceholderColor="gray" TextColor="Black" 
                        Margin="0, 0, 0, 20"/>
                 <!--<Label Text="Mật khẩu" 
-                       TextColor="#F8A03F" FontSize="17" />-->
+                       TextColor="#F9B522" FontSize="17" />-->
                 <Entry x:Name="passwordLogin" IsPassword="True" 
                        Margin="0, 0, 0, 30" Placeholder="Mật khẩu..." 
                        PlaceholderColor="gray" TextColor="Black"/>
                 <Button x:Name="btnLogin" Text="Đăng nhập" CornerRadius="100" 
-                        TextColor="White" BackgroundColor="#F8A03F" 
+                        TextColor="White" BackgroundColor="#F9B522" 
                         FontSize="20" Margin="0, 0, 0, 10"
                         Clicked="btnLogin_Clicked"/>
                 <Button x:Name="btnRegister" Text="Đăng ký" CornerRadius="100" 
-                        TextColor="#F8A03F" BackgroundColor="White"
-                        BorderColor="#F8A03F" BorderWidth="2"
+                        TextColor="#F9B522" BackgroundColor="White"
+                        BorderColor="#F9B522" BorderWidth="2"
                         FontSize="20" HeightRequest="50" 
                         Clicked="btnRegister_Clicked"/>
                 <Label Text="Quên mật khẩu???"
-                       TextColor="#F8A03F"
+                       TextColor="#F9B522"
                        TextDecorations="Underline"
                        HorizontalTextAlignment="Center"/>
             </StackLayout>
@@ -47,7 +47,7 @@
                     <StackLayout Orientation="Vertical">
                         <ActivityIndicator x:Name="activityIndicator" Margin="10"
                                            VerticalOptions="Center" HorizontalOptions="Center"
-                                           Color="#F8A03F" IsRunning="True"
+                                           Color="#F9B522" IsRunning="True"
                                            WidthRequest="150" HeightRequest="150"></ActivityIndicator>
                     </StackLayout>
                 </StackLayout>
