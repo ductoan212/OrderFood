@@ -55,20 +55,20 @@ namespace BottomNavBarXf
         }
         public void InitUser()
         {
-            usernameProfile.Text = currentUser.TenDN;
-            ageProfile.Text = "Age : " + currentUser.Tuoi.ToString();
-            addressProfile.Text = currentUser.DiaChi;
-            emailProfile.Text = currentUser.Email;
-            phoneProfile.Text = currentUser.Sdt;
-            userName.Text = "Xin chào " + currentUser.HoTen;
+            //usernameProfile.Text = currentUser.TenDN;
+            //ageProfile.Text = "Age : " + currentUser.Tuoi.ToString();
+            //addressProfile.Text = currentUser.DiaChi;
+            //emailProfile.Text = currentUser.Email;
+            //phoneProfile.Text = currentUser.Sdt;
+            //userName.Text = "Xin chào " + currentUser.HoTen;
 
-            //usernameProfile.Text = "ductoan212";
-            //ageProfile.Text = "20";
-            //addressProfile.Text = "Hồ Chí Minh";
-            //emailProfile.Text = "ductoan20102000@gmail.com";
-            //phoneProfile.Text = "0123456789";
-            //userName.Text = "Xin chào Toàn";
-            //currentUser.MaKH = 1;
+            usernameProfile.Text = "ductoan212";
+            ageProfile.Text = "20";
+            addressProfile.Text = "Hồ Chí Minh";
+            emailProfile.Text = "ductoan20102000@gmail.com";
+            phoneProfile.Text = "0123456789";
+            userName.Text = "Xin chào Toàn";
+            currentUser.MaKH = 1;
         }
         public async void InitFavorite()
         {
@@ -151,11 +151,16 @@ namespace BottomNavBarXf
 
         private void checkouted_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DaThanhToan());
+            Navigation.PushAsync(new DaThanhToan(currentUser));
         }
 
         private void checkout_Clicked(object sender, EventArgs e)
         {
+            if(ListBurgers.Count() == 0)
+            {
+                DisplayAlert("Thông báo", "Chưa có món trong giỏ! Hãy thêm ngay nào...", "OK");
+                return;
+            }    
             var httpClient = new HttpClient();
             var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateTrangThaiHD?MaHD=" + currentHD.MaHD.ToString());
             ListBurgers.Clear();

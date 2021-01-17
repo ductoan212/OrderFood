@@ -1,7 +1,10 @@
-﻿using OrderFood.Models;
+﻿using Newtonsoft.Json;
+using OrderFood.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,28 +16,48 @@ namespace OrderFood.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DaThanhToan : ContentPage
     {
-        static List<MonAn> listMonAn=new List<MonAn>();
+        static List<HoaDon> listHoaDon = new List<HoaDon>();
         public DaThanhToan()
         {
             InitializeComponent();
-            InitList(listMonAn);
+            //InitList();
         }
-        public DaThanhToan( List<MonAn> list )
+        public DaThanhToan(User user)
         {
             InitializeComponent();
-            assignListMonAn(list);
-            InitList(listMonAn);
+            InitList(user);
+            Title = "Đã thanh toán";
         }
-        public void assignListMonAn(List<MonAn> list)
+        public async void InitList(User user)
         {
-            list.ForEach((MonAn item) =>
+            var httpClient = new HttpClient();
+
+            try
             {
-                listMonAn.Add(item);
-            });
+                var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getHoaDonDaTTTheoKH?MaKH=" + user.MaKH.ToString());
+                var list = JsonConvert.DeserializeObject<List<HoaDon>>(response);
+
+                if (list != null && list.Count() >= 0)
+                {
+                    lstcheckout.ItemsSource = list;
+                }
+                else
+                {
+                    lstcheckout.ItemsSource = new List<HoaDon>();
+                }
+                //popupLoadingView.IsVisible = false;
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Thông báo", "Bạn cần kết nối Internet để thực hiện thao tác", "OK");
+            }
+            //lstcheckout.ItemsSource = list;
         }
-        public void InitList(List<MonAn> list)
+
+        private void lstcheckout_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            lstcheckout.ItemsSource = list;
+            HoaDon hd = (HoaDon)lstcheckout.SelectedItem;
+            Navigation.PushAsync(new DaThanhToanDetail(hd));
         }
     }
 }

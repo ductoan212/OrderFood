@@ -2,68 +2,38 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OrderFood.Components.DetailsPage"
-             NavigationPage.HasNavigationBar="False"
              x:Name="root"
+             Title="{Binding loaimon.TenLM}"
              >
-    <StackLayout Padding="20,20,20,0" 
-          HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <Grid Padding="0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Grid.Row="0" >
-            <ImageButton Source="back.png"  CornerRadius="100" HeightRequest="50" WidthRequest="30"
-                        BackgroundColor="#F8A03F" Clicked="ImageButton_Clicked"/>
-        </Grid>
-        <Grid Padding="0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Grid.Row="1" >
-            <!--<StackLayout Spacing="20" HorizontalOptions="Start" VerticalOptions="Center">
-                <Image Source="user.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
-                <ImageButton Source="heart.png" BackgroundColor="Transparent"   WidthRequest="40" HeightRequest="40" Clicked="ImageButton_Clicked_1"/>
-            </StackLayout>-->
-            <StackLayout Spacing="0" HorizontalOptions="End" VerticalOptions="Start">
-                <Label Text="{Binding tenloaimon}" TextColor="#F8A03F" FontFamily="ThemeFont" FontSize="25" HorizontalOptions="Start"/>
-                <Label Text="SPOT" TextColor="#F8A03F" Opacity="0.5" FontFamily="LightFont" FontSize="12" HorizontalOptions="End"/>
-            </StackLayout>
-        </Grid>
-        
-        <!--<ScrollView Grid.Row="2" HorizontalOptions="FillAndExpand">-->
-            <!--<Grid RowSpacing="50" HorizontalOptions="FillAndExpand">
+    <ScrollView>
+        <StackLayout Padding="20,20,20,0" 
+                 HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <StackLayout Spacing="0" HorizontalOptions="Center" VerticalOptions="Start">
-                    <Label Text="{Binding SelectedBurger.Gia, StringFormat='${0}'}" TextColor="#F9B522" 
-                           FontFamily="ThemeFont" FontSize="50" HorizontalOptions="Center"/>
-                    <Label Text="LIMITED TIME OFFER!" TextColor="White" Opacity="0.75" FontFamily="LightFont" FontSize="12" 
-                           HorizontalOptions="Center"/>
-                </StackLayout>
-                <CarouselView x:Name="caroulitem" Grid.Row="1" ItemsSource="{Binding monans}" HeightRequest="260" HorizontalOptions="FillAndExpand" 
-                          CurrentItem="{Binding SelectedBurger}" IsScrollAnimated="True" IsSwipeEnabled="True">
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout HorizontalOptions="FillAndExpand">
-                                <Label Text="{Binding TenMA}" TextColor="Black" FontSize="30" FontFamily="ThemeFont" 
-                                       HorizontalOptions="Center"  LineBreakMode="NoWrap" />
-                                <Image Source="{Binding Hinh}" BackgroundColor="Transparent"  HeightRequest="210" 
-                                       WidthRequest="235" HorizontalOptions="Center" VerticalOptions="End"/>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
-                
-                <StackLayout Grid.Row="2" Spacing="20" HorizontalOptions="FillAndExpand">
-                    <Label Text="{Binding SelectedBurger.TenMA, StringFormat='OUR {0} BURGER'}" TextColor="#F9B522" 
-                           FontFamily="ThemeFont" FontSize="25" HorizontalOptions="End"/>
-                    <BoxView BackgroundColor="#F9B522" HeightRequest="2" WidthRequest="45" VerticalOptions="Start" 
-                             HorizontalOptions="End"/>
-                    <Label Text="{Binding SelectedBurger.MoTa}" TextColor="Gray" WidthRequest="250" 
-                           FontFamily="LightFont" FontSize="12" HorizontalOptions="End" HorizontalTextAlignment="End"/>
-                    <Button Text="ORDER NOW" TextColor="Black" Padding="20,5" HeightRequest="35" CornerRadius="17" 
-                            BackgroundColor="#F9B522" FontFamily="ThemeFont" HorizontalOptions="End" Clicked="Button_Clicked"/>
-                </StackLayout>
-            </Grid>-->
-        <ListView  x:Name="listItem" 
+
+                <Frame Padding="0"
+                       CornerRadius="10">
+                    <Image Aspect="AspectFill" Source="{Binding loaimon.Hinh}" Margin="0"
+                                                   HeightRequest="150" WidthRequest="500"
+                                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                </Frame>
+                <Frame Padding="0"
+                       CornerRadius="10" BackgroundColor="#8000">
+                    <Label Text="{Binding loaimon.TenLM}"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       TextColor="#FFFFFF" FontSize="25"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </Frame>
+            </Grid>
+            
+            <ListView  x:Name="listItem" 
                    ItemsSource="{Binding monans}"
-                   RowHeight="120">
-            <ListView.ItemTemplate>
+                   RowHeight="120"
+                   VerticalScrollBarVisibility="Never">
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Frame BackgroundColor="#fff6e3" Padding="0" Margin="2,10" CornerRadius="5">
@@ -85,20 +55,20 @@
                                     <Label Text="{Binding TenMA}" 
                                        Grid.Row="0" Grid.Column="1"
                                            LineBreakMode="TailTruncation"/>
-                                <Label Text="{Binding Gia, StringFormat='${0}'}"
+                                    <Label Text="{Binding Gia, StringFormat='${0}'}"
                                        Grid.Row="1" Grid.Column="1"/>
                                     <Label Text="{Binding MoTa}"
                                        Grid.Row="2" Grid.Column="1"/>
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BindingContext.DisplayDetailMonAnCommand, Source={Reference root}}"
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.DisplayDetailMonAnCommand, Source={Reference root}}"
                                                         CommandParameter="{Binding .}"></TapGestureRecognizer>
-                                </Grid.GestureRecognizers>
-                            </Grid>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        <!--</ScrollView>-->
-    </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
