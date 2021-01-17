@@ -53,13 +53,13 @@ namespace OrderFood.ViewModels
             }
         }
 
-        private string _tenloaimon;
-        public string tenloaimon
+        private LoaiMon _loaimon;
+        public LoaiMon loaimon
         {
-            get { return _tenloaimon; }
+            get { return _loaimon; }
             set
             {
-                _tenloaimon = value;
+                _loaimon = value;
                 OnPropertyChanged();
             }
         }

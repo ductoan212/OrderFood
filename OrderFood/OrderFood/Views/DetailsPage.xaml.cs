@@ -19,7 +19,7 @@ namespace OrderFood.Components
         public DetailsPage()
         {
             InitializeComponent();
-            Title = "DS Món ăn";
+            //Title = "DS Món ăn";
         }
 
         private void Button_Clicked(object sender, EventArgs e)

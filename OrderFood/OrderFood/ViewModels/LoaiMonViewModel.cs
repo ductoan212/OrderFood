@@ -58,7 +58,7 @@ namespace OrderFood.ViewModels
                     {
                         monans[i].Gia = Convert.ToInt32(monans[i].Gia);
                     }
-                    var viewModel = new DetailsViewModel { _selectedMonAn = monans[0], monans = monans, position = 0, tenloaimon = _selectedBurger.TenLM };
+                    var viewModel = new DetailsViewModel { _selectedMonAn = monans[0], monans = monans, position = 0, loaimon = _selectedBurger };
                     var detailsPage = new DetailsPage { BindingContext = viewModel };
 
                     var navigation = Application.Current.MainPage as NavigationPage;

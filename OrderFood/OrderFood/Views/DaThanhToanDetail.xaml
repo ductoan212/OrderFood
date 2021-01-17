@@ -1,38 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OrderFood.Components.DetailsPage"
-             x:Name="root"
-             Title="{Binding loaimon.TenLM}"
-             >
-    <ScrollView>
-        <StackLayout Padding="20,20,20,0" 
-                 HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <Frame Padding="0"
-                       CornerRadius="10">
-                    <Image Aspect="AspectFill" Source="{Binding loaimon.Hinh}" Margin="0"
-                                                   HeightRequest="150" WidthRequest="500"
-                                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                </Frame>
-                <Frame Padding="0"
-                       CornerRadius="10" BackgroundColor="#8000">
-                    <Label Text="{Binding loaimon.TenLM}"
-                       HorizontalOptions="FillAndExpand"
-                       VerticalOptions="FillAndExpand"
-                       TextColor="#FFFFFF" FontSize="25"
-                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                </Frame>
-            </Grid>
-            
-            <ListView  x:Name="listItem" 
-                   ItemsSource="{Binding monans}"
-                   RowHeight="120"
-                   VerticalScrollBarVisibility="Never">
+             x:Class="OrderFood.Views.DaThanhToanDetail">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="lstItem" HasUnevenRows="True"   
+                      VerticalScrollBarVisibility="Never"
+                      Margin="20,0,20,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -62,10 +36,6 @@
                                     <Label Text="{Binding MoTa}"
                                        Grid.Row="2" Grid.Column="1"
                                            LineBreakMode="TailTruncation"/>
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.DisplayDetailMonAnCommand, Source={Reference root}}"
-                                                        CommandParameter="{Binding .}"></TapGestureRecognizer>
-                                    </Grid.GestureRecognizers>
                                 </Grid>
                             </Frame>
                         </ViewCell>
@@ -73,5 +43,5 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-    </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

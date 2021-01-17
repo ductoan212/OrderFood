@@ -4,8 +4,10 @@
              x:Class="OrderFood.Components.Login"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <AbsoluteLayout VerticalOptions="Center">
-            <StackLayout VerticalOptions="Center" Padding="20,0,20,0">
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="Center" Padding="20,0,20,0"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                         AbsoluteLayout.LayoutFlags="All">
                 <Image Source="icon.png"/>
                 <Label Text="FoodOrder" TextColor="#F9B522" 
                        FontSize="40" FontAttributes="Bold" 
@@ -15,13 +17,9 @@
                        TextColor="#F9B522" FontSize="20" 
                        HorizontalTextAlignment="Center" 
                        Margin="0, 0, 0, 20"/>
-                <!--<Label Text="Tên đăng nhập" 
-                       TextColor="#F9B522" FontSize="17" />-->
                 <Entry x:Name="usernameLogin" Placeholder="Tên đăng nhập..."  
                        PlaceholderColor="gray" TextColor="Black" 
                        Margin="0, 0, 0, 20"/>
-                <!--<Label Text="Mật khẩu" 
-                       TextColor="#F9B522" FontSize="17" />-->
                 <Entry x:Name="passwordLogin" IsPassword="True" 
                        Margin="0, 0, 0, 30" Placeholder="Mật khẩu..." 
                        PlaceholderColor="gray" TextColor="Black"/>
@@ -42,13 +40,14 @@
 
             <ContentView x:Name="popupLoadingView" Padding="20,0" AbsoluteLayout.LayoutBounds="0,0,1,1" 
                          AbsoluteLayout.LayoutFlags="All"
-                         IsVisible="false">
+                         IsVisible="false"
+                         BackgroundColor="#80000000">
                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                     <StackLayout Orientation="Vertical">
                         <ActivityIndicator x:Name="activityIndicator" Margin="10"
                                            VerticalOptions="Center" HorizontalOptions="Center"
                                            Color="#F9B522" IsRunning="True"
-                                           WidthRequest="150" HeightRequest="150"></ActivityIndicator>
+                                           WidthRequest="100" HeightRequest="100"></ActivityIndicator>
                     </StackLayout>
                 </StackLayout>
             </ContentView>

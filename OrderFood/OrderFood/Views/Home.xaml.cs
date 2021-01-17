@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using OrderFood.Components;
 using OrderFood.Models;
+using OrderFood.ViewModels;
 using OrderFood.Views;
 using System;
 using System.Collections.Generic;
@@ -85,6 +86,8 @@ namespace BottomNavBarXf
             if(temp.Count() == 0)
             {
                 response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createHoaDon?MaKH=" + currentUser.MaKH.ToString());
+                temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
+                currentHD = temp[0];
                 ListBurgers = new List<CTHD>();
             }
             else
@@ -151,17 +154,35 @@ namespace BottomNavBarXf
 
         private void checkouted_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DaThanhToan());
+            Navigation.PushAsync(new DaThanhToan(currentUser));
         }
 
         private void checkout_Clicked(object sender, EventArgs e)
         {
+            if(ListBurgers.Count() == 0)
+            {
+                DisplayAlert("Thông báo", "Chưa có món trong giỏ! Hãy thêm ngay nào...", "OK");
+                return;
+            }    
             var httpClient = new HttpClient();
             var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateTrangThaiHD?MaHD=" + currentHD.MaHD.ToString());
             ListBurgers.Clear();
             lstfoods.ItemsSource = ListBurgers;
             DisplayAlert("Thông báo", "Đã thanh toán thành công", "OK");
             Application.Current.MainPage = new NavigationPage(new BottomNavBarXf.Home());
+        }
+
+        private void lstfavorities_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (lstfavorities != null)
+            {
+                MonAn item = (MonAn)lstfavorities.SelectedItem;
+                var viewModel = new MonAnViewModel { monan = item };
+                var detailMonAnPage = new DetailMonAn { BindingContext = viewModel };
+
+                Navigation.PushAsync(detailMonAnPage, true);
+                //lstfavorities.SelectedItem = null;
+            }
         }
     }
     
