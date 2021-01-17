@@ -19,7 +19,7 @@
                          Clicked="ImageButton_Clicked"
                          Command="{Binding AddMonAnFavCommand}"
                          CommandParameter="{Binding monan}"/>
-            <Label Text="{Binding monan.Gia, StringFormat='Giá: {0}VND'}"
+            <Label Text="{Binding monan.Gia, StringFormat='Giá: {0} đ'}"
                    FontSize="25" TextColor="#F9B522"/>
             <Label Text="{Binding monan.MoTa,StringFormat='Mô tả: {0}'}"
                    FontSize="15"/>

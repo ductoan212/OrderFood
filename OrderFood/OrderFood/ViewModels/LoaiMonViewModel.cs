@@ -17,6 +17,14 @@ namespace OrderFood.ViewModels
         public LoaiMonViewModel()
         {
             GetBurgers();
+            GetCartItem();
+        }
+
+        public LoaiMonViewModel(User user)
+        {
+            currentUser = user;
+            GetBurgers();
+            GetCartItem();
         }
 
         ObservableCollection<LoaiMon> _loaimons;
@@ -42,6 +50,39 @@ namespace OrderFood.ViewModels
             }
         }
 
+        private User _currentUser;
+        public User currentUser
+        {
+            get { return _currentUser; }
+            set
+            {
+                _currentUser = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private HoaDon _currentHD;
+        public HoaDon currentHD
+        {
+            get { return _currentHD; }
+            set
+            {
+                _currentHD = value;
+                OnPropertyChanged();
+            }
+        }
+
+        ObservableCollection<CTHD> _cartItems;
+        public ObservableCollection<CTHD> cartItems
+        {
+            get { return _cartItems; }
+            set
+            {
+                _cartItems = value;
+                OnPropertyChanged("cartItems");
+            }
+        }
+        //================================= Function =================================//
         public ICommand SelectionCommand => new Command(DisplayBurger);
 
         private async void DisplayBurger()
@@ -85,6 +126,40 @@ namespace OrderFood.ViewModels
                 loaimons = new ObservableCollection<LoaiMon>();
                 throw ex;
             }
+        }
+
+        private async void GetCartItem()
+        {
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getHoaDonChuaTTTheoKH?MaKH=" + currentUser.MaKH.ToString());
+            List<HoaDon> temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
+            if (temp.Count == 0)
+            {
+                response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createHoaDon?MaKH=" + currentUser.MaKH.ToString());
+                temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
+                currentHD = temp[0];
+                cartItems = new ObservableCollection<CTHD>();
+            }
+            else
+            {
+                currentHD = temp[0];
+                var _lstCartItem = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getCTHDTheoHD?MaHD=" + currentHD.MaHD.ToString());
+                cartItems = JsonConvert.DeserializeObject<ObservableCollection<CTHD>>(_lstCartItem);
+            }
+        }
+
+        public ICommand SubQuantityCommand => new Command<int>(SubQuantity);
+
+        private async void SubQuantity(int MaMA)
+        {
+            ObservableCollection<CTHD> temp = cartItems;
+            for (int i = 0; i < temp.Count; i++)
+            {
+                if (temp[i].MaMA == MaMA)
+                    temp[i].SoLuong = 8;
+            }
+            cartItems = temp;
+            //cartItems.Add(new CTHD { MaMA = 50, SoLuong = 1});
         }
     }
 }

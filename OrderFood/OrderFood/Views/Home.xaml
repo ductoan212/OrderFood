@@ -6,15 +6,19 @@
     xmlns:bnb="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms" 
     xmlns:vm="clr-namespace:OrderFood.ViewModels"
     NavigationPage.HasNavigationBar="False"
+    x:Name="root"
     >
 
+    <!--<bnb:BottomBarPage.BindingContext>
+        <vm:LoaiMonViewModel />
+    </bnb:BottomBarPage.BindingContext>-->
     <ContentPage
         Title="Trang chủ"
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
         Icon="explore.png">
-        <ContentPage.BindingContext>
+        <!--<ContentPage.BindingContext>
             <vm:LoaiMonViewModel />
-        </ContentPage.BindingContext>
+        </ContentPage.BindingContext>-->
         <StackLayout Spacing="0" >
             <Frame BackgroundColor="#F9B522"
                    Padding="10" HasShadow="True" Margin="0" >
@@ -119,7 +123,7 @@
                                         <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"
                                                 HorizontalOptions="StartAndExpand"
                                            LineBreakMode="TailTruncation"/>
-                                        <Label Text="{Binding Gia}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
+                                        <Label Text="{Binding Gia, StringFormat='{0} đ'}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
                                            VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
                                            HorizontalOptions="StartAndExpand" />
                                         <Label Text="{Binding MoTa}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" 
@@ -139,9 +143,7 @@
         Title="Giỏ hàng"
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
         Icon="shop.png">
-        <!--<ContentPage.BindingContext>
-            <vm:CartViewModel />
-        </ContentPage.BindingContext>-->
+        
             
         <ContentPage.Content>
             <StackLayout>
@@ -151,9 +153,10 @@
                        TextColor="White" FontSize="25"/>
                 </Frame>
                
-                <ListView x:Name="lstfoods" HasUnevenRows="True"   
+                <ListView HasUnevenRows="True"   
                           Margin="20,0,20,0"
-                          VerticalScrollBarVisibility="Never">
+                          VerticalScrollBarVisibility="Never"
+                          ItemsSource="{Binding cartItems}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -163,7 +166,7 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="40"/>
                                             <RowDefinition Height="30"/>
-                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="40"/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="120"/>
@@ -180,15 +183,31 @@
                                         <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"
                                                 HorizontalOptions="StartAndExpand"
                                            LineBreakMode="TailTruncation"/>
-                                        <Label Text="{Binding Gia}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
+                                        <Label Text="{Binding Gia, StringFormat='{0} đ'}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
                                            VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
                                            HorizontalOptions="StartAndExpand" />
 
                                         <StackLayout Grid.Row="2" Grid.Column="1"
                                                      Orientation="Horizontal" >
-                                            <Label Text="-"/>
-                                            <Label Text="SL"/>
-                                            <Label Text="+"/>
+                                            <Button x:Name="btnSub" 
+                                                    Text="-" FontSize="30" Padding="0"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="40" HeightRequest="40"
+                                                    BackgroundColor="#F9B522" TextColor="#FFFFFF"
+                                                    Command="{Binding BindingContext.SubQuantityCommand, Source={Reference root}}" CommandParameter="{Binding MaMA}"/>
+                                            <Label Text="{Binding SoLuong}" Margin="15,0"
+                                                   FontSize="25" HeightRequest="40"
+                                                   VerticalTextAlignment="Center"
+                                                   HorizontalTextAlignment="Center"/>
+                                            <Button x:Name="btnAdd" 
+                                                    Text="+" FontSize="30" Padding="0"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="40" HeightRequest="40"
+                                                    BackgroundColor="#F9B522" TextColor="#FFFFFF"
+                                                    Clicked="btnAdd_Clicked"/>
+                                            
                                         </StackLayout>
                                     </Grid>
                                 </Frame>

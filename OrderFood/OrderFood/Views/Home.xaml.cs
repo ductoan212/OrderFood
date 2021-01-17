@@ -37,6 +37,8 @@ namespace BottomNavBarXf
             {
                 DisplayAlert("Lỗi", "Cần kết nối mạng để sử dụng app!!!", "OK");
             }
+
+            this.BindingContext = new LoaiMonViewModel(currentUser);
         }
         public Home(User user)
         {
@@ -56,26 +58,30 @@ namespace BottomNavBarXf
         }
         public void InitUser()
         {
-            usernameProfile.Text = currentUser.TenDN;
-            ageProfile.Text = "Age : " + currentUser.Tuoi.ToString();
-            addressProfile.Text = currentUser.DiaChi;
-            emailProfile.Text = currentUser.Email;
-            phoneProfile.Text = currentUser.Sdt;
-            userName.Text = "Xin chào " + currentUser.HoTen;
+            //usernameProfile.Text = currentUser.TenDN;
+            //ageProfile.Text = "Age : " + currentUser.Tuoi.ToString();
+            //addressProfile.Text = currentUser.DiaChi;
+            //emailProfile.Text = currentUser.Email;
+            //phoneProfile.Text = currentUser.Sdt;
+            //userName.Text = "Xin chào " + currentUser.HoTen;
 
-            //usernameProfile.Text = "ductoan212";
-            //ageProfile.Text = "20";
-            //addressProfile.Text = "Hồ Chí Minh";
-            //emailProfile.Text = "ductoan20102000@gmail.com";
-            //phoneProfile.Text = "0123456789";
-            //userName.Text = "Xin chào Toàn";
-            //currentUser.MaKH = 1;
+            usernameProfile.Text = "ductoan212";
+            ageProfile.Text = "20";
+            addressProfile.Text = "Hồ Chí Minh";
+            emailProfile.Text = "ductoan20102000@gmail.com";
+            phoneProfile.Text = "0123456789";
+            userName.Text = "Xin chào Toàn";
+            currentUser.MaKH = 1;
         }
         public async void InitFavorite()
         {
             var httpClient = new HttpClient();
             var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH.ToString());
             ListFav =  JsonConvert.DeserializeObject<List<MonAn>>(response);
+            for (int i = 0; i < ListFav.Count; i++)
+            {
+                ListFav[i].Gia = Convert.ToInt32(ListFav[i].Gia);
+            }
             lstfavorities.ItemsSource = ListFav;
         }
         public async void InitCartItem()
@@ -96,7 +102,11 @@ namespace BottomNavBarXf
                 var _lstCartItem = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getCTHDTheoHD?MaHD=" + currentHD.MaHD.ToString());
                 ListBurgers = JsonConvert.DeserializeObject<List<CTHD>>(_lstCartItem);
             }
-            lstfoods.ItemsSource = ListBurgers;
+            //for (int i = 0; i < ListBurgers.Count; i++)
+            //{
+            //    ListBurgers[i].Gia = Convert.ToInt32(ListBurgers[i].Gia);
+            //}
+            //lstfoods.ItemsSource = ListBurgers;
         }
         public void KhoiTaoCart(MonAn burger,string str)
         {
@@ -143,7 +153,7 @@ namespace BottomNavBarXf
                         "&MaMA=" + burger.MaMA.ToString() + "&GhiChu=abc");
                 }
             }
-            lstfoods.ItemsSource = ListBurgers;
+            //lstfoods.ItemsSource = ListBurgers;
             lstfavorities.ItemsSource = ListFav;
         }
 
@@ -167,7 +177,7 @@ namespace BottomNavBarXf
             var httpClient = new HttpClient();
             var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateTrangThaiHD?MaHD=" + currentHD.MaHD.ToString());
             ListBurgers.Clear();
-            lstfoods.ItemsSource = ListBurgers;
+            //lstfoods.ItemsSource = ListBurgers;
             DisplayAlert("Thông báo", "Đã thanh toán thành công", "OK");
             Application.Current.MainPage = new NavigationPage(new BottomNavBarXf.Home());
         }
@@ -183,6 +193,21 @@ namespace BottomNavBarXf
                 Navigation.PushAsync(detailMonAnPage, true);
                 //lstfavorities.SelectedItem = null;
             }
+        }
+
+        private void btnSub_Clicked(object sender, EventArgs e)
+        {
+            var MaMA = ((Button)sender).CommandParameter;
+            for (int i = 0; i < ListBurgers.Count; i++)
+            {
+                ListBurgers[i].Gia = 1;
+            }
+            //lstfoods.ItemsSource = ListBurgers;
+        }
+
+        private void btnAdd_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
     
