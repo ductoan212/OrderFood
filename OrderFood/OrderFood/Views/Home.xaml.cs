@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using OrderFood.Components;
 using OrderFood.Models;
+using OrderFood.ViewModels;
 using OrderFood.Views;
 using System;
 using System.Collections.Generic;
@@ -55,20 +56,20 @@ namespace BottomNavBarXf
         }
         public void InitUser()
         {
-            //usernameProfile.Text = currentUser.TenDN;
-            //ageProfile.Text = "Age : " + currentUser.Tuoi.ToString();
-            //addressProfile.Text = currentUser.DiaChi;
-            //emailProfile.Text = currentUser.Email;
-            //phoneProfile.Text = currentUser.Sdt;
-            //userName.Text = "Xin chào " + currentUser.HoTen;
+            usernameProfile.Text = currentUser.TenDN;
+            ageProfile.Text = "Age : " + currentUser.Tuoi.ToString();
+            addressProfile.Text = currentUser.DiaChi;
+            emailProfile.Text = currentUser.Email;
+            phoneProfile.Text = currentUser.Sdt;
+            userName.Text = "Xin chào " + currentUser.HoTen;
 
-            usernameProfile.Text = "ductoan212";
-            ageProfile.Text = "20";
-            addressProfile.Text = "Hồ Chí Minh";
-            emailProfile.Text = "ductoan20102000@gmail.com";
-            phoneProfile.Text = "0123456789";
-            userName.Text = "Xin chào Toàn";
-            currentUser.MaKH = 1;
+            //usernameProfile.Text = "ductoan212";
+            //ageProfile.Text = "20";
+            //addressProfile.Text = "Hồ Chí Minh";
+            //emailProfile.Text = "ductoan20102000@gmail.com";
+            //phoneProfile.Text = "0123456789";
+            //userName.Text = "Xin chào Toàn";
+            //currentUser.MaKH = 1;
         }
         public async void InitFavorite()
         {
@@ -85,6 +86,8 @@ namespace BottomNavBarXf
             if(temp.Count() == 0)
             {
                 response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createHoaDon?MaKH=" + currentUser.MaKH.ToString());
+                temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
+                currentHD = temp[0];
                 ListBurgers = new List<CTHD>();
             }
             else
@@ -167,6 +170,19 @@ namespace BottomNavBarXf
             lstfoods.ItemsSource = ListBurgers;
             DisplayAlert("Thông báo", "Đã thanh toán thành công", "OK");
             Application.Current.MainPage = new NavigationPage(new BottomNavBarXf.Home());
+        }
+
+        private void lstfavorities_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (lstfavorities != null)
+            {
+                MonAn item = (MonAn)lstfavorities.SelectedItem;
+                var viewModel = new MonAnViewModel { monan = item };
+                var detailMonAnPage = new DetailMonAn { BindingContext = viewModel };
+
+                Navigation.PushAsync(detailMonAnPage, true);
+                //lstfavorities.SelectedItem = null;
+            }
         }
     }
     

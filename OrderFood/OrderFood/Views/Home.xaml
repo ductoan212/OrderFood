@@ -90,38 +90,43 @@
                     <Label Text="Yêu thích"
                        TextColor="White" FontSize="25"/>
                 </Frame>
-                <ListView x:Name="lstfavorities" HasUnevenRows="True"   BackgroundColor="White"
-                          VerticalScrollBarVisibility="Never" >
+                <ListView x:Name="lstfavorities" HasUnevenRows="True"
+                          VerticalScrollBarVisibility="Never" Margin="20,0,20,0"
+                          ItemSelected="lstfavorities_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Margin="0,5,0,10">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="40"/>
-                                        <RowDefinition Height="30"/>
-                                        <RowDefinition Height="30"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="100"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" 
-                                           CornerRadius="150" IsClippedToBounds="True" 
+                                <Frame Padding="0" BackgroundColor="#00000000"
+                                       CornerRadius="5" Margin="0, 10">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="30"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" 
+                                           CornerRadius="10" IsClippedToBounds="True" 
                                            BackgroundColor="#131313"
                                            Padding="0">
-                                        <Image Source="{Binding Hinh}" 
-                                               WidthRequest="150" HeightRequest="150" 
+                                            <Image Source="{Binding Hinh}" 
+                                               WidthRequest="500" HeightRequest="100" 
                                                Aspect="AspectFill"/>
-                                    </Frame>
-                                    <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"
-                                           BackgroundColor="Red" HorizontalOptions="StartAndExpand"/>
-                                    <Label Text="{Binding Gia}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
+                                        </Frame>
+                                        <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"
+                                                HorizontalOptions="StartAndExpand"
+                                           LineBreakMode="TailTruncation"/>
+                                        <Label Text="{Binding Gia}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
                                            VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
-                                           HorizontalOptions="StartAndExpand" BackgroundColor="Yellow"/>
-                                    <Label Text="{Binding MoTa}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" 
+                                           HorizontalOptions="StartAndExpand" />
+                                        <Label Text="{Binding MoTa}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" 
                                            HorizontalOptions="StartAndExpand"
-                                           BackgroundColor="Blue"/>
-                                </Grid>
+                                           LineBreakMode="TailTruncation"/>
+                                    </Grid>
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -147,11 +152,47 @@
                 </Frame>
                
                 <ListView x:Name="lstfoods" HasUnevenRows="True"   
-                          BackgroundColor="Blue">
+                          Margin="20,0,20,0"
+                          VerticalScrollBarVisibility="Never">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Margin="0,20,0,10">
+                                <Frame Padding="0" BackgroundColor="#00000000"
+                                       CornerRadius="5" Margin="0, 10">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="30"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" 
+                                           CornerRadius="10" IsClippedToBounds="True" 
+                                           BackgroundColor="#131313"
+                                           Padding="0">
+                                            <Image Source="{Binding Hinh}" 
+                                               WidthRequest="500" HeightRequest="100" 
+                                               Aspect="AspectFill"/>
+                                        </Frame>
+                                        <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"
+                                                HorizontalOptions="StartAndExpand"
+                                           LineBreakMode="TailTruncation"/>
+                                        <Label Text="{Binding Gia}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
+                                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                                           HorizontalOptions="StartAndExpand" />
+
+                                        <StackLayout Grid.Row="2" Grid.Column="1"
+                                                     Orientation="Horizontal" >
+                                            <Label Text="-"/>
+                                            <Label Text="SL"/>
+                                            <Label Text="+"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                                <!--<Grid Margin="0,20,0,10">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
@@ -167,13 +208,13 @@
                                     <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"/>
                                     <Label Text="{Binding Gia,StringFormat='{0}VND'}" Grid.Row="0" Grid.Column="2" TextColor="Green" FontSize="30"  VerticalTextAlignment="Center"/>
                                     <Label Text="{Binding MoTa}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" />
-                                </Grid>
+                                </Grid>-->
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
                 
-                <Grid Padding="20,0,20,0" HeightRequest="100">
+                <!--<Grid Padding="20,0,20,0" HeightRequest="100">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
@@ -187,7 +228,20 @@
                     <Button x:Name="checkout" Text="Thanh Toán" Grid.Row="0" Grid.Column="1" Clicked="checkout_Clicked" CornerRadius="100" 
                         TextColor="White" BackgroundColor="#F9B522" 
                         FontSize="20" Margin="10, 0, 0, 0"  HeightRequest="50"/>
-                </Grid>
+                </Grid>-->
+                <StackLayout Orientation="Horizontal" Padding="20,2"
+                             HorizontalOptions="CenterAndExpand">
+                    <Button x:Name="checkouted" Text="Hóa Đơn"
+                            Clicked="checkouted_Clicked"  TextColor="#F9B522" BackgroundColor="White"
+                            BorderColor="#F9B522" BorderWidth="2"
+                            FontSize="18" HeightRequest="50" CornerRadius="100" 
+                            WidthRequest="150"/>
+                    <Button x:Name="checkout" Text="Thanh Toán"
+                            Clicked="checkout_Clicked" CornerRadius="100" 
+                            TextColor="White" BackgroundColor="#F9B522" 
+                            FontSize="18" HeightRequest="50"
+                            WidthRequest="150"/>
+                </StackLayout>
             </StackLayout>
         </ContentPage.Content>
     </ContentPage>

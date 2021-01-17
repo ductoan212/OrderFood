@@ -54,11 +54,14 @@
                                        Aspect="AspectFill" BackgroundColor="AliceBlue"/>
                                     <Label Text="{Binding TenMA}" 
                                        Grid.Row="0" Grid.Column="1"
-                                           LineBreakMode="TailTruncation"/>
+                                           LineBreakMode="TailTruncation"
+                                           FontSize="25"/>
                                     <Label Text="{Binding Gia, StringFormat='${0}'}"
-                                       Grid.Row="1" Grid.Column="1"/>
+                                       Grid.Row="1" Grid.Column="1"
+                                           FontSize="15"/>
                                     <Label Text="{Binding MoTa}"
-                                       Grid.Row="2" Grid.Column="1"/>
+                                       Grid.Row="2" Grid.Column="1"
+                                           LineBreakMode="TailTruncation"/>
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding BindingContext.DisplayDetailMonAnCommand, Source={Reference root}}"
                                                         CommandParameter="{Binding .}"></TapGestureRecognizer>

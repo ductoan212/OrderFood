@@ -4,27 +4,40 @@
              x:Class="OrderFood.Views.DaThanhToanDetail">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="lstItem" HasUnevenRows="True"   BackgroundColor="White">
+            <ListView x:Name="lstItem" HasUnevenRows="True"   
+                      VerticalScrollBarVisibility="Never"
+                      Margin="20,0,20,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Margin="0,20,0,10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" CornerRadius="100" IsClippedToBounds="True" BackgroundColor="#131313"  HeightRequest="50">
-                                    <Image Source="{Binding Hinh}" />
-                                </Frame>
-                                <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"/>
-                                <Label Text="{Binding Gia,StringFormat='{0}VND'}" Grid.Row="0" Grid.Column="2" TextColor="Green" FontSize="30"  VerticalTextAlignment="Center"/>
-                                <Label Text="{Binding MoTa}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" />
-                            </Grid>
+                            <Frame BackgroundColor="#fff6e3" Padding="0" Margin="2,10" CornerRadius="5">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                      Padding="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding Hinh}" 
+                                       Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+                                       WidthRequest="150" HeightRequest="150" 
+                                       Aspect="AspectFill" BackgroundColor="AliceBlue"/>
+                                    <Label Text="{Binding TenMA}" 
+                                       Grid.Row="0" Grid.Column="1"
+                                           LineBreakMode="TailTruncation"
+                                           FontSize="25"/>
+                                    <Label Text="{Binding Gia, StringFormat='${0}'}"
+                                       Grid.Row="1" Grid.Column="1"
+                                           FontSize="15"/>
+                                    <Label Text="{Binding MoTa}"
+                                       Grid.Row="2" Grid.Column="1"
+                                           LineBreakMode="TailTruncation"/>
+                                </Grid>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
