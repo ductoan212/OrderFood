@@ -132,7 +132,9 @@
         Title="Cart"
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
         Icon="shop.png">
-
+        <!--<ContentPage.BindingContext>
+            <vm:CartViewModel />
+        </ContentPage.BindingContext>-->
             
         <ContentPage.Content>
             <StackLayout>

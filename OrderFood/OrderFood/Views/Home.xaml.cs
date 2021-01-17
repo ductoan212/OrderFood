@@ -18,8 +18,9 @@ namespace BottomNavBarXf
     public partial class Home 
     {
         static User currentUser = new User();
-        static List<MonAn> ListBurgers = new List<MonAn>();
+        static List<CTHD> ListBurgers = new List<CTHD>();
         static List<MonAn> ListFav = new List<MonAn>();
+        static HoaDon currentHD = new HoaDon();
 
         public Home()
         {
@@ -29,6 +30,7 @@ namespace BottomNavBarXf
             {
                 InitUser();
                 InitFavorite();
+                InitCartItem();
             }
             catch
             {
@@ -42,6 +44,7 @@ namespace BottomNavBarXf
             ListFav = null;
             InitUser();
             InitFavorite();
+            InitCartItem();
         }
       
         public Home(MonAn burger, string str)
@@ -74,6 +77,24 @@ namespace BottomNavBarXf
             ListFav =  JsonConvert.DeserializeObject<List<MonAn>>(response);
             lstfavorities.ItemsSource = ListFav;
         }
+        public async void InitCartItem()
+        {
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getHoaDonChuaTTTheoKH?MaKH=" + currentUser.MaKH.ToString());
+            List<HoaDon> temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
+            if(temp.Count() == 0)
+            {
+                response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createHoaDon?MaKH=" + currentUser.MaKH.ToString());
+                ListBurgers = new List<CTHD>();
+            }
+            else
+            {
+                currentHD = temp[0];
+                var _lstCartItem = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getCTHDTheoHD?MaHD=" + currentHD.MaHD.ToString());
+                ListBurgers = JsonConvert.DeserializeObject<List<CTHD>>(_lstCartItem);
+            }
+            lstfoods.ItemsSource = ListBurgers;
+        }
         public void KhoiTaoCart(MonAn burger,string str)
         {
             if (str == "cart")
@@ -81,21 +102,35 @@ namespace BottomNavBarXf
                 bool check = ListBurgers.Any(item=>item.TenMA==burger.TenMA);
                 if (check==true)
                 {
-                    DisplayAlert("Notify", "Food existed in order list!", "OK");
+                    DisplayAlert("Thông báo", "Món này đã có trong giỏ hàng!", "OK");
                 }
                 else
                 {
-                    ListBurgers.Add(burger);
+                    CTHD temp = new CTHD()
+                    {
+                        MaMA = burger.MaMA,
+                        TenMA = burger.TenMA,
+                        MoTa  = burger.MoTa,
+                        Hinh = burger.Hinh,
+                        Gia = burger.Gia,
+                        DanhGia = burger.DanhGia,
+                        MaLM = burger.MaLM,
+                        SoLuong = 1,
+                        ThanhTien = burger.Gia*1
+                    };
+                    ListBurgers.Add(temp);
+                    var httpClient = new HttpClient();
+                    var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createCTHD?MaHD=" + currentHD.MaHD.ToString() +
+                        "&MaMA=" + burger.MaMA + "&SoLuong=1");
                 }
-            lstfoods.ItemsSource = ListBurgers;
-                lstfavorities.ItemsSource = ListFav;
+                
             }
             else if (str == "fav")
             {
                 bool check = ListFav.Any(item => item.TenMA == burger.TenMA);
                 if (check ==true)
                 {
-                    DisplayAlert("Notify", "Food existed in favorities!", "OK");
+                    DisplayAlert("Thông báo", "Món này đã có trong yêu thích!", "OK");
                 }
                 else
                 {
@@ -104,9 +139,9 @@ namespace BottomNavBarXf
                     var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createYeuThich?MaKH=" + currentUser.MaKH.ToString() +
                         "&MaMA=" + burger.MaMA.ToString() + "&GhiChu=abc");
                 }
-                lstfavorities.ItemsSource = ListFav;
-                lstfoods.ItemsSource = ListBurgers;
             }
+            lstfoods.ItemsSource = ListBurgers;
+            lstfavorities.ItemsSource = ListFav;
         }
 
         private void btnLogout_Clicked(object sender, EventArgs e)
@@ -121,8 +156,12 @@ namespace BottomNavBarXf
 
         private void checkout_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DaThanhToan(ListBurgers));
+            var httpClient = new HttpClient();
+            var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateTrangThaiHD?MaHD=" + currentHD.MaHD.ToString());
             ListBurgers.Clear();
+            lstfoods.ItemsSource = ListBurgers;
+            DisplayAlert("Thông báo", "Đã thanh toán thành công", "OK");
+            Application.Current.MainPage = new NavigationPage(new BottomNavBarXf.Home());
         }
     }
     
