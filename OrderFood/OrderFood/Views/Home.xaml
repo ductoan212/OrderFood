@@ -96,7 +96,6 @@
                 </Frame>
                 <ListView x:Name="lstfavorities" HasUnevenRows="True"
                           VerticalScrollBarVisibility="Never" Margin="20,0,20,0"
-                          ItemSelected="lstfavorities_ItemSelected"
                           ItemsSource="{Binding listFav}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -130,6 +129,10 @@
                                         <Label Text="{Binding MoTa}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" 
                                            HorizontalOptions="StartAndExpand"
                                            LineBreakMode="TailTruncation"/>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.SelectionFavCommand, Source={Reference root}}"
+                                                        CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                        </Grid.GestureRecognizers>
                                     </Grid>
                                 </Frame>
                             </ViewCell>

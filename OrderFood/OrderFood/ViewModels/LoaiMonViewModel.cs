@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using OrderFood.Components;
 using OrderFood.Models;
+using OrderFood.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -68,6 +69,16 @@ namespace OrderFood.ViewModels
             }
         }
 
+        private MonAn _selectedFav;
+        public MonAn selectedFav
+        {
+            get { return _selectedFav; }
+            set
+            {
+                _selectedFav = value;
+                OnPropertyChanged();
+            }
+        }
         private User _currentUser;
         public User currentUser
         {
@@ -337,7 +348,7 @@ namespace OrderFood.ViewModels
             temp.ThanhTien = temp.SoLuong * temp.Gia;
             cartItems.RemoveAt(index);
             cartItems.Insert(index, temp);
-            total += Convert.ToInt32(CalTotal());
+            total = Convert.ToInt32(CalTotal());
             var httpClient = new HttpClient();
             _ = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() +
                 "&MaMA=" + temp.MaMA.ToString() + "&SoLuong=" + temp.SoLuong.ToString());
@@ -358,6 +369,27 @@ namespace OrderFood.ViewModels
             await Application.Current.MainPage.DisplayAlert("Thông báo", "Đã thanh toán thành công", "OK");
             GetCartItem();
             //Application.Current.MainPage = new NavigationPage(new BottomNavBarXf.Home());
+        }
+
+        public ICommand SelectionFavCommand => new Command<MonAn>(DisplayFavDetail);
+
+        private async void DisplayFavDetail(MonAn ma)
+        {
+            try
+            {
+                var viewModel = new MonAnViewModel { monan = ma };
+                var detailsPage = new DetailMonAn { BindingContext = viewModel };
+
+                var navigation = Application.Current.MainPage as NavigationPage;
+                await navigation.PushAsync(detailsPage, true);
+
+
+                selectedFav = null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
