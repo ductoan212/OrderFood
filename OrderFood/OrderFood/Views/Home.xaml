@@ -15,7 +15,7 @@
     <ContentPage
         Title="Trang chủ"
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
-        Icon="explore.png">
+        Icon="home.png">
         <!--<ContentPage.BindingContext>
             <vm:LoaiMonViewModel />
         </ContentPage.BindingContext>-->
@@ -86,7 +86,7 @@
     <ContentPage
         Title="Yêu thích"
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
-        Icon="collections.png">
+        Icon="favorite.png">
         <ContentPage.Content>
             <StackLayout Spacing="0" >
                 <Frame BackgroundColor="#F9B522"
@@ -146,7 +146,7 @@
     <ContentPage
         Title="Giỏ hàng"
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
-        Icon="shop.png">
+        Icon="shoppingCart.png">
         
             
         <ContentPage.Content>
@@ -269,7 +269,7 @@
     <ContentPage
         Title="Tài khoản"
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
-        Icon="user.png">
+        Icon="userHome.png">
         <StackLayout Padding="0"
                              Spacing="0">
             <StackLayout Padding="20"
