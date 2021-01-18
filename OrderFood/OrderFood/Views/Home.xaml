@@ -78,6 +78,87 @@
                             <Grid HeightRequest="0"/>
                         </CollectionView.Footer>
                     </CollectionView>
+                    <StackLayout>
+                        <Label Text="Nên thử..." FontSize="20"/>
+                        <Frame Padding="0" Margin="0,5"
+                               CornerRadius="20"
+                               HasShadow="True">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="3*"/>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" 
+                                   Source="try1.jpg"
+                                   WidthRequest="500"
+                                   HeightRequest="150"
+                                       Aspect="AspectFill"/>
+                                <Label Grid.Column="0" Grid.Row="1" 
+                                       Text="Món ngon trong ngày"
+                                       FontSize="25" Padding="20,0"
+                                       TextColor="#FFFFFF"/>
+                                <Label Grid.Column="0" Grid.Row="2" 
+                                       Text="20 món ăn hấp dẫn nhất"
+                                       BackgroundColor="#20000000"
+                                       FontSize="15" Padding="20,0"
+                                       TextColor="#FFFFFF"/>
+                            </Grid>
+                            
+                        </Frame>
+                        <Frame Padding="0" Margin="0,5"
+                               CornerRadius="20"
+                               HasShadow="True">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="3*"/>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" 
+                                   Source="try2.jpg"
+                                   WidthRequest="500"
+                                   HeightRequest="150"
+                                       Aspect="AspectFill"/>
+                                <Label Grid.Column="0" Grid.Row="1" 
+                                       Text="Món hot trong tuần"
+                                       FontSize="25" Padding="20,0"
+                                       TextColor="#FFFFFF"/>
+                                <Label Grid.Column="0" Grid.Row="2" 
+                                       Text="20 món ăn hấp dẫn nhất"
+                                       BackgroundColor="#20000000"
+                                       FontSize="15" Padding="20,0"
+                                       TextColor="#FFFFFF"/>
+                            </Grid>
+                            
+                        </Frame>
+                        <Frame Padding="0" Margin="0,5"
+                               CornerRadius="20"
+                               HasShadow="True">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="3*"/>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" 
+                                   Source="try3.jpg"
+                                   WidthRequest="500"
+                                   HeightRequest="150"
+                                       Aspect="AspectFill"/>
+                                <Label Grid.Column="0" Grid.Row="1" 
+                                       Text="Món ngon khó cưỡng"
+                                       FontSize="25" Padding="20,0"
+                                       TextColor="#FFFFFF"/>
+                                <Label Grid.Column="0" Grid.Row="2" 
+                                       Text="20 món ăn hấp dẫn nhất"
+                                       BackgroundColor="#20000000"
+                                       FontSize="15" Padding="20,0"
+                                       TextColor="#FFFFFF"/>
+                            </Grid>
+                            
+                        </Frame>
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
