@@ -30,7 +30,7 @@
                                        Grid.Row="0" Grid.Column="1"
                                            LineBreakMode="TailTruncation"
                                            FontSize="25"/>
-                                    <Label Text="{Binding Gia, StringFormat='${0}'}"
+                                    <Label Text="{Binding Gia, StringFormat='{0} đ'}"
                                        Grid.Row="1" Grid.Column="1"
                                            FontSize="15"/>
                                     <Label Text="{Binding SoLuong, StringFormat='Số lượng: {0}'}"

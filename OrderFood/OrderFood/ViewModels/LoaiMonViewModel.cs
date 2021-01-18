@@ -25,13 +25,23 @@ namespace OrderFood.ViewModels
             currentUser = user;
             GetBurgers();
             GetCartItem();
+            GetFavoriteItem();
         }
 
-        public LoaiMonViewModel(User user, MonAn monAn)
+        public LoaiMonViewModel(User user, MonAn monAn, string str)
         {
             currentUser = user;
             GetBurgers();
-            GetCartItem(monAn);
+            if (str == "cart")
+            {
+                GetFavoriteItem();
+                GetCartItem(monAn);
+            }
+            else
+            {
+                GetFavoriteItem(monAn);
+                GetCartItem();
+            }
             //GetCartItem();
         }
 
@@ -80,6 +90,17 @@ namespace OrderFood.ViewModels
             }
         }
 
+        private ObservableCollection<MonAn> _listFav;
+        public ObservableCollection<MonAn> listFav
+        {
+            get { return _listFav; }
+            set
+            {
+                _listFav = value;
+                OnPropertyChanged();
+            }
+        }
+        
         private ObservableCollection<CTHD> _cartItems;
         public ObservableCollection<CTHD> cartItems
         {
@@ -90,7 +111,6 @@ namespace OrderFood.ViewModels
                 OnPropertyChanged();
             }
         }
-
         private int _total;
         public int total
         {
@@ -201,6 +221,7 @@ namespace OrderFood.ViewModels
                 if (cartItems[i].MaMA == monAn.MaMA)
                 {
                     AddQuantity(monAn.MaMA);
+                    await Application.Current.MainPage.DisplayAlert("Thông báo", "Đã thêm vào giỏ hàng", "OK");
                     return;
                 }
             }
@@ -217,11 +238,54 @@ namespace OrderFood.ViewModels
                 ThanhTien = monAn.Gia,
             };
             cartItems.Add(new_item);
+            await Application.Current.MainPage.DisplayAlert("Thông báo", "Đã thêm vào giỏ hàng", "OK");
             total = Convert.ToInt32(currentHD.TongTien) + Convert.ToInt32(new_item.ThanhTien);
-            httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createCTHD?MaHD=" + currentHD.MaHD.ToString() +
+            _ = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createCTHD?MaHD=" + currentHD.MaHD.ToString() +
                 "&MaMA=" + new_item.MaMA + "&SoLuong=1");
         }
 
+
+        public async void GetFavoriteItem()
+        {
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH.ToString());
+            listFav = JsonConvert.DeserializeObject<ObservableCollection<MonAn>>(response);
+            for (int i = 0; i < listFav.Count; i++)
+            {
+                listFav[i].Gia = Convert.ToInt32(listFav[i].Gia);
+            }
+        }
+        public async void GetFavoriteItem(MonAn monAn)
+        {
+
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH.ToString());
+            listFav = JsonConvert.DeserializeObject<ObservableCollection<MonAn>>(response);
+
+            for (int i = 0; i < listFav.Count; i++)
+                if (listFav[i].MaMA == monAn.MaMA)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Thông báo", "Đã có trong yêu thích!!!", "OK");
+                    return;
+                }
+
+            listFav.Add(monAn);
+            for (int i = 0; i < listFav.Count; i++)
+            {
+                listFav[i].Gia = Convert.ToInt32(listFav[i].Gia);
+            }
+            await Application.Current.MainPage.DisplayAlert("Thông báo", "Đã thêm vào yêu thích", "OK");
+            _ = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createYeuThich?MaKH=" + currentUser.MaKH.ToString() +
+                    "&MaMA=" + monAn.MaMA.ToString() + "&GhiChu=abc");
+        }
+
+        private decimal CalTotal()
+        {
+            decimal s = 0;
+            for (int i = 0; i < cartItems.Count; i++)
+                s += cartItems[i].ThanhTien;
+            return s;
+        }
         public ICommand SubQuantityCommand => new Command<int>(SubQuantity);
         private async void SubQuantity(int MaMA)
         {
@@ -237,19 +301,21 @@ namespace OrderFood.ViewModels
                 }
                 index++;
             }
-            total -= Convert.ToInt32(temp.Gia);
+            
             if (temp.SoLuong == 1)
             {
                 cartItems.RemoveAt(index);
-                httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() +
+                total = Convert.ToInt32(CalTotal());
+                _ = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() +
                     "&MaMA=" + temp.MaMA.ToString() + "&SoLuong=" + temp.SoLuong.ToString());
                 return;
             }
             temp.SoLuong--;
+            temp.ThanhTien = temp.Gia * temp.SoLuong;
             cartItems.RemoveAt(index);
             cartItems.Insert(index, temp);
-            
-            httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() + 
+            total = Convert.ToInt32(CalTotal());
+            _ = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() + 
                 "&MaMA=" + temp.MaMA.ToString() + "&SoLuong=" + temp.SoLuong.ToString());
         }
 
@@ -267,14 +333,31 @@ namespace OrderFood.ViewModels
                 }
                 index++;
             }
-            total += Convert.ToInt32(temp.Gia);
             temp.SoLuong++;
             temp.ThanhTien = temp.SoLuong * temp.Gia;
             cartItems.RemoveAt(index);
             cartItems.Insert(index, temp);
+            total += Convert.ToInt32(CalTotal());
             var httpClient = new HttpClient();
-            var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() +
+            _ = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() +
                 "&MaMA=" + temp.MaMA.ToString() + "&SoLuong=" + temp.SoLuong.ToString());
+        }
+
+        public ICommand CheckoutCommand => new Command(Checkout);
+
+        private async void Checkout()
+        {
+            if(cartItems.Count == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert("Thông báo", "Chưa có món trong giỏ! Hãy thêm ngay nào...", "OK");
+                return;
+            }
+            var httpClient = new HttpClient();
+            var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateTrangThaiHD?MaHD=" + currentHD.MaHD.ToString());
+            cartItems.Clear();
+            await Application.Current.MainPage.DisplayAlert("Thông báo", "Đã thanh toán thành công", "OK");
+            GetCartItem();
+            //Application.Current.MainPage = new NavigationPage(new BottomNavBarXf.Home());
         }
     }
 }

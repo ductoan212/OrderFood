@@ -58,7 +58,7 @@ namespace BottomNavBarXf
             ListFav = null;
             InitUser();
             InitFavorite();
-            this.BindingContext = new LoaiMonViewModel(currentUser, burger);
+            this.BindingContext = new LoaiMonViewModel(currentUser, burger, str);
         }
         public void InitUser()
         {
@@ -79,14 +79,14 @@ namespace BottomNavBarXf
         }
         public async void InitFavorite()
         {
-            var httpClient = new HttpClient();
-            var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH.ToString());
-            ListFav = JsonConvert.DeserializeObject<List<MonAn>>(response);
-            for (int i = 0; i < ListFav.Count; i++)
-            {
-                ListFav[i].Gia = Convert.ToInt32(ListFav[i].Gia);
-            }
-            lstfavorities.ItemsSource = ListFav;
+            //var httpClient = new HttpClient();
+            //var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH.ToString());
+            //ListFav = JsonConvert.DeserializeObject<List<MonAn>>(response);
+            //for (int i = 0; i < ListFav.Count; i++)
+            //{
+            //    ListFav[i].Gia = Convert.ToInt32(ListFav[i].Gia);
+            //}
+            //lstfavorities.ItemsSource = ListFav;
         }
         public async void InitCartItem()
         {

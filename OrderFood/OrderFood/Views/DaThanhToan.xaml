@@ -29,7 +29,7 @@
                                         <Image Source="avatar.png" 
                                                Aspect="AspectFill"/>
                                     </Frame>
-                                    <Label Text="{Binding TongTien}" 
+                                    <Label Text="{Binding TongTien, StringFormat='{0} đ'}" 
                                            Grid.Row="0" Grid.Column="1" 
                                            TextColor="Green" FontSize="25"  
                                            VerticalTextAlignment="Center"/>

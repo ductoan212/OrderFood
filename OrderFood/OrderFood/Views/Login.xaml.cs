@@ -50,6 +50,7 @@ namespace OrderFood.Components
             catch (Exception ex)
             {
                 await DisplayAlert("Thông báo", "Bạn cần kết nối Internet để thực hiện thao tác", "OK");
+                throw ex;
             }
             popupLoadingView.IsVisible = false; 
         }

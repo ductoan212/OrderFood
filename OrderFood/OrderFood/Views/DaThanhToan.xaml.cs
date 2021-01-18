@@ -39,6 +39,10 @@ namespace OrderFood.Views
 
                 if (list != null && list.Count() >= 0)
                 {
+                    for(int i=0; i<list.Count; i++)
+                    {
+                        list[i].TongTien = Convert.ToInt32(list[i].TongTien);
+                    }
                     lstcheckout.ItemsSource = list;
                 }
                 else
@@ -50,14 +54,19 @@ namespace OrderFood.Views
             catch (Exception ex)
             {
                 await DisplayAlert("Thông báo", "Bạn cần kết nối Internet để thực hiện thao tác", "OK");
+                throw ex;
             }
             //lstcheckout.ItemsSource = list;
         }
 
         private void lstcheckout_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            HoaDon hd = (HoaDon)lstcheckout.SelectedItem;
-            Navigation.PushAsync(new DaThanhToanDetail(hd));
+            if(lstcheckout.SelectedItem != null)
+            {
+                HoaDon hd = (HoaDon)lstcheckout.SelectedItem;
+                Navigation.PushAsync(new DaThanhToanDetail(hd));
+                lstcheckout.SelectedItem = null;
+            }
         }
     }
 }
