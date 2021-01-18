@@ -46,13 +46,12 @@ namespace OrderFood.Components
                 {
                     await DisplayAlert("Thông báo", "Tên đăng nhập hoặc mật khẩu sai!", "OK");
                 }
-                //popupLoadingView.IsVisible = false;
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Thông báo", "Bạn cần kết nối Internet để thực hiện thao tác", "OK");
             }
-                popupLoadingView.IsVisible = false; 
+            popupLoadingView.IsVisible = false; 
         }
 
         private void btnLogin_Clicked(object sender, EventArgs e)

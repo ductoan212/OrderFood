@@ -33,7 +33,7 @@
                                     <Label Text="{Binding Gia, StringFormat='${0}'}"
                                        Grid.Row="1" Grid.Column="1"
                                            FontSize="15"/>
-                                    <Label Text="{Binding MoTa}"
+                                    <Label Text="{Binding SoLuong, StringFormat='Số lượng: {0}'}"
                                        Grid.Row="2" Grid.Column="1"
                                            LineBreakMode="TailTruncation"/>
                                 </Grid>

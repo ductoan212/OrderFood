@@ -196,8 +196,8 @@
                                                     WidthRequest="40" HeightRequest="40"
                                                     BackgroundColor="#F9B522" TextColor="#FFFFFF"
                                                     Command="{Binding BindingContext.SubQuantityCommand, Source={Reference root}}" CommandParameter="{Binding MaMA}"/>
-                                            <Label Text="{Binding SoLuong}" Margin="15,0"
-                                                   FontSize="25" HeightRequest="40"
+                                            <Label Text="{Binding SoLuong}" Margin="0"
+                                                   FontSize="25" HeightRequest="40" WidthRequest="80"
                                                    VerticalTextAlignment="Center"
                                                    HorizontalTextAlignment="Center"/>
                                             <Button x:Name="btnAdd" 
@@ -206,8 +206,8 @@
                                                     VerticalOptions="Center"
                                                     WidthRequest="40" HeightRequest="40"
                                                     BackgroundColor="#F9B522" TextColor="#FFFFFF"
-                                                    Clicked="btnAdd_Clicked"/>
-                                            
+                                                    Command="{Binding BindingContext.AddQuantityCommand, Source={Reference root}}" CommandParameter="{Binding MaMA}"/>
+
                                         </StackLayout>
                                     </Grid>
                                 </Frame>
@@ -248,18 +248,22 @@
                         TextColor="White" BackgroundColor="#F9B522" 
                         FontSize="20" Margin="10, 0, 0, 0"  HeightRequest="50"/>
                 </Grid>-->
-                <StackLayout Orientation="Horizontal" Padding="20,2"
+                <StackLayout  Padding="20,2">
+                    <Label Text="{Binding total, StringFormat='Tổng: {0} đ'}"
+                           HorizontalOptions="End"/>
+                    <StackLayout Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand">
-                    <Button x:Name="checkouted" Text="Hóa Đơn"
+                        <Button x:Name="checkouted" Text="Hóa Đơn"
                             Clicked="checkouted_Clicked"  TextColor="#F9B522" BackgroundColor="White"
                             BorderColor="#F9B522" BorderWidth="2"
                             FontSize="18" HeightRequest="50" CornerRadius="100" 
                             WidthRequest="150"/>
-                    <Button x:Name="checkout" Text="Thanh Toán"
+                        <Button x:Name="checkout" Text="Thanh Toán"
                             Clicked="checkout_Clicked" CornerRadius="100" 
                             TextColor="White" BackgroundColor="#F9B522" 
                             FontSize="18" HeightRequest="50"
                             WidthRequest="150"/>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </ContentPage.Content>

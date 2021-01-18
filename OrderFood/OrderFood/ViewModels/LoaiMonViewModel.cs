@@ -27,6 +27,14 @@ namespace OrderFood.ViewModels
             GetCartItem();
         }
 
+        public LoaiMonViewModel(User user, MonAn monAn)
+        {
+            currentUser = user;
+            GetBurgers();
+            GetCartItem(monAn);
+            //GetCartItem();
+        }
+
         ObservableCollection<LoaiMon> _loaimons;
         ObservableCollection<MonAn> monans;
         public ObservableCollection<LoaiMon> loaimons
@@ -72,14 +80,25 @@ namespace OrderFood.ViewModels
             }
         }
 
-        ObservableCollection<CTHD> _cartItems;
+        private ObservableCollection<CTHD> _cartItems;
         public ObservableCollection<CTHD> cartItems
         {
             get { return _cartItems; }
             set
             {
                 _cartItems = value;
-                OnPropertyChanged("cartItems");
+                OnPropertyChanged();
+            }
+        }
+
+        private int _total;
+        public int total
+        {
+            get { return _total; }
+            set
+            {
+                _total = value;
+                OnPropertyChanged();
             }
         }
         //================================= Function =================================//
@@ -128,8 +147,9 @@ namespace OrderFood.ViewModels
             }
         }
 
-        private async void GetCartItem()
+        public async void GetCartItem()
         {
+            //cartItems = new CartItems();
             var httpClient = new HttpClient();
             var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getHoaDonChuaTTTheoKH?MaKH=" + currentUser.MaKH.ToString());
             List<HoaDon> temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
@@ -145,21 +165,116 @@ namespace OrderFood.ViewModels
                 currentHD = temp[0];
                 var _lstCartItem = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getCTHDTheoHD?MaHD=" + currentHD.MaHD.ToString());
                 cartItems = JsonConvert.DeserializeObject<ObservableCollection<CTHD>>(_lstCartItem);
+                for (int i = 0; i < cartItems.Count; i++)
+                {
+                    cartItems[i].Gia = Convert.ToInt32(cartItems[i].Gia);
+                }
             }
+            total = Convert.ToInt32(currentHD.TongTien);
+        }
+        public async void GetCartItem(MonAn monAn)
+        {
+              
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getHoaDonChuaTTTheoKH?MaKH=" + currentUser.MaKH.ToString());
+            List<HoaDon> temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
+            if (temp.Count == 0)
+            {
+                response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createHoaDon?MaKH=" + currentUser.MaKH.ToString());
+                temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
+                currentHD = temp[0];
+                cartItems = new ObservableCollection<CTHD>();
+            }
+            else
+            {
+                currentHD = temp[0];
+                var _lstCartItem = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getCTHDTheoHD?MaHD=" + currentHD.MaHD.ToString());
+                cartItems = JsonConvert.DeserializeObject<ObservableCollection<CTHD>>(_lstCartItem);
+                for (int i = 0; i < cartItems.Count; i++)
+                {
+                    cartItems[i].Gia = Convert.ToInt32(cartItems[i].Gia);
+                }
+            }
+            // create new item
+            for (int i = 0; i < cartItems.Count; i++)
+            {
+                if (cartItems[i].MaMA == monAn.MaMA)
+                {
+                    AddQuantity(monAn.MaMA);
+                    return;
+                }
+            }
+            CTHD new_item = new CTHD()
+            {
+                MaMA = monAn.MaMA,
+                TenMA = monAn.TenMA,
+                MoTa = monAn.MoTa,
+                Hinh = monAn.Hinh,
+                Gia = monAn.Gia,
+                DanhGia = monAn.DanhGia,
+                MaLM = monAn.MaLM,
+                SoLuong = 1,
+                ThanhTien = monAn.Gia,
+            };
+            cartItems.Add(new_item);
+            total = Convert.ToInt32(currentHD.TongTien) + Convert.ToInt32(new_item.ThanhTien);
+            httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createCTHD?MaHD=" + currentHD.MaHD.ToString() +
+                "&MaMA=" + new_item.MaMA + "&SoLuong=1");
         }
 
         public ICommand SubQuantityCommand => new Command<int>(SubQuantity);
-
         private async void SubQuantity(int MaMA)
         {
-            ObservableCollection<CTHD> temp = cartItems;
-            for (int i = 0; i < temp.Count; i++)
+            var httpClient = new HttpClient();
+            CTHD temp = new CTHD();
+            int index = 0;
+            while(index < cartItems.Count)
             {
-                if (temp[i].MaMA == MaMA)
-                    temp[i].SoLuong = 8;
+                if (cartItems[index].MaMA == MaMA)
+                {
+                    temp = cartItems[index];
+                    break;
+                }
+                index++;
             }
-            cartItems = temp;
-            //cartItems.Add(new CTHD { MaMA = 50, SoLuong = 1});
+            total -= Convert.ToInt32(temp.Gia);
+            if (temp.SoLuong == 1)
+            {
+                cartItems.RemoveAt(index);
+                httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() +
+                    "&MaMA=" + temp.MaMA.ToString() + "&SoLuong=" + temp.SoLuong.ToString());
+                return;
+            }
+            temp.SoLuong--;
+            cartItems.RemoveAt(index);
+            cartItems.Insert(index, temp);
+            
+            httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() + 
+                "&MaMA=" + temp.MaMA.ToString() + "&SoLuong=" + temp.SoLuong.ToString());
+        }
+
+        public ICommand AddQuantityCommand => new Command<int>(AddQuantity);
+        private async void AddQuantity(int MaMA)
+        {
+            CTHD temp = new CTHD();
+            int index = 0;
+            while (index < cartItems.Count)
+            {
+                if (cartItems[index].MaMA == MaMA)
+                {
+                    temp = cartItems[index];
+                    break;
+                }
+                index++;
+            }
+            total += Convert.ToInt32(temp.Gia);
+            temp.SoLuong++;
+            temp.ThanhTien = temp.SoLuong * temp.Gia;
+            cartItems.RemoveAt(index);
+            cartItems.Insert(index, temp);
+            var httpClient = new HttpClient();
+            var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() +
+                "&MaMA=" + temp.MaMA.ToString() + "&SoLuong=" + temp.SoLuong.ToString());
         }
     }
 }
