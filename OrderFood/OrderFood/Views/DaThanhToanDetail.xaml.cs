@@ -33,7 +33,7 @@ namespace OrderFood.Views
 
             try
             {
-                var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getCTHDTheoHD?MaHD=" + hd.MaHD.ToString());
+                var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getCTHDTheoHD?MaHD=" + hd.MaHD.ToString());
                 var list = JsonConvert.DeserializeObject<List<CTHD>>(response);
 
                 if (list != null && list.Count() >= 0)

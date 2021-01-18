@@ -69,7 +69,7 @@ namespace BottomNavBarXf
             phoneProfile.Text = currentUser.Sdt;
             userName.Text = "Xin chào " + currentUser.HoTen;
 
-            //usernameProfile.Text = "ductoan212";
+            //usernameProfile.Text = "orderfood213";
             //ageProfile.Text = "20";
             //addressProfile.Text = "Hồ Chí Minh";
             //emailProfile.Text = "ductoan20102000@gmail.com";
@@ -80,7 +80,7 @@ namespace BottomNavBarXf
         public async void InitFavorite()
         {
             //var httpClient = new HttpClient();
-            //var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH.ToString());
+            //var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH.ToString());
             //ListFav = JsonConvert.DeserializeObject<List<MonAn>>(response);
             //for (int i = 0; i < ListFav.Count; i++)
             //{
@@ -91,11 +91,11 @@ namespace BottomNavBarXf
         public async void InitCartItem()
         {
             //var httpClient = new HttpClient();
-            //var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getHoaDonChuaTTTheoKH?MaKH=" + currentUser.MaKH.ToString());
+            //var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getHoaDonChuaTTTheoKH?MaKH=" + currentUser.MaKH.ToString());
             //List<HoaDon> temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
             //if(temp.Count() == 0)
             //{
-            //    response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createHoaDon?MaKH=" + currentUser.MaKH.ToString());
+            //    response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/createHoaDon?MaKH=" + currentUser.MaKH.ToString());
             //    temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
             //    currentHD = temp[0];
             //    ListBurgers = new List<CTHD>();
@@ -103,7 +103,7 @@ namespace BottomNavBarXf
             //else
             //{
             //    currentHD = temp[0];
-            //    var _lstCartItem = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getCTHDTheoHD?MaHD=" + currentHD.MaHD.ToString());
+            //    var _lstCartItem = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getCTHDTheoHD?MaHD=" + currentHD.MaHD.ToString());
             //    ListBurgers = JsonConvert.DeserializeObject<List<CTHD>>(_lstCartItem);
             //}
             //for (int i = 0; i < ListBurgers.Count; i++)
@@ -137,7 +137,7 @@ namespace BottomNavBarXf
                     };
                     ListBurgers.Add(temp);
                     var httpClient = new HttpClient();
-                    var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createCTHD?MaHD=" + currentHD.MaHD.ToString() +
+                    var response = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/createCTHD?MaHD=" + currentHD.MaHD.ToString() +
                         "&MaMA=" + burger.MaMA + "&SoLuong=1");
                 }
             }
@@ -153,7 +153,7 @@ namespace BottomNavBarXf
                 {
                     ListFav.Add(burger);
                     var httpClient = new HttpClient();
-                    var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createYeuThich?MaKH=" + currentUser.MaKH.ToString() +
+                    var response = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/createYeuThich?MaKH=" + currentUser.MaKH.ToString() +
                         "&MaMA=" + burger.MaMA.ToString() + "&GhiChu=abc");
                 }
             }
@@ -179,7 +179,7 @@ namespace BottomNavBarXf
             //    return;
             //}    
             //var httpClient = new HttpClient();
-            //var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateTrangThaiHD?MaHD=" + currentHD.MaHD.ToString());
+            //var response = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/updateTrangThaiHD?MaHD=" + currentHD.MaHD.ToString());
             //ListBurgers.Clear();
             ////lstfoods.ItemsSource = ListBurgers;
             //DisplayAlert("Thông báo", "Đã thanh toán thành công", "OK");

@@ -35,10 +35,10 @@ namespace OrderFood.Components
 
             try
             {
-                var response =  await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/checkDangNhap?TenDN=" + TenDN + "&MatKhau=" + MatKhau);
+                var response =  await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/checkDangNhap?TenDN=" + TenDN + "&MatKhau=" + MatKhau);
                 if (response == "true")
                 {
-                    var response2 = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getKhachHangTheoTenDN?TenDN=" + TenDN);
+                    var response2 = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getKhachHangTheoTenDN?TenDN=" + TenDN);
                     List<User> user = JsonConvert.DeserializeObject<List<User>>(response2);
                     Application.Current.MainPage = new NavigationPage(new BottomNavBarXf.Home(user[0]));
                 }

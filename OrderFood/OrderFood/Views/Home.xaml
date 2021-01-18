@@ -175,6 +175,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="120"/>
                                             <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" 
                                            CornerRadius="10" IsClippedToBounds="True" 
@@ -211,8 +212,14 @@
                                                     WidthRequest="40" HeightRequest="40"
                                                     BackgroundColor="#F9B522" TextColor="#FFFFFF"
                                                     Command="{Binding BindingContext.AddQuantityCommand, Source={Reference root}}" CommandParameter="{Binding MaMA}"/>
-
+                                            
                                         </StackLayout>
+                                        <ImageButton x:Name="btnDel" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
+                                                     Source="delete.png" Padding="0"
+                                                     HorizontalOptions="Center"
+                                                     VerticalOptions="Center"
+                                                     WidthRequest="30" HeightRequest="30"
+                                                     Command="{Binding BindingContext.DeleteCartItemCommand, Source={Reference root}}" CommandParameter="{Binding MaMA}"/>
                                     </Grid>
                                 </Frame>
                                 <!--<Grid Margin="0,20,0,10">
