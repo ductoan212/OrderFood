@@ -23,10 +23,10 @@ namespace OrderFood.ViewModels
 
         CartViewModel()
         {
-
+            GetItemCart();
         }
 
-        private async void GetItemCart()
+        public async void GetItemCart()
         {
             try
             {

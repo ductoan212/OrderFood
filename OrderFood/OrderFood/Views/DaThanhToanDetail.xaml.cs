@@ -38,6 +38,11 @@ namespace OrderFood.Views
 
                 if (list != null && list.Count() >= 0)
                 {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        list[i].Gia = Convert.ToInt32(list[i].Gia);
+                        list[i].ThanhTien = Convert.ToInt32(list[i].ThanhTien);
+                    }
                     lstItem.ItemsSource = list;
                 }
                 else

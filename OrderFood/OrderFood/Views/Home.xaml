@@ -6,15 +6,19 @@
     xmlns:bnb="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms" 
     xmlns:vm="clr-namespace:OrderFood.ViewModels"
     NavigationPage.HasNavigationBar="False"
+    x:Name="root"
     >
 
+    <!--<bnb:BottomBarPage.BindingContext>
+        <vm:LoaiMonViewModel />
+    </bnb:BottomBarPage.BindingContext>-->
     <ContentPage
         Title="Trang chủ"
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
         Icon="explore.png">
-        <ContentPage.BindingContext>
+        <!--<ContentPage.BindingContext>
             <vm:LoaiMonViewModel />
-        </ContentPage.BindingContext>
+        </ContentPage.BindingContext>-->
         <StackLayout Spacing="0" >
             <Frame BackgroundColor="#F9B522"
                    Padding="10" HasShadow="True" Margin="0" >
@@ -92,7 +96,7 @@
                 </Frame>
                 <ListView x:Name="lstfavorities" HasUnevenRows="True"
                           VerticalScrollBarVisibility="Never" Margin="20,0,20,0"
-                          ItemSelected="lstfavorities_ItemSelected">
+                          ItemsSource="{Binding listFav}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -119,12 +123,16 @@
                                         <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"
                                                 HorizontalOptions="StartAndExpand"
                                            LineBreakMode="TailTruncation"/>
-                                        <Label Text="{Binding Gia}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
+                                        <Label Text="{Binding Gia, StringFormat='{0} đ'}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
                                            VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
                                            HorizontalOptions="StartAndExpand" />
                                         <Label Text="{Binding MoTa}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" 
                                            HorizontalOptions="StartAndExpand"
                                            LineBreakMode="TailTruncation"/>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.SelectionFavCommand, Source={Reference root}}"
+                                                        CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                        </Grid.GestureRecognizers>
                                     </Grid>
                                 </Frame>
                             </ViewCell>
@@ -139,9 +147,7 @@
         Title="Giỏ hàng"
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
         Icon="shop.png">
-        <!--<ContentPage.BindingContext>
-            <vm:CartViewModel />
-        </ContentPage.BindingContext>-->
+        
             
         <ContentPage.Content>
             <StackLayout>
@@ -150,10 +156,11 @@
                     <Label Text="Giỏ hàng"
                        TextColor="White" FontSize="25"/>
                 </Frame>
-               
-                <ListView x:Name="lstfoods" HasUnevenRows="True"   
+
+                <ListView HasUnevenRows="True"   
                           Margin="20,0,20,0"
-                          VerticalScrollBarVisibility="Never">
+                          VerticalScrollBarVisibility="Never"
+                          ItemsSource="{Binding cartItems}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -163,7 +170,7 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="40"/>
                                             <RowDefinition Height="30"/>
-                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="40"/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="120"/>
@@ -180,15 +187,31 @@
                                         <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"
                                                 HorizontalOptions="StartAndExpand"
                                            LineBreakMode="TailTruncation"/>
-                                        <Label Text="{Binding Gia}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
+                                        <Label Text="{Binding Gia, StringFormat='{0} đ'}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
                                            VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
                                            HorizontalOptions="StartAndExpand" />
 
                                         <StackLayout Grid.Row="2" Grid.Column="1"
                                                      Orientation="Horizontal" >
-                                            <Label Text="-"/>
-                                            <Label Text="SL"/>
-                                            <Label Text="+"/>
+                                            <Button x:Name="btnSub" 
+                                                    Text="-" FontSize="30" Padding="0"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="40" HeightRequest="40"
+                                                    BackgroundColor="#F9B522" TextColor="#FFFFFF"
+                                                    Command="{Binding BindingContext.SubQuantityCommand, Source={Reference root}}" CommandParameter="{Binding MaMA}"/>
+                                            <Label Text="{Binding SoLuong}" Margin="0"
+                                                   FontSize="25" HeightRequest="40" WidthRequest="80"
+                                                   VerticalTextAlignment="Center"
+                                                   HorizontalTextAlignment="Center"/>
+                                            <Button x:Name="btnAdd" 
+                                                    Text="+" FontSize="30" Padding="0"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="40" HeightRequest="40"
+                                                    BackgroundColor="#F9B522" TextColor="#FFFFFF"
+                                                    Command="{Binding BindingContext.AddQuantityCommand, Source={Reference root}}" CommandParameter="{Binding MaMA}"/>
+
                                         </StackLayout>
                                     </Grid>
                                 </Frame>
@@ -214,33 +237,23 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 
-                <!--<Grid Padding="20,0,20,0" HeightRequest="100">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Button x:Name="checkouted" Text="Đã Thanh Toán" Grid.Row="0" Grid.Column="0" Clicked="checkouted_Clicked"  TextColor="#F9B522" BackgroundColor="White"
-                        BorderColor="#F9B522" BorderWidth="2"
-                        FontSize="20" HeightRequest="50" CornerRadius="100"  />
-                    <Button x:Name="checkout" Text="Thanh Toán" Grid.Row="0" Grid.Column="1" Clicked="checkout_Clicked" CornerRadius="100" 
-                        TextColor="White" BackgroundColor="#F9B522" 
-                        FontSize="20" Margin="10, 0, 0, 0"  HeightRequest="50"/>
-                </Grid>-->
-                <StackLayout Orientation="Horizontal" Padding="20,2"
+                <StackLayout  Padding="20,2">
+                    <Label Text="{Binding total, StringFormat='Tổng: {0} đ'}"
+                           HorizontalOptions="End"/>
+                    <StackLayout Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand">
-                    <Button x:Name="checkouted" Text="Hóa Đơn"
+                        <Button x:Name="checkouted" Text="Hóa Đơn"
                             Clicked="checkouted_Clicked"  TextColor="#F9B522" BackgroundColor="White"
                             BorderColor="#F9B522" BorderWidth="2"
                             FontSize="18" HeightRequest="50" CornerRadius="100" 
                             WidthRequest="150"/>
-                    <Button x:Name="checkout" Text="Thanh Toán"
+                        <Button x:Name="checkout" Text="Thanh Toán"
                             Clicked="checkout_Clicked" CornerRadius="100" 
                             TextColor="White" BackgroundColor="#F9B522" 
                             FontSize="18" HeightRequest="50"
-                            WidthRequest="150"/>
+                            WidthRequest="150"
+                            Command="{Binding CheckoutCommand}"/>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </ContentPage.Content>

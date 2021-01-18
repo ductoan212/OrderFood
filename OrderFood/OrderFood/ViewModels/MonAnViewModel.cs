@@ -46,7 +46,6 @@ namespace OrderFood.ViewModels
         {
             if (monAn != null)
             {
-              
                 var detailsPage = new BottomNavBarXf.Home(monAn,"cart");
                 
                 var navigation = Application.Current.MainPage as NavigationPage;

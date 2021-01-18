@@ -6,9 +6,6 @@
              Title="{Binding monan.TenMA}">
     <ContentPage.Content>
         <StackLayout Padding="20,10,20,20">
-            <!--<Frame>
-                <Label Text="{Binding monan.TenMA}"/>
-            </Frame>-->
             <Frame Padding="0" CornerRadius="10"
                    HeightRequest="200">
                 <Image Source="{Binding monan.Hinh}"
@@ -19,7 +16,7 @@
                          Clicked="ImageButton_Clicked"
                          Command="{Binding AddMonAnFavCommand}"
                          CommandParameter="{Binding monan}"/>
-            <Label Text="{Binding monan.Gia, StringFormat='Giá: {0}VND'}"
+            <Label Text="{Binding monan.Gia, StringFormat='Giá: {0} đ'}"
                    FontSize="25" TextColor="#F9B522"/>
             <Label Text="{Binding monan.MoTa,StringFormat='Mô tả: {0}'}"
                    FontSize="15"/>
