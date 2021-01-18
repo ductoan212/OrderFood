@@ -142,7 +142,7 @@ namespace OrderFood.ViewModels
                 try
                 {
                     var httpClient = new HttpClient();
-                    var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getMonAnTheoLoai?MaLM=" + _selectedBurger.MaLM.ToString());
+                    var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getMonAnTheoLoai?MaLM=" + _selectedBurger.MaLM.ToString());
                     monans = JsonConvert.DeserializeObject<ObservableCollection<MonAn>>(response);
 
                     for (int i = 0; i < monans.Count; i++)
@@ -168,7 +168,7 @@ namespace OrderFood.ViewModels
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getLoaiMon");
+                var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getLoaiMon");
                 loaimons = JsonConvert.DeserializeObject<ObservableCollection<LoaiMon>>(response);
             }
             catch(Exception ex)
@@ -182,11 +182,11 @@ namespace OrderFood.ViewModels
         {
             //cartItems = new CartItems();
             var httpClient = new HttpClient();
-            var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getHoaDonChuaTTTheoKH?MaKH=" + currentUser.MaKH.ToString());
+            var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getHoaDonChuaTTTheoKH?MaKH=" + currentUser.MaKH.ToString());
             List<HoaDon> temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
             if (temp.Count == 0)
             {
-                response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createHoaDon?MaKH=" + currentUser.MaKH.ToString());
+                response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/createHoaDon?MaKH=" + currentUser.MaKH.ToString());
                 temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
                 currentHD = temp[0];
                 cartItems = new ObservableCollection<CTHD>();
@@ -194,7 +194,7 @@ namespace OrderFood.ViewModels
             else
             {
                 currentHD = temp[0];
-                var _lstCartItem = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getCTHDTheoHD?MaHD=" + currentHD.MaHD.ToString());
+                var _lstCartItem = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getCTHDTheoHD?MaHD=" + currentHD.MaHD.ToString());
                 cartItems = JsonConvert.DeserializeObject<ObservableCollection<CTHD>>(_lstCartItem);
                 for (int i = 0; i < cartItems.Count; i++)
                 {
@@ -207,11 +207,11 @@ namespace OrderFood.ViewModels
         {
               
             var httpClient = new HttpClient();
-            var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getHoaDonChuaTTTheoKH?MaKH=" + currentUser.MaKH.ToString());
+            var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getHoaDonChuaTTTheoKH?MaKH=" + currentUser.MaKH.ToString());
             List<HoaDon> temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
             if (temp.Count == 0)
             {
-                response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createHoaDon?MaKH=" + currentUser.MaKH.ToString());
+                response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/createHoaDon?MaKH=" + currentUser.MaKH.ToString());
                 temp = JsonConvert.DeserializeObject<List<HoaDon>>(response);
                 currentHD = temp[0];
                 cartItems = new ObservableCollection<CTHD>();
@@ -219,7 +219,7 @@ namespace OrderFood.ViewModels
             else
             {
                 currentHD = temp[0];
-                var _lstCartItem = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getCTHDTheoHD?MaHD=" + currentHD.MaHD.ToString());
+                var _lstCartItem = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getCTHDTheoHD?MaHD=" + currentHD.MaHD.ToString());
                 cartItems = JsonConvert.DeserializeObject<ObservableCollection<CTHD>>(_lstCartItem);
                 for (int i = 0; i < cartItems.Count; i++)
                 {
@@ -251,7 +251,7 @@ namespace OrderFood.ViewModels
             cartItems.Add(new_item);
             await Application.Current.MainPage.DisplayAlert("Thông báo", "Đã thêm vào giỏ hàng", "OK");
             total = Convert.ToInt32(currentHD.TongTien) + Convert.ToInt32(new_item.ThanhTien);
-            _ = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createCTHD?MaHD=" + currentHD.MaHD.ToString() +
+            _ = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/createCTHD?MaHD=" + currentHD.MaHD.ToString() +
                 "&MaMA=" + new_item.MaMA + "&SoLuong=1");
         }
 
@@ -259,7 +259,7 @@ namespace OrderFood.ViewModels
         public async void GetFavoriteItem()
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH.ToString());
+            var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH.ToString());
             listFav = JsonConvert.DeserializeObject<ObservableCollection<MonAn>>(response);
             for (int i = 0; i < listFav.Count; i++)
             {
@@ -270,7 +270,7 @@ namespace OrderFood.ViewModels
         {
 
             var httpClient = new HttpClient();
-            var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH.ToString());
+            var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH.ToString());
             listFav = JsonConvert.DeserializeObject<ObservableCollection<MonAn>>(response);
 
             for (int i = 0; i < listFav.Count; i++)
@@ -286,7 +286,7 @@ namespace OrderFood.ViewModels
                 listFav[i].Gia = Convert.ToInt32(listFav[i].Gia);
             }
             await Application.Current.MainPage.DisplayAlert("Thông báo", "Đã thêm vào yêu thích", "OK");
-            _ = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createYeuThich?MaKH=" + currentUser.MaKH.ToString() +
+            _ = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/createYeuThich?MaKH=" + currentUser.MaKH.ToString() +
                     "&MaMA=" + monAn.MaMA.ToString() + "&GhiChu=abc");
         }
 
@@ -317,8 +317,8 @@ namespace OrderFood.ViewModels
             {
                 cartItems.RemoveAt(index);
                 total = Convert.ToInt32(CalTotal());
-                _ = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() +
-                    "&MaMA=" + temp.MaMA.ToString() + "&SoLuong=" + temp.SoLuong.ToString());
+                _ = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/deleteCTHD?MaHD=" + currentHD.MaHD.ToString() +
+                    "&MaMA=" + temp.MaMA.ToString());
                 return;
             }
             temp.SoLuong--;
@@ -326,7 +326,7 @@ namespace OrderFood.ViewModels
             cartItems.RemoveAt(index);
             cartItems.Insert(index, temp);
             total = Convert.ToInt32(CalTotal());
-            _ = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() + 
+            _ = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() + 
                 "&MaMA=" + temp.MaMA.ToString() + "&SoLuong=" + temp.SoLuong.ToString());
         }
 
@@ -350,10 +350,30 @@ namespace OrderFood.ViewModels
             cartItems.Insert(index, temp);
             total = Convert.ToInt32(CalTotal());
             var httpClient = new HttpClient();
-            _ = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() +
+            _ = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/updateCTHD?MaHD=" + currentHD.MaHD.ToString() +
                 "&MaMA=" + temp.MaMA.ToString() + "&SoLuong=" + temp.SoLuong.ToString());
         }
 
+        public ICommand DeleteCartItemCommand => new Command<int>(DeleteCartItem);
+        private async void DeleteCartItem(int MaMA)
+        {
+            var httpClient = new HttpClient();
+            CTHD temp = new CTHD();
+            int index = 0;
+            while (index < cartItems.Count)
+            {
+                if (cartItems[index].MaMA == MaMA)
+                {
+                    temp = cartItems[index];
+                    break;
+                }
+                index++;
+            }
+            cartItems.RemoveAt(index);
+            total = Convert.ToInt32(CalTotal());
+            _ = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/deleteCTHD?MaHD=" + currentHD.MaHD.ToString() +
+                "&MaMA=" + temp.MaMA.ToString());
+        }
         public ICommand CheckoutCommand => new Command(Checkout);
 
         private async void Checkout()
@@ -364,7 +384,7 @@ namespace OrderFood.ViewModels
                 return;
             }
             var httpClient = new HttpClient();
-            var response = httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/updateTrangThaiHD?MaHD=" + currentHD.MaHD.ToString());
+            var response = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/updateTrangThaiHD?MaHD=" + currentHD.MaHD.ToString());
             cartItems.Clear();
             await Application.Current.MainPage.DisplayAlert("Thông báo", "Đã thanh toán thành công", "OK");
             GetCartItem();

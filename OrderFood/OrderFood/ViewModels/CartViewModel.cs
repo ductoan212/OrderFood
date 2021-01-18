@@ -31,7 +31,7 @@ namespace OrderFood.ViewModels
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/getHoaDonChuaTTTheoKH?MaKH={MaKH}");
+                var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getHoaDonChuaTTTheoKH?MaKH={MaKH}");
                 lstCartItem = JsonConvert.DeserializeObject<List<CTHD>>(response);
             }
             catch (Exception ex)

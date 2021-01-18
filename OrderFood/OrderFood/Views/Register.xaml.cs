@@ -26,7 +26,7 @@ namespace OrderFood.Components
             var httpClient = new HttpClient();
             try
             {
-                var response = await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/checkTenDNTonTai?TenDN=" + user.TenDN);
+                var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/checkTenDNTonTai?TenDN=" + user.TenDN);
                 if (response == "true")
                 {
                     await DisplayAlert("Thông báo", "Tên đăng nhập đã tồn tại!", "OK");
@@ -34,7 +34,7 @@ namespace OrderFood.Components
                 else
                 {
                 
-                    await httpClient.GetStringAsync("http://www.orderfood212.somee.com/api/ServiceController/createKhachHang?TenDN="
+                    await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/createKhachHang?TenDN="
                                                 + user.TenDN + "&MatKhau=" + user.MatKhau + "&HoTen=" + user.HoTen +
                                                 "&Email=" + user.Email + "&DiaChi=" + user.DiaChi +
                                                 "&Tuoi=" + user.Tuoi + "&Sdt=" + user.Sdt +
