@@ -95,12 +95,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\collections.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\explore.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\shop.png" />
   </ItemGroup>
   <ItemGroup>
@@ -113,16 +107,10 @@
     <AndroidResource Include="Resources\drawable\pizza.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\vegetable.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\right.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\left.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\back.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\heart.png" />

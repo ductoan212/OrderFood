@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OrderFood.Models;
+using OrderFood.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +54,29 @@ namespace OrderFood.Views
             catch (Exception ex)
             {
                 await DisplayAlert("Thông báo", "Bạn cần kết nối Internet để thực hiện thao tác", "OK");
+            }
+        }
+
+        private void lstItem_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (lstItem.SelectedItem != null)
+            {
+                CTHD cthd = (CTHD)lstItem.SelectedItem;
+                MonAn monAn = new MonAn 
+                {
+                    MaMA = cthd.MaMA,
+                    TenMA = cthd.TenMA,
+                    DanhGia = cthd.DanhGia,
+                    MoTa = cthd.MoTa,
+                    Hinh = cthd.Hinh,
+                    Gia = cthd.Gia,
+                    MaLM = cthd.MaMA
+                };
+                var viewModel = new MonAnViewModel { monan = monAn };
+                var detailsPage = new DetailMonAn { BindingContext = viewModel };
+
+                Navigation.PushAsync(detailsPage, true);
+                lstItem.SelectedItem = null;
             }
         }
     }

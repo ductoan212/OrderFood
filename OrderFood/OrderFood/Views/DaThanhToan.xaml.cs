@@ -43,6 +43,7 @@ namespace OrderFood.Views
                     {
                         list[i].TongTien = Convert.ToInt32(list[i].TongTien);
                     }
+                    list.Reverse();
                     lstcheckout.ItemsSource = list;
                 }
                 else

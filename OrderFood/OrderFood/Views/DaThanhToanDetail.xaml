@@ -6,7 +6,8 @@
         <StackLayout>
             <ListView x:Name="lstItem" HasUnevenRows="True"   
                       VerticalScrollBarVisibility="Never"
-                      Margin="20,0,20,0">
+                      Margin="20,0,20,0"
+                      ItemSelected="lstItem_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
