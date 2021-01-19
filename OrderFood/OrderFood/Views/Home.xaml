@@ -9,9 +9,6 @@
     x:Name="root"
     >
 
-    <!--<bnb:BottomBarPage.BindingContext>
-        <vm:LoaiMonViewModel />
-    </bnb:BottomBarPage.BindingContext>-->
     <ContentPage
         Title="Trang chủ"
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
@@ -293,7 +290,7 @@
                                                     WidthRequest="40" HeightRequest="40"
                                                     BackgroundColor="#F9B522" TextColor="#FFFFFF"
                                                     Command="{Binding BindingContext.AddQuantityCommand, Source={Reference root}}" CommandParameter="{Binding MaMA}"/>
-                                            
+
                                         </StackLayout>
                                         <ImageButton x:Name="btnDel" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
                                                      Source="delete.png" Padding="0"
@@ -303,23 +300,6 @@
                                                      Command="{Binding BindingContext.DeleteCartItemCommand, Source={Reference root}}" CommandParameter="{Binding MaMA}"/>
                                     </Grid>
                                 </Frame>
-                                <!--<Grid Margin="0,20,0,10">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" CornerRadius="100" IsClippedToBounds="True" BackgroundColor="#131313"  HeightRequest="50">
-                                        <Image Source="{Binding Hinh}" />
-                                    </Frame>
-                                    <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"/>
-                                    <Label Text="{Binding Gia,StringFormat='{0}VND'}" Grid.Row="0" Grid.Column="2" TextColor="Green" FontSize="30"  VerticalTextAlignment="Center"/>
-                                    <Label Text="{Binding MoTa}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" />
-                                </Grid>-->
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
