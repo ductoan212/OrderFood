@@ -11550,6 +11550,9 @@ namespace OrderFood.Droid
 			// aapt resource value: 0x7F07008D
 			public const int userHome = 2131165325;
 			
+			// aapt resource value: 0x7F07008E
+			public const int wallet = 2131165326;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

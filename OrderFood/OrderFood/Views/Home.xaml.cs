@@ -62,8 +62,8 @@ namespace BottomNavBarXf
         }
         public void InitUser()
         {
-            usernameProfile.Text = currentUser.TenDN;
-            ageProfile.Text = "Age : " + currentUser.Tuoi.ToString();
+            usernameProfile.Text = currentUser.MaKH;
+            moneyProfile.Text = Convert.ToInt32(currentUser.SoDu).ToString();
             addressProfile.Text = currentUser.DiaChi;
             emailProfile.Text = currentUser.Email;
             phoneProfile.Text = currentUser.Sdt;
