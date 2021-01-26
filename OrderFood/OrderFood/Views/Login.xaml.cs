@@ -12,7 +12,6 @@ namespace OrderFood.Components
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Login : ContentPage
     {
-        //List<User> ListUsersLogin = new List<User>();
         public Login()
         {
             InitializeComponent();
@@ -25,7 +24,7 @@ namespace OrderFood.Components
         }
         public void InitAccount(User user)
         {
-            usernameLogin.Text = user.TenDN;
+            usernameLogin.Text = user.MaKH;
             passwordLogin.Text = user.MatKhau;
         }
         public async void CheckLogin(string TenDN, string MatKhau)

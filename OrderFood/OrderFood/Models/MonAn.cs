@@ -13,5 +13,7 @@ namespace OrderFood.Models
         public string Hinh { get; set; }
         public decimal Gia { get; set; }
         public int MaLM { get; set; }
+        public int SLBan { get; set; }
+        public int KhuyenMai { get; set; }
     }
 }

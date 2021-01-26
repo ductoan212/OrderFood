@@ -1,6 +1,5 @@
 ﻿using OrderFood.Models;
 ﻿using BottomNavBarXf;
-using OrderFood.Models;
 using OrderFood.Views;
 using System;
 using System.Collections.Generic;

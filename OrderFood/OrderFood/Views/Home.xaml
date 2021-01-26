@@ -369,12 +369,12 @@
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="age" 
+                    <Image Source="wallet" 
                            Grid.Column="0" Grid.Row="0"/>
                     <Label Grid.Column="1" Grid.Row="0"
-                           x:Name="ageProfile"
+                           x:Name="moneyProfile"
                            FontSize="20"
-                           Text="Age : 18"
+                           Text="180000 đ"
                            TextColor="#F9B522" 
                            VerticalTextAlignment="Center"/>
 
