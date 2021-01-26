@@ -38,7 +38,7 @@ namespace BottomNavBarXf
                 DisplayAlert("Lỗi", "Cần kết nối mạng để sử dụng app!!!", "OK");
             }
 
-            this.BindingContext = new LoaiMonViewModel(currentUser);
+            this.BindingContext = new HomeViewModel(currentUser);
         }
         public Home(User user)
         {
@@ -48,7 +48,7 @@ namespace BottomNavBarXf
             InitUser();
             InitFavorite();
             InitCartItem();
-            this.BindingContext = new LoaiMonViewModel(currentUser);
+            this.BindingContext = new HomeViewModel(currentUser);
         }
       
         public Home(MonAn burger, string str)
@@ -58,12 +58,12 @@ namespace BottomNavBarXf
             ListFav = null;
             InitUser();
             InitFavorite();
-            this.BindingContext = new LoaiMonViewModel(currentUser, burger, str);
+            this.BindingContext = new HomeViewModel(currentUser, burger, str);
         }
         public void InitUser()
         {
             usernameProfile.Text = currentUser.MaKH;
-            moneyProfile.Text = Convert.ToInt32(currentUser.SoDu).ToString();
+            moneyProfile.Text = Convert.ToInt32(currentUser.SoDu).ToString() + " đ";
             addressProfile.Text = currentUser.DiaChi;
             emailProfile.Text = currentUser.Email;
             phoneProfile.Text = currentUser.Sdt;
@@ -77,7 +77,7 @@ namespace BottomNavBarXf
             //userName.Text = "Xin chào Toàn";
             //currentUser.MaKH = 1;
         }
-        public async void InitFavorite()
+        public  void InitFavorite()
         {
             //var httpClient = new HttpClient();
             //var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH.ToString());
@@ -88,7 +88,7 @@ namespace BottomNavBarXf
             //}
             //lstfavorities.ItemsSource = ListFav;
         }
-        public async void InitCartItem()
+        public  void InitCartItem()
         {
             //var httpClient = new HttpClient();
             //var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getHoaDonChuaTTTheoKH?MaKH=" + currentUser.MaKH.ToString());

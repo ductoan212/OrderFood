@@ -13,15 +13,15 @@ using Xamarin.Forms;
 
 namespace OrderFood.ViewModels
 {
-    public class LoaiMonViewModel : BaseViewModel
+    public class HomeViewModel : BaseViewModel
     {
-        public LoaiMonViewModel()
+        public HomeViewModel()
         {
             GetBurgers();
             GetCartItem();
         }
 
-        public LoaiMonViewModel(User user)
+        public HomeViewModel(User user)
         {
             currentUser = user;
             GetBurgers();
@@ -29,7 +29,7 @@ namespace OrderFood.ViewModels
             GetFavoriteItem();
         }
 
-        public LoaiMonViewModel(User user, MonAn monAn, string str)
+        public HomeViewModel(User user, MonAn monAn, string str)
         {
             currentUser = user;
             GetBurgers();
@@ -133,6 +133,77 @@ namespace OrderFood.ViewModels
             }
         }
         //================================= Function =================================//
+        //public ICommand SearchMonAnCommand => new Command(SearchMonAn);
+
+        //private async void SearchMonAn()
+        //{
+        //    string keyword = "1";
+        //    if (keyword != null)    
+        //    {
+        //        try
+        //        {
+        //            var httpClient = new HttpClient();
+        //            var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getMonAnTheoTuKhoa?Keyword=" + keyword);
+        //            monans = JsonConvert.DeserializeObject<ObservableCollection<MonAn>>(response);
+
+        //            for (int i = 0; i < monans.Count; i++)
+        //            {
+        //                monans[i].Gia = Convert.ToInt32(monans[i].Gia);
+        //            }
+        //            var viewModel = new DetailsViewModel { _selectedMonAn = monans[0], monans = monans, position = 0, loaimon = _selectedBurger };
+        //            var detailsPage = new DetailsPage { BindingContext = viewModel };
+
+        //            var navigation = Application.Current.MainPage as NavigationPage;
+        //            await navigation.PushAsync(detailsPage, true);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            throw ex;
+        //        }
+        //    }
+        //}
+
+        private ICommand _searchMonAnCommand;
+        public ICommand SearchMonAnCommand
+        {
+            get
+            {
+                return _searchMonAnCommand ?? (_searchMonAnCommand = new Command<string>((text) =>
+                {
+                    // The text parameter can now be used for searching.
+                    SearchMonAn(text);
+                }));
+            }
+        }
+
+
+        private async void SearchMonAn(string keyword)
+        {
+            if (keyword != null)
+            {
+                try
+                {
+                    var httpClient = new HttpClient();
+                    var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getMonAnTheoTuKhoa?Keyword=" + keyword);
+                    monans = JsonConvert.DeserializeObject<ObservableCollection<MonAn>>(response);
+
+                    for (int i = 0; i < monans.Count; i++)
+                    {
+                        monans[i].Gia = Convert.ToInt32(monans[i].Gia);
+                    }
+                    var viewModel = new SearchResultViewModel { monans = monans, isEmpty = monans.Count==0};
+                    var detailsPage = new SearchResult(keyword) { BindingContext = viewModel};
+
+                    var navigation = Application.Current.MainPage as NavigationPage;
+                    await navigation.PushAsync(detailsPage, true);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
         public ICommand SelectionCommand => new Command(DisplayBurger);
 
         private async void DisplayBurger()
@@ -298,7 +369,7 @@ namespace OrderFood.ViewModels
             return s;
         }
         public ICommand SubQuantityCommand => new Command<int>(SubQuantity);
-        private async void SubQuantity(int MaMA)
+        private void SubQuantity(int MaMA)
         {
             var httpClient = new HttpClient();
             CTHD temp = new CTHD();
@@ -331,7 +402,7 @@ namespace OrderFood.ViewModels
         }
 
         public ICommand AddQuantityCommand => new Command<int>(AddQuantity);
-        private async void AddQuantity(int MaMA)
+        private void AddQuantity(int MaMA)
         {
             CTHD temp = new CTHD();
             int index = 0;
@@ -355,7 +426,7 @@ namespace OrderFood.ViewModels
         }
 
         public ICommand DeleteCartItemCommand => new Command<int>(DeleteCartItem);
-        private async void DeleteCartItem(int MaMA)
+        private void DeleteCartItem(int MaMA)
         {
             var httpClient = new HttpClient();
             CTHD temp = new CTHD();
