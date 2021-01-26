@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OrderFood.Views.SearchResult"
+             x:Name="root">
+    <ScrollView>
+        <StackLayout Padding="20,20,20,0" 
+                 HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Frame Padding="0"
+                       CornerRadius="10">
+                    <Image Aspect="AspectFill" Source="try2.jpg" Margin="0"
+                           HeightRequest="150" WidthRequest="500"
+                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                </Frame>
+                <Frame Padding="0"
+                       CornerRadius="10" BackgroundColor="#8000">
+                    <Label x:Name="txtKeyword" Text="{Binding loaimon.TenLM}"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       TextColor="#FFFFFF" FontSize="25"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </Frame>
+            </Grid>
+
+            <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <ListView  x:Name="listItem" 
+                           ItemsSource="{Binding monans}"
+                           RowHeight="120"
+                           VerticalScrollBarVisibility="Never"
+                           AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                           AbsoluteLayout.LayoutFlags="All">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BackgroundColor="#fff6e3" Padding="0" Margin="2,10" CornerRadius="5">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                      Padding="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding Hinh}" 
+                                       Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+                                       WidthRequest="150" HeightRequest="150" 
+                                       Aspect="AspectFill" BackgroundColor="AliceBlue"/>
+                                        <Label Text="{Binding TenMA}" 
+                                       Grid.Row="0" Grid.Column="1"
+                                           LineBreakMode="TailTruncation"
+                                           FontSize="25"/>
+                                        <Label Text="{Binding Gia, StringFormat='{0} đ'}"
+                                       Grid.Row="1" Grid.Column="1"
+                                           FontSize="15"/>
+                                        <Label Text="{Binding MoTa}"
+                                       Grid.Row="2" Grid.Column="1"
+                                           LineBreakMode="TailTruncation"/>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.DisplayDetailMonAnCommand, Source={Reference root}}"
+                                                        CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <ContentView x:Name="popupLoadingView" Padding="20,0" AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                         AbsoluteLayout.LayoutFlags="All"
+                         IsVisible="{Binding isEmpty}">
+                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                        <StackLayout Orientation="Vertical">
+                            <!--<ActivityIndicator x:Name="activityIndicator" Margin="10"
+                                           VerticalOptions="Center" HorizontalOptions="Center"
+                                           Color="#F9B522" IsRunning="True"></ActivityIndicator>-->
+                            <Image Source="empty.png"
+                                   WidthRequest="100"
+                                   Aspect="AspectFit"/>
+                            <Label Text="Không tìm thấy món!" 
+                                   TextColor="#F9B522"
+                                   FontSize="25"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ContentView>
+            </AbsoluteLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -14,7 +14,7 @@
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
         Icon="home.png">
         <!--<ContentPage.BindingContext>
-            <vm:LoaiMonViewModel />
+            <vm:HomeViewModel />
         </ContentPage.BindingContext>-->
         <StackLayout Spacing="0" >
             <Frame BackgroundColor="#F9B522"
@@ -33,7 +33,10 @@
                                     FontSize="20" HorizontalTextAlignment="Center"/>
                             <Frame CornerRadius="50" BorderColor="#F9B522"
                                    Padding="0" HasShadow="False">
-                                <SearchBar Placeholder="Tìm kiếm món ăn..."/>
+                                <SearchBar x:Name="searchBar" 
+                                           Placeholder="Tìm kiếm món ăn..." 
+                                           SearchCommand="{Binding SearchMonAnCommand}"
+                                           SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
                             </Frame>
                         </StackLayout>
                     </Frame>
