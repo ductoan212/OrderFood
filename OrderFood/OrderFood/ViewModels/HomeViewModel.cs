@@ -133,36 +133,7 @@ namespace OrderFood.ViewModels
             }
         }
         //================================= Function =================================//
-        //public ICommand SearchMonAnCommand => new Command(SearchMonAn);
-
-        //private async void SearchMonAn()
-        //{
-        //    string keyword = "1";
-        //    if (keyword != null)    
-        //    {
-        //        try
-        //        {
-        //            var httpClient = new HttpClient();
-        //            var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getMonAnTheoTuKhoa?Keyword=" + keyword);
-        //            monans = JsonConvert.DeserializeObject<ObservableCollection<MonAn>>(response);
-
-        //            for (int i = 0; i < monans.Count; i++)
-        //            {
-        //                monans[i].Gia = Convert.ToInt32(monans[i].Gia);
-        //            }
-        //            var viewModel = new DetailsViewModel { _selectedMonAn = monans[0], monans = monans, position = 0, loaimon = _selectedBurger };
-        //            var detailsPage = new DetailsPage { BindingContext = viewModel };
-
-        //            var navigation = Application.Current.MainPage as NavigationPage;
-        //            await navigation.PushAsync(detailsPage, true);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            throw ex;
-        //        }
-        //    }
-        //}
-
+        
         private ICommand _searchMonAnCommand;
         public ICommand SearchMonAnCommand
         {
@@ -175,8 +146,6 @@ namespace OrderFood.ViewModels
                 }));
             }
         }
-
-
         private async void SearchMonAn(string keyword)
         {
             if (keyword != null)
@@ -454,8 +423,16 @@ namespace OrderFood.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Thông báo", "Chưa có món trong giỏ! Hãy thêm ngay nào...", "OK");
                 return;
             }
+            if(total > currentUser.SoDu)
+            {
+                await Application.Current.MainPage.DisplayAlert("Thông báo", "Không đủ tiền để thanh toán! Hãy nạp thêm nào...", "OK");
+                return;
+            }
             var httpClient = new HttpClient();
-            var response = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/updateTrangThaiHD?MaHD=" + currentHD.MaHD.ToString());
+            _ = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/updateTrangThaiHD?MaHD=" + currentHD.MaHD.ToString() + "&TrangThai=1");
+            var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getKhachHangTheoTenDN?TenDN=" + currentUser.MaKH);
+            List<User> user = JsonConvert.DeserializeObject<List<User>>(response);
+            currentUser = user[0];
             cartItems.Clear();
             await Application.Current.MainPage.DisplayAlert("Thông báo", "Đã thanh toán thành công", "OK");
             GetCartItem();

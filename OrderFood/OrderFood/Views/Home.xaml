@@ -354,7 +354,7 @@
                 <Label x:Name="usernameProfile"
                            Margin="0"
                            FontSize="20"
-                           Text="Adam Anderson"
+                           Text="{Binding currentUser.MaKH}"
                            HorizontalTextAlignment="Center"
                            TextColor="#FFFFFF"/>
             </StackLayout>
@@ -377,7 +377,7 @@
                     <Label Grid.Column="1" Grid.Row="0"
                            x:Name="moneyProfile"
                            FontSize="20"
-                           Text="180000 đ"
+                           Text="{Binding currentUser.SoDu}"
                            TextColor="#F9B522" 
                            VerticalTextAlignment="Center"/>
 
@@ -386,7 +386,7 @@
                     <Label Grid.Column="1" Grid.Row="1"
                            x:Name="addressProfile"
                            FontSize="20"
-                           Text="Thu duc district,HCM city,Viet Nam"
+                           Text="{Binding currentUser.DiaChi}"
                            VerticalOptions="Center"
                            TextColor="#F9B522" />
 
@@ -395,7 +395,7 @@
                     <Label Grid.Column="1" Grid.Row="2"
                            x:Name="emailProfile"
                            FontSize="20"
-                           Text="nhockrong98@mgail.com"
+                           Text="{Binding currentUser.Email}"
                            TextColor="#F9B522"
                            VerticalOptions="Center" />
 
@@ -404,7 +404,7 @@
                     <Label Grid.Column="1" Grid.Row="3"
                            x:Name="phoneProfile"
                            FontSize="20"
-                           Text="(614) 555-1234"
+                           Text="{Binding currentUser.Sdt}"
                            TextColor="#F9B522"
                            VerticalOptions="Center" />
 

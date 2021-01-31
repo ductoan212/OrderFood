@@ -62,20 +62,31 @@ namespace BottomNavBarXf
         }
         public void InitUser()
         {
-            usernameProfile.Text = currentUser.MaKH;
-            moneyProfile.Text = Convert.ToInt32(currentUser.SoDu).ToString() + " đ";
-            addressProfile.Text = currentUser.DiaChi;
-            emailProfile.Text = currentUser.Email;
-            phoneProfile.Text = currentUser.Sdt;
+            //currentUser = new User
+            //{
+            //    MaKH = "toan",
+            //    MatKhau = "1",
+            //    HoTen = "Phạm Đức Toàn",
+            //    Email = "emdil@gmail.com",
+            //    DiaChi = "HCM",
+            //    Sdt = "0987654321",
+            //    SoDu = 954000
+            //};
+
+            //usernameProfile.Text = currentUser.MaKH;
+            //moneyProfile.Text = Convert.ToInt32(currentUser.SoDu).ToString() + " đ";
+            //addressProfile.Text = currentUser.DiaChi;
+            //emailProfile.Text = currentUser.Email;
+            //phoneProfile.Text = currentUser.Sdt;
             userName.Text = "Xin chào " + currentUser.HoTen;
 
             //usernameProfile.Text = "orderfood213";
-            //ageProfile.Text = "20";
+            //moneyProfile.Text = "50000 đ";
             //addressProfile.Text = "Hồ Chí Minh";
             //emailProfile.Text = "ductoan20102000@gmail.com";
             //phoneProfile.Text = "0123456789";
             //userName.Text = "Xin chào Toàn";
-            //currentUser.MaKH = 1;
+            //currentUser.MaKH = "toan";
         }
         public  void InitFavorite()
         {

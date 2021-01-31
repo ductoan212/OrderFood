@@ -1,8 +1,10 @@
-﻿using OrderFood.Components;
+﻿using Newtonsoft.Json;
+using OrderFood.Components;
 using OrderFood.Models;
 using OrderFood.Views;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,6 +19,7 @@ namespace OrderFood
         public App()
         {
             InitializeComponent();
+
             //MainPage = new NavigationPage(new BottomNavBarXf.Home());
             MainPage = new NavigationPage(new Login());
         }
