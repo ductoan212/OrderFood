@@ -524,7 +524,7 @@ namespace OrderFood.ViewModels
                 return;
             }
             var httpClient = new HttpClient();
-            _ = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/updateTrangThaiHD?MaHD=" + currentHD.MaHD.ToString() + "&TrangThai=1");
+            await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/updateTrangThaiHD?MaHD=" + currentHD.MaHD.ToString() + "&TrangThai=1");
             var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getKhachHangTheoTenDN?TenDN=" + currentUser.MaKH);
             List<User> user = JsonConvert.DeserializeObject<List<User>>(response);
             currentUser = user[0];
@@ -601,6 +601,30 @@ namespace OrderFood.ViewModels
                 await navigation.PushAsync(detailsPage, true);
                 selectedMonMoiRa = null;
             }
+        }
+
+
+        // them tien
+        private ICommand _addMonneyCommand;
+        public ICommand addMonneyCommand
+        {
+            get
+            {
+                return _addMonneyCommand ?? (_addMonneyCommand = new Command(() =>
+                {
+                    // The text parameter can now be used for searching.
+                    AddMonney();
+                }));
+            }
+        }
+
+        private async void AddMonney()
+        {
+            var viewModel = new AddMoneyViewModel(currentUser);
+            var detailsPage = new AddMoney { BindingContext = viewModel };
+
+            var navigation = Application.Current.MainPage as NavigationPage;
+            await navigation.PushAsync(detailsPage, true);
         }
     }
 }

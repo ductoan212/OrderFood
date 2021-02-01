@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OrderFood.Views.AddMoney">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding currentUser.SoDu}"/>
+            <Label Text="Nhập số tiền muốn nạp (VNĐ)"/>
+            <Entry Text="{Binding money}"/>
+            <Button Text="Nạp ngay"
+                    Command="{Binding addMoneyCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

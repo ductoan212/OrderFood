@@ -58,7 +58,6 @@ namespace OrderFood.Components
         {
             var username = usernameLogin.Text;
             var password = passwordLogin.Text;
-            var current = Connectivity.NetworkAccess;
             if (username == null || password == null ||
                 username == "" || password == "")
             {
