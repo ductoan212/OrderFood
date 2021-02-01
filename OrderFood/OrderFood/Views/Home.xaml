@@ -229,7 +229,7 @@
 
                     
 
-                    <Label Text="Hãy chọn loại món!!!" FontSize="20"/>
+                    <Label Text="Hãy chọn loại món!!!" FontSize="20" Margin="0,15,0,0"/>
                     <CollectionView x:Name="burgerList4" Margin="0,0,0,0" Grid.Row="1" ItemsSource="{Binding loaimons}" 
                                     SelectionMode="Single" VerticalScrollBarVisibility="Never" 
                                     SelectedItem="{Binding SelectedBurger}" 
@@ -266,7 +266,7 @@
                         </CollectionView.Footer>
                     </CollectionView>
                     
-                    <StackLayout>
+                    <!--<StackLayout>
                         <Label Text="Nên thử..." FontSize="20"/>
                         <Frame Padding="0" Margin="0,5"
                                CornerRadius="20"
@@ -346,7 +346,7 @@
                             </Grid>
                             
                         </Frame>
-                    </StackLayout>
+                    </StackLayout>-->
                 </StackLayout>
             </ScrollView>
         </StackLayout>
