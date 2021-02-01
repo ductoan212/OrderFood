@@ -13,16 +13,13 @@
         Title="Trang chủ"
         bnb:BottomBarPageExtensions.TabColor="#F9B522"
         Icon="home.png">
-        <!--<ContentPage.BindingContext>
-            <vm:HomeViewModel />
-        </ContentPage.BindingContext>-->
         <StackLayout Spacing="0" >
             <Frame BackgroundColor="#F9B522"
                    Padding="10" HasShadow="True" Margin="0" >
                 <Label Text="OrderFood"
                        TextColor="White" FontSize="25"/>
             </Frame>
-            <ScrollView Padding="20,0,20,20" Margin="0">
+            <ScrollView Padding="10,0,10,20" Margin="0">
                 <StackLayout Padding="0">
                     <Label x:Name="userName" Text="Xin chào bạn dToàn"
                            FontSize="25" FontAttributes="Bold"/>
@@ -40,31 +37,221 @@
                             </Frame>
                         </StackLayout>
                     </Frame>
-                    <Label Text="Hãy chọn loại món!!!" FontSize="20"/>
-                    <CollectionView x:Name="burgerList" Margin="0,0,0,0" Grid.Row="1" ItemsSource="{Binding loaimons}" 
+
+                    <Frame BackgroundColor="#e6e6e6" 
+                           Padding="10" Margin="0,15,0,0"
+                           CornerRadius="3" HasShadow="False">
+                        <StackLayout>
+                            <Frame Padding="0" Margin="0"
+                           CornerRadius="3"
+                           HasShadow="True">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Column="0" Grid.Row="0"
+                                   Source="try1.jpg"
+                                   WidthRequest="500" HeightRequest="30"
+                                   Aspect="AspectFill"/>
+                                    <Label Grid.Column="0" Grid.Row="0" 
+                                   Text="Đang giảm giá!!!"
+                                   FontSize="22" Padding="0"
+                                   BackgroundColor="#50000000"
+                                   TextColor="#FFF"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"/>
+                                </Grid>
+                            </Frame>
+                            <CollectionView x:Name="burgerList" Margin="0" Grid.Row="1" ItemsSource="{Binding mongiamgia}" 
+                                    SelectionMode="Single" VerticalScrollBarVisibility="Never" 
+                                    SelectedItem="{Binding selectedMonGiamGia}" 
+                                    SelectionChangedCommand="{Binding MonGiamGiaCommand}"
+                                    HeightRequest="150">
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Horizontal"  Span="1"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout HeightRequest="150">
+                                            <Frame HasShadow="False"
+                                       CornerRadius="5"
+                                       BackgroundColor="#ffefcc"
+                                       Padding="0" Margin="0,0,10,0">
+                                                <Grid Padding="0" >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Image Aspect="AspectFill" Source="{Binding Hinh}" Margin="0"
+                                                   HeightRequest="150" WidthRequest="150"
+                                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                                    <Label Grid.Row="1" Text="{Binding TenMA}" TextColor="Black" FontFamily="ThemeFont" 
+                                                    VerticalOptions="End" HorizontalOptions="Center"
+                                                   Margin="10,0,10,10"/>
+                                                </Grid>
+                                            </Frame>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                                <CollectionView.Footer>
+                                    <Grid HeightRequest="0"/>
+                                </CollectionView.Footer>
+                            </CollectionView>
+
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame BackgroundColor="#e6e6e6" 
+                           Padding="10" Margin="0,15,0,0"
+                           CornerRadius="3" HasShadow="False">
+                        <StackLayout>
+                            <Frame Padding="0" Margin="0"
+                           CornerRadius="3"
+                           HasShadow="True">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Column="0" Grid.Row="0"
+                                   Source="try2.jpg"
+                                   WidthRequest="500" HeightRequest="30"
+                                   Aspect="AspectFill"/>
+                                    <Label Grid.Column="0" Grid.Row="0" 
+                                   Text="Mua nhiều nhất"
+                                   FontSize="22" Padding="0"
+                                   TextColor="#FFF"
+                                   BackgroundColor="#50000000"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"/>
+                                </Grid>
+                            </Frame>
+                            <CollectionView x:Name="burgerList2" Margin="0" Grid.Row="1" ItemsSource="{Binding monmuanhieu}" 
+                                    SelectionMode="Single" VerticalScrollBarVisibility="Never" 
+                                    SelectedItem="{Binding selectedMonMuaNhieu}" 
+                                    SelectionChangedCommand="{Binding MonMuaNhieuCommand}"
+                                    HeightRequest="150">
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Horizontal"  Span="1"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout HeightRequest="150">
+                                            <Frame HasShadow="False"
+                                       CornerRadius="5"
+                                       BackgroundColor="#ffefcc"
+                                       Padding="0" Margin="0,0,10,0">
+                                                <Grid Padding="0" >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Image Aspect="AspectFill" Source="{Binding Hinh}" Margin="0"
+                                                   HeightRequest="150" WidthRequest="150"
+                                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                                    <Label Grid.Row="1" Text="{Binding TenMA}" TextColor="Black" FontFamily="ThemeFont" 
+                                                    VerticalOptions="End" HorizontalOptions="Center"
+                                                   Margin="10,0,10,10"/>
+                                                </Grid>
+                                            </Frame>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                                <CollectionView.Footer>
+                                    <Grid HeightRequest="0"/>
+                                </CollectionView.Footer>
+                            </CollectionView>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame BackgroundColor="#e6e6e6" 
+                           Padding="10" Margin="0,15,0,0"
+                           CornerRadius="3" HasShadow="False">
+                        <StackLayout>
+                            <Frame Padding="0" Margin="0"
+                           CornerRadius="3"
+                           HasShadow="True" >
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Column="0" Grid.Row="0"
+                                   Source="try3.jpg"
+                                   WidthRequest="500" HeightRequest="30"
+                                   Aspect="AspectFill"/>
+                                    <Label Grid.Column="0" Grid.Row="0" 
+                                   Text="Món mới 'ra lò'"
+                                   FontSize="22" Padding="0"
+                                   TextColor="#FFF"
+                                   BackgroundColor="#50000000"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"/>
+                                </Grid>
+                            </Frame>
+                            <CollectionView x:Name="burgerList3" Margin="0" Grid.Row="1" ItemsSource="{Binding monmoira}" 
+                                    SelectionMode="Single" VerticalScrollBarVisibility="Never" 
+                                    SelectedItem="{Binding selectedMonMoiRa}" 
+                                    SelectionChangedCommand="{Binding MonMoiRaCommand}"
+                                    HeightRequest="150">
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Horizontal"  Span="1"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout HeightRequest="150">
+                                            <Frame HasShadow="False"
+                                       CornerRadius="5"
+                                       BackgroundColor="#ffefcc"
+                                       Padding="0" Margin="0,0,10,0">
+                                                <Grid Padding="0" >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Image Aspect="AspectFill" Source="{Binding Hinh}" Margin="0"
+                                                   HeightRequest="150" WidthRequest="150"
+                                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                                    <Label Grid.Row="1" Text="{Binding TenMA}" TextColor="Black" FontFamily="ThemeFont" 
+                                                    VerticalOptions="End" HorizontalOptions="Center"
+                                                   Margin="10,0,10,10"/>
+                                                </Grid>
+                                            </Frame>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                                <CollectionView.Footer>
+                                    <Grid HeightRequest="0"/>
+                                </CollectionView.Footer>
+                            </CollectionView>
+                        </StackLayout>
+                    </Frame>
+
+                    
+
+                    
+
+                    <Label Text="Hãy chọn loại món!!!" FontSize="20" Margin="0,15,0,0"/>
+                    <CollectionView x:Name="burgerList4" Margin="0,0,0,0" Grid.Row="1" ItemsSource="{Binding loaimons}" 
                                     SelectionMode="Single" VerticalScrollBarVisibility="Never" 
                                     SelectedItem="{Binding SelectedBurger}" 
-                                    SelectionChangedCommand="{Binding SelectionCommand}">
+                                    SelectionChangedCommand="{Binding SelectionCommand}"
+                                    HeightRequest="150">
                         <CollectionView.ItemsLayout>
-                            <GridItemsLayout Orientation="Vertical"  Span="2"/>
+                            <GridItemsLayout Orientation="Horizontal"  Span="1"/>
                         </CollectionView.ItemsLayout>
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <StackLayout>
+                                <StackLayout HeightRequest="150">
                                     <Frame HasShadow="True"
                                        CornerRadius="5"
                                        BackgroundColor="#ffefcc"
-                                       Padding="0" Margin="10">
+                                       Padding="0" Margin="3">
                                         <Grid Padding="0" >
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*"/>
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
-                                            <!--<Image Aspect="AspectFill" Source="{Binding Image}" Margin="0"
-                                                   HeightRequest="150"
-                                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>-->
                                             <Image Aspect="AspectFill" Source="{Binding Hinh}" Margin="0"
-                                                   HeightRequest="150" WidthRequest="500"
+                                                   HeightRequest="150" WidthRequest="150"
                                                     HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                             <Label Grid.Row="1" Text="{Binding TenLM}" TextColor="Black" FontFamily="ThemeFont" 
                                                     VerticalOptions="End" HorizontalOptions="Center"
@@ -78,7 +265,8 @@
                             <Grid HeightRequest="0"/>
                         </CollectionView.Footer>
                     </CollectionView>
-                    <StackLayout>
+                    
+                    <!--<StackLayout>
                         <Label Text="Nên thử..." FontSize="20"/>
                         <Frame Padding="0" Margin="0,5"
                                CornerRadius="20"
@@ -158,7 +346,7 @@
                             </Grid>
                             
                         </Frame>
-                    </StackLayout>
+                    </StackLayout>-->
                 </StackLayout>
             </ScrollView>
         </StackLayout>
@@ -377,7 +565,7 @@
                     <Label Grid.Column="1" Grid.Row="0"
                            x:Name="moneyProfile"
                            FontSize="20"
-                           Text="{Binding currentUser.SoDu}"
+                           Text="{Binding currentUser.SoDu, StringFormat='{0} đ'}"
                            TextColor="#F9B522" 
                            VerticalTextAlignment="Center"/>
 

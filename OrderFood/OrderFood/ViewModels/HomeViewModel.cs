@@ -86,6 +86,8 @@ namespace OrderFood.ViewModels
             set
             {
                 _currentUser = value;
+                currentUser.SoDu = Convert.ToInt32(currentUser.SoDu);
+                _currentUser.SoDu = Convert.ToInt32(_currentUser.SoDu);
                 OnPropertyChanged();
             }
         }
@@ -132,8 +134,77 @@ namespace OrderFood.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        //mon giam gia
+        ObservableCollection<MonAn> _mongiamgia;
+        public ObservableCollection<MonAn> mongiamgia
+        {
+            get { return _mongiamgia; }
+            set
+            {
+                _mongiamgia = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public MonAn _selectedMonGiamGia;
+        public MonAn selectedMonGiamGia
+        {
+            get { return _selectedMonGiamGia; }
+            set
+            {
+                _selectedMonGiamGia = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //mon mua nhieu
+        ObservableCollection<MonAn> _monmuanhieu;
+        public ObservableCollection<MonAn> monmuanhieu
+        {
+            get { return _monmuanhieu; }
+            set
+            {
+                _monmuanhieu = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public MonAn _selectedMonMuaNhieu;
+        public MonAn selectedMonMuaNhieu
+        {
+            get { return _selectedMonMuaNhieu; }
+            set
+            {
+                _selectedMonMuaNhieu = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //mon moi ra
+        ObservableCollection<MonAn> _monmoira;
+        public ObservableCollection<MonAn> monmoira
+        {
+            get { return _monmoira; }
+            set
+            {
+                _monmoira = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public MonAn _selectedMonMoiRa;
+        public MonAn selectedMonMoiRa
+        {
+            get { return _selectedMonMoiRa; }
+            set
+            {
+                _selectedMonMoiRa = value;
+                OnPropertyChanged();
+            }
+        }
         //================================= Function =================================//
-        
+
         private ICommand _searchMonAnCommand;
         public ICommand SearchMonAnCommand
         {
@@ -210,6 +281,30 @@ namespace OrderFood.ViewModels
                 var httpClient = new HttpClient();
                 var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getLoaiMon");
                 loaimons = JsonConvert.DeserializeObject<ObservableCollection<LoaiMon>>(response);
+
+                //mon giam gia
+                response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getMonGiamGia");
+                mongiamgia = JsonConvert.DeserializeObject<ObservableCollection<MonAn>>(response);
+                for (int i = 0; i < mongiamgia.Count; i++)
+                {
+                    mongiamgia[i].Gia = Convert.ToInt32(mongiamgia[i].Gia);
+                }
+
+                //mon mua nhieu
+                response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getMonMuaNhieu");
+                monmuanhieu = JsonConvert.DeserializeObject<ObservableCollection<MonAn>>(response);
+                for (int i = 0; i < monmuanhieu.Count; i++)
+                {
+                    monmuanhieu[i].Gia = Convert.ToInt32(monmuanhieu[i].Gia);
+                }
+
+                //mon moi ra
+                response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getMonMoi");
+                monmoira = JsonConvert.DeserializeObject<ObservableCollection<MonAn>>(response);
+                for (int i = 0; i < monmoira.Count; i++)
+                {
+                    monmoira[i].Gia = Convert.ToInt32(monmoira[i].Gia);
+                }
             }
             catch(Exception ex)
             {
@@ -457,6 +552,54 @@ namespace OrderFood.ViewModels
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        // mon giam gia
+        public ICommand MonGiamGiaCommand => new Command(DisplayDetailMonGiamGia);
+
+        private async void DisplayDetailMonGiamGia()
+        {
+            if (selectedMonGiamGia != null)
+            {
+                var viewModel = new MonAnViewModel { monan = selectedMonGiamGia };
+                var detailsPage = new DetailMonAn { BindingContext = viewModel };
+
+                var navigation = Application.Current.MainPage as NavigationPage;
+                await navigation.PushAsync(detailsPage, true);
+                selectedMonGiamGia = null;
+            }
+        }
+
+        // mon mua nhieu
+        public ICommand MonMuaNhieuCommand => new Command(DisplayDetailMonMuaNhieu);
+
+        private async void DisplayDetailMonMuaNhieu()
+        {
+            if (selectedMonMuaNhieu != null)
+            {
+                var viewModel = new MonAnViewModel { monan = selectedMonMuaNhieu };
+                var detailsPage = new DetailMonAn { BindingContext = viewModel };
+
+                var navigation = Application.Current.MainPage as NavigationPage;
+                await navigation.PushAsync(detailsPage, true);
+                selectedMonMuaNhieu = null;
+            }
+        }
+
+        // mon giam gia
+        public ICommand MonMoiRaCommand => new Command(DisplayDetailMonMoiRa);
+
+        private async void DisplayDetailMonMoiRa()
+        {
+            if (selectedMonMoiRa != null)
+            {
+                var viewModel = new MonAnViewModel { monan = selectedMonMoiRa };
+                var detailsPage = new DetailMonAn { BindingContext = viewModel };
+
+                var navigation = Application.Current.MainPage as NavigationPage;
+                await navigation.PushAsync(detailsPage, true);
+                selectedMonMoiRa = null;
             }
         }
     }
