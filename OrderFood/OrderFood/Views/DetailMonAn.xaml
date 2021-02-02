@@ -6,7 +6,7 @@
              Title="{Binding monan.TenMA}">
     <ContentPage.Content>
         <StackLayout Padding="20,10,20,20">
-            <Frame Padding="0" CornerRadius="10"
+            <Frame Padding="0" CornerRadius="5"
                    HeightRequest="200">
                 <Image Source="{Binding monan.Hinh}"
                        Aspect="AspectFill"/>
@@ -20,8 +20,8 @@
                    FontSize="25" TextColor="#F9B522"/>
             <Label Text="{Binding monan.MoTa,StringFormat='Mô tả: {0}'}"
                    FontSize="15"/>
-            <Button Text="ORDER NOW" TextColor="Black" Padding="20,5" HeightRequest="50" CornerRadius="25" 
-                    BackgroundColor="#F9B522" FontFamily="ThemeFont" HorizontalOptions="End" 
+            <Button Text="Đặt ngay" TextColor="White" Padding="20,5" HeightRequest="50" CornerRadius="25" 
+                    BackgroundColor="#F9B522" FontAttributes="Bold" HorizontalOptions="End" 
                     Command="{Binding OrderMonAnCommand}"
                     CommandParameter="{Binding monan}"/>
         </StackLayout>

@@ -124,6 +124,29 @@ namespace OrderFood.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private bool _isFavEmpty;
+        public bool isFavEmpty
+        {
+            get { return _isFavEmpty; }
+            set
+            {
+                _isFavEmpty = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isCartEmpty;
+        public bool isCartEmpty
+        {
+            get { return _isCartEmpty; }
+            set
+            {
+                _isCartEmpty = value;
+                OnPropertyChanged();
+            }
+        }
+
         private int _total;
         public int total
         {
@@ -131,6 +154,10 @@ namespace OrderFood.ViewModels
             set
             {
                 _total = value;
+                if (value == 0)
+                    isCartEmpty = true;
+                else
+                    isCartEmpty = false;
                 OnPropertyChanged();
             }
         }
@@ -400,10 +427,13 @@ namespace OrderFood.ViewModels
             {
                 listFav[i].Gia = Convert.ToInt32(listFav[i].Gia);
             }
+            isFavEmpty = false;
+            if (listFav.Count == 0)
+                isFavEmpty = true;
         }
         public async void GetFavoriteItem(MonAn monAn)
         {
-
+            isFavEmpty = false;
             var httpClient = new HttpClient();
             var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getYeuThichTheoKH?MaKH=" + currentUser.MaKH);
             listFav = JsonConvert.DeserializeObject<ObservableCollection<MonAn>>(response);
@@ -454,6 +484,7 @@ namespace OrderFood.ViewModels
                 total = Convert.ToInt32(CalTotal());
                 _ = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/deleteCTHD?MaHD=" + currentHD.MaHD.ToString() +
                     "&MaMA=" + temp.MaMA.ToString());
+                //isCartEmpty = true;
                 return;
             }
             temp.SoLuong--;
@@ -508,6 +539,7 @@ namespace OrderFood.ViewModels
             total = Convert.ToInt32(CalTotal());
             _ = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/deleteCTHD?MaHD=" + currentHD.MaHD.ToString() +
                 "&MaMA=" + temp.MaMA.ToString());
+            isCartEmpty = true;
         }
         public ICommand CheckoutCommand => new Command(Checkout);
 

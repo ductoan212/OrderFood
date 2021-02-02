@@ -54,7 +54,7 @@
                                    WidthRequest="500" HeightRequest="30"
                                    Aspect="AspectFill"/>
                                     <Label Grid.Column="0" Grid.Row="0" 
-                                   Text="Đang giảm giá!!!"
+                                   Text="👉 Đang giảm giá!!! 👈"
                                    FontSize="22" Padding="0"
                                    BackgroundColor="#50000000"
                                    TextColor="#FFF"
@@ -82,12 +82,22 @@
                                                         <RowDefinition Height="*"/>
                                                         <RowDefinition Height="Auto"/>
                                                     </Grid.RowDefinitions>
-                                                    <Image Aspect="AspectFill" Source="{Binding Hinh}" Margin="0"
-                                                   HeightRequest="150" WidthRequest="150"
-                                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                                    <Label Grid.Row="1" Text="{Binding TenMA}" TextColor="Black" FontFamily="ThemeFont" 
-                                                    VerticalOptions="End" HorizontalOptions="Center"
-                                                   Margin="10,0,10,10"/>
+                                                    <Image Grid.Row="0" Aspect="AspectFill" 
+                                                           Source="{Binding Hinh}" Margin="0"
+                                                           HeightRequest="150" WidthRequest="150"
+                                                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                                    <Frame Grid.Row="0" Padding="0"
+                                                           CornerRadius="100" BackgroundColor="Red"
+                                                           HeightRequest="40" WidthRequest="40"
+                                                           HorizontalOptions="End" VerticalOptions="Start">
+                                                        <Label Text="{Binding KhuyenMai, StringFormat='-{0}%'}"
+                                                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                                               TextColor="#FFF"/>
+                                                    </Frame>
+                                                    <Label Grid.Row="1" Text="{Binding TenMA}" 
+                                                           TextColor="Black" FontFamily="ThemeFont" 
+                                                           VerticalOptions="End" HorizontalOptions="Center"
+                                                           Margin="10,0,10,10"/>
                                                 </Grid>
                                             </Frame>
                                         </StackLayout>
@@ -117,7 +127,7 @@
                                    WidthRequest="500" HeightRequest="30"
                                    Aspect="AspectFill"/>
                                     <Label Grid.Column="0" Grid.Row="0" 
-                                   Text="Mua nhiều nhất"
+                                   Text="🔥 Mua nhiều nhất 🔥"
                                    FontSize="22" Padding="0"
                                    TextColor="#FFF"
                                    BackgroundColor="#50000000"
@@ -179,7 +189,7 @@
                                    WidthRequest="500" HeightRequest="30"
                                    Aspect="AspectFill"/>
                                     <Label Grid.Column="0" Grid.Row="0" 
-                                   Text="Món mới 'ra lò'"
+                                   Text="🎉 Món mới 'ra lò' 🎉"
                                    FontSize="22" Padding="0"
                                    TextColor="#FFF"
                                    BackgroundColor="#50000000"
@@ -234,13 +244,13 @@
                                     SelectionMode="Single" VerticalScrollBarVisibility="Never" 
                                     SelectedItem="{Binding SelectedBurger}" 
                                     SelectionChangedCommand="{Binding SelectionCommand}"
-                                    HeightRequest="150">
+                                    HeightRequest="100">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Orientation="Horizontal"  Span="1"/>
                         </CollectionView.ItemsLayout>
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <StackLayout HeightRequest="150">
+                                <StackLayout HeightRequest="100">
                                     <Frame HasShadow="True"
                                        CornerRadius="5"
                                        BackgroundColor="#ffefcc"
@@ -248,14 +258,18 @@
                                         <Grid Padding="0" >
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*"/>
-                                                <RowDefinition Height="Auto"/>
+                                                <!--<RowDefinition Height="Auto"/>-->
                                             </Grid.RowDefinitions>
                                             <Image Aspect="AspectFill" Source="{Binding Hinh}" Margin="0"
-                                                   HeightRequest="150" WidthRequest="150"
-                                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                            <Label Grid.Row="1" Text="{Binding TenLM}" TextColor="Black" FontFamily="ThemeFont" 
-                                                    VerticalOptions="End" HorizontalOptions="Center"
+                                                   HeightRequest="100" WidthRequest="100"
+                                                   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                            <Frame Padding="0" BackgroundColor="#8000">
+                                                <Label Grid.Row="0" Text="{Binding TenLM}" TextColor="White"
+                                                   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                                                   FontSize="17"
                                                    Margin="10,0,10,10"/>
+                                            </Frame>
+                                            
                                         </Grid>
                                     </Frame>
                                 </StackLayout>
@@ -363,51 +377,73 @@
                     <Label Text="Yêu thích"
                        TextColor="White" FontSize="25"/>
                 </Frame>
-                <ListView x:Name="lstfavorities" HasUnevenRows="True"
+
+                <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <ListView x:Name="lstfavorities" HasUnevenRows="True"
                           VerticalScrollBarVisibility="Never" Margin="20,0,20,0"
-                          ItemsSource="{Binding listFav}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Frame Padding="0" BackgroundColor="#00000000"
+                          ItemsSource="{Binding listFav}"
+                              AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                           AbsoluteLayout.LayoutFlags="All">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame Padding="0" BackgroundColor="#00000000"
                                        CornerRadius="5" Margin="0, 10">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="40"/>
-                                            <RowDefinition Height="30"/>
-                                            <RowDefinition Height="30"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" 
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40"/>
+                                                <RowDefinition Height="30"/>
+                                                <RowDefinition Height="30"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" 
                                            CornerRadius="10" IsClippedToBounds="True" 
                                            BackgroundColor="#131313"
                                            Padding="0">
-                                            <Image Source="{Binding Hinh}" 
+                                                <Image Source="{Binding Hinh}" 
                                                WidthRequest="500" HeightRequest="100" 
                                                Aspect="AspectFill"/>
-                                        </Frame>
-                                        <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"
+                                            </Frame>
+                                            <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"
                                                 HorizontalOptions="StartAndExpand"
                                            LineBreakMode="TailTruncation"/>
-                                        <Label Text="{Binding Gia, StringFormat='{0} đ'}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
+                                            <Label Text="{Binding Gia, StringFormat='{0} đ'}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
                                            VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
                                            HorizontalOptions="StartAndExpand" />
-                                        <Label Text="{Binding MoTa}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" 
+                                            <Label Text="{Binding MoTa}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" TextColor="gray" 
                                            HorizontalOptions="StartAndExpand"
                                            LineBreakMode="TailTruncation"/>
-                                        <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding BindingContext.SelectionFavCommand, Source={Reference root}}"
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.SelectionFavCommand, Source={Reference root}}"
                                                         CommandParameter="{Binding .}"></TapGestureRecognizer>
-                                        </Grid.GestureRecognizers>
-                                    </Grid>
-                                </Frame>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                            </Grid.GestureRecognizers>
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <ContentView Padding="20,0" AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                         AbsoluteLayout.LayoutFlags="All"
+                         IsVisible="{Binding isFavEmpty}">
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <StackLayout Orientation="Vertical">
+                                <Image Source="empty.png"
+                                   WidthRequest="100"
+                                   Aspect="AspectFit"/>
+                                <Label Text="Chưa có món yêu thích!" 
+                                   TextColor="#F9B522"
+                                   FontSize="25"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ContentView>
+                </AbsoluteLayout>
+
+                
             </StackLayout>
         </ContentPage.Content>
     </ContentPage>
@@ -426,55 +462,60 @@
                        TextColor="White" FontSize="25"/>
                 </Frame>
 
-                <ListView HasUnevenRows="True"   
-                          Margin="20,0,20,0"
+                
+
+                <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <ListView HasUnevenRows="True"   
+                            Margin="20,0,20,0"
                           VerticalScrollBarVisibility="Never"
-                          ItemsSource="{Binding cartItems}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Frame Padding="0" BackgroundColor="#00000000"
+                          ItemsSource="{Binding cartItems}"
+                           AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                           AbsoluteLayout.LayoutFlags="All">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame Padding="0" BackgroundColor="#00000000"
                                        CornerRadius="5" Margin="0, 10">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="40"/>
-                                            <RowDefinition Height="30"/>
-                                            <RowDefinition Height="40"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" 
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40"/>
+                                                <RowDefinition Height="30"/>
+                                                <RowDefinition Height="40"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" 
                                            CornerRadius="10" IsClippedToBounds="True" 
                                            BackgroundColor="#131313"
                                            Padding="0">
-                                            <Image Source="{Binding Hinh}" 
+                                                <Image Source="{Binding Hinh}" 
                                                WidthRequest="500" HeightRequest="100" 
                                                Aspect="AspectFill"/>
-                                        </Frame>
-                                        <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"
+                                            </Frame>
+                                            <Label Text="{Binding TenMA}" Grid.Row="0" Grid.Column="1" TextColor="#F9B522" VerticalTextAlignment="Center" FontSize="30"
                                                 HorizontalOptions="StartAndExpand"
                                            LineBreakMode="TailTruncation"/>
-                                        <Label Text="{Binding Gia, StringFormat='{0} đ'}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
+                                            <Label Text="{Binding Gia, StringFormat='{0} đ'}" Grid.Row="1" Grid.Column="1" TextColor="Green" FontSize="20"  
                                            VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
                                            HorizontalOptions="StartAndExpand" />
 
-                                        <StackLayout Grid.Row="2" Grid.Column="1"
+                                            <StackLayout Grid.Row="2" Grid.Column="1"
                                                      Orientation="Horizontal" >
-                                            <Button x:Name="btnSub" 
+                                                <Button x:Name="btnSub" 
                                                     Text="-" FontSize="30" Padding="0"
                                                     HorizontalOptions="Center"
                                                     VerticalOptions="Center"
                                                     WidthRequest="40" HeightRequest="40"
                                                     BackgroundColor="#F9B522" TextColor="#FFFFFF"
                                                     Command="{Binding BindingContext.SubQuantityCommand, Source={Reference root}}" CommandParameter="{Binding MaMA}"/>
-                                            <Label Text="{Binding SoLuong}" Margin="0"
+                                                <Label Text="{Binding SoLuong}" Margin="0"
                                                    FontSize="25" HeightRequest="40" WidthRequest="80"
                                                    VerticalTextAlignment="Center"
                                                    HorizontalTextAlignment="Center"/>
-                                            <Button x:Name="btnAdd" 
+                                                <Button x:Name="btnAdd" 
                                                     Text="+" FontSize="30" Padding="0"
                                                     HorizontalOptions="Center"
                                                     VerticalOptions="Center"
@@ -482,20 +523,36 @@
                                                     BackgroundColor="#F9B522" TextColor="#FFFFFF"
                                                     Command="{Binding BindingContext.AddQuantityCommand, Source={Reference root}}" CommandParameter="{Binding MaMA}"/>
 
-                                        </StackLayout>
-                                        <ImageButton x:Name="btnDel" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
+                                            </StackLayout>
+                                            <ImageButton x:Name="btnDel" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
                                                      Source="delete.png" Padding="0"
                                                      HorizontalOptions="Center"
                                                      VerticalOptions="Center"
                                                      WidthRequest="30" HeightRequest="30"
                                                      Command="{Binding BindingContext.DeleteCartItemCommand, Source={Reference root}}" CommandParameter="{Binding MaMA}"/>
-                                    </Grid>
-                                </Frame>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <ContentView x:Name="popupLoadingView" Padding="20,0" AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                         AbsoluteLayout.LayoutFlags="All"
+                         IsVisible="{Binding isCartEmpty}">
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <StackLayout Orientation="Vertical">
+                                <Image Source="empty.png"
+                                   WidthRequest="100"
+                                   Aspect="AspectFit"/>
+                                <Label Text="Chưa có món nào!" 
+                                   TextColor="#F9B522"
+                                   FontSize="25"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ContentView>
+                </AbsoluteLayout>
+
                 <StackLayout  Padding="20,2">
                     <Label Text="{Binding total, StringFormat='Tổng: {0} đ'}"
                            HorizontalOptions="End"/>
