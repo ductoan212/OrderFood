@@ -11557,7 +11557,10 @@ namespace OrderFood.Droid
 			public const int userHome = 2131165327;
 			
 			// aapt resource value: 0x7F070090
-			public const int wallet = 2131165328;
+			public const int VNMoney = 2131165328;
+			
+			// aapt resource value: 0x7F070091
+			public const int wallet = 2131165329;
 			
 			static Drawable()
 			{

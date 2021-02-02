@@ -18,6 +18,18 @@ namespace OrderFood.ViewModels
             set
             {
                 _money = value;
+                tongTien = _money + Convert.ToInt32(currentUser.SoDu);
+                OnPropertyChanged();
+            }
+        }
+        
+        private int _tongTien;
+        public int tongTien
+        {
+            get { return _tongTien; }
+            set
+            {
+                _tongTien = value;
                 OnPropertyChanged();
             }
         }
@@ -55,8 +67,6 @@ namespace OrderFood.ViewModels
                     var httpClient = new HttpClient();
                     var response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/updateSoDuKH?MaKH=" + currentUser.MaKH + "&SoDuNew=" + currentUser.SoDu.ToString());
                     
-                    //var response2 = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getKhachHangTheoTenDN?TenDN=" + currentUser.MaKH);
-                    //List<User> user = JsonConvert.DeserializeObject<List<User>>(response2);
                     Application.Current.MainPage = new NavigationPage(new BottomNavBarXf.Home(currentUser));
                     await Application.Current.MainPage.DisplayAlert("Thông báo", "Đã nạp tiền thành công", "OK");
                 }
