@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OrderFood.Views.AddMoney">
+    <ContentPage.Content>
+        <StackLayout Padding="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Frame Padding="0"
+                       CornerRadius="5">
+                    <Image Aspect="AspectFill" Source="VNMoney.jpg" Margin="0"
+                           HeightRequest="150" WidthRequest="500"
+                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                </Frame>
+                <Frame Padding="0"
+                       CornerRadius="5" BackgroundColor="#8000">
+                    <Label Text="Nạp tiền để mua hàng trên FoodOrder nhanh nhất"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       TextColor="#FFFFFF" FontSize="25"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </Frame>
+            </Grid>
+
+            <Grid Margin="0,20,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0"
+                       Text="Số tiền hiện có:"
+                       FontSize="20"/>
+                <Label Grid.Row="0" Grid.Column="1"
+                       Text="{Binding currentUser.SoDu, StringFormat='{0} đ'}"
+                       FontSize="20" TextColor="#F9B522"/>
+                <Label Grid.Row="1" Grid.Column="0"
+                       Text="Nạp thêm (đ):" VerticalOptions="Center"
+                       FontSize="20"/>
+                <Entry Grid.Row="1" Grid.Column="1"
+                       Text="{Binding money}"
+                       FontSize="20" TextColor="#F9B522"/>
+                <Label Grid.Row="2" Grid.Column="0"
+                       Text="Sau khi nạp:"
+                       FontSize="20"/>
+                <Label Grid.Row="2" Grid.Column="1"
+                       Text="{Binding tongTien, StringFormat='{0} đ'}"
+                       FontSize="20" TextColor="#F9B522"/>
+                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+                        Text="Nạp ngay" CornerRadius="100" 
+                        TextColor="#F9B522" BackgroundColor="#FFFFFF" 
+                        BorderColor="#F9B522" BorderWidth="2"
+                        FontSize="20" Margin="0,10,0,0"
+                        Command="{Binding addMoneyCommand}"/>
+            </Grid>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

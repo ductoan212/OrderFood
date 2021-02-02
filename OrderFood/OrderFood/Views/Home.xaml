@@ -545,6 +545,12 @@
                            Text="{Binding currentUser.MaKH}"
                            HorizontalTextAlignment="Center"
                            TextColor="#FFFFFF"/>
+                <Button Text="Nạp thêm tiền" ContentLayout="Left,5"
+                        CornerRadius="100" 
+                        TextColor="#F9B522" BackgroundColor="White"
+                        FontSize="15" HeightRequest="40"
+                        ImageSource="add" HorizontalOptions="Center"
+                        Command="{Binding addMonneyCommand}"/>
             </StackLayout>
 
             <ScrollView>
