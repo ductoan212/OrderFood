@@ -539,7 +539,7 @@ namespace OrderFood.ViewModels
             total = Convert.ToInt32(CalTotal());
             _ = httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/deleteCTHD?MaHD=" + currentHD.MaHD.ToString() +
                 "&MaMA=" + temp.MaMA.ToString());
-            isCartEmpty = true;
+            //isCartEmpty = true;
         }
         public ICommand CheckoutCommand => new Command(Checkout);
 

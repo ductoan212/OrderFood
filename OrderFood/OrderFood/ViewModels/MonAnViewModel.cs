@@ -12,13 +12,40 @@ namespace OrderFood.ViewModels
 {
     public class MonAnViewModel : BaseViewModel
     {
-        public MonAn _monan;
+        private MonAn _monan;
         public MonAn monan
         {
             get { return _monan; }
             set
             {
                 _monan = value;
+                if (_monan.KhuyenMai == 0)
+                    isKhuyenMai = false;
+                else
+                    isKhuyenMai = true;
+                tamTinh = Convert.ToInt32(Convert.ToSingle(_monan.Gia) * (1.0 - Convert.ToSingle(_monan.KhuyenMai) / 100));
+                OnPropertyChanged();
+            }
+        }
+
+        public bool _isKhuyenMai;
+        public bool isKhuyenMai
+        {
+            get { return _isKhuyenMai; }
+            set
+            {
+                _isKhuyenMai = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int _tamTinh;
+        public int tamTinh
+        {
+            get { return _tamTinh; }
+            set
+            {
+                _tamTinh = value;
                 OnPropertyChanged();
             }
         }
@@ -39,6 +66,7 @@ namespace OrderFood.ViewModels
         {
             if (monAn != null)
             {
+                monAn.Gia = Convert.ToInt32(Convert.ToSingle(monan.Gia) * (1.0 - Convert.ToSingle(monan.KhuyenMai) / 100));
                 var detailsPage = new BottomNavBarXf.Home(monAn,"cart");
                 
                 var navigation = Application.Current.MainPage as NavigationPage;
