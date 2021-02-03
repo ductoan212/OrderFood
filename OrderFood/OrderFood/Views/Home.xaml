@@ -66,13 +66,13 @@
                                     SelectionMode="Single" VerticalScrollBarVisibility="Never" 
                                     SelectedItem="{Binding selectedMonGiamGia}" 
                                     SelectionChangedCommand="{Binding MonGiamGiaCommand}"
-                                    HeightRequest="150">
+                                    HeightRequest="130">
                                 <CollectionView.ItemsLayout>
                                     <GridItemsLayout Orientation="Horizontal"  Span="1"/>
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <StackLayout HeightRequest="150">
+                                        <StackLayout HeightRequest="130">
                                             <Frame HasShadow="False"
                                        CornerRadius="5"
                                        BackgroundColor="#ffefcc"
@@ -84,10 +84,10 @@
                                                     </Grid.RowDefinitions>
                                                     <Image Grid.Row="0" Aspect="AspectFill" 
                                                            Source="{Binding Hinh}" Margin="0"
-                                                           HeightRequest="150" WidthRequest="150"
+                                                           HeightRequest="130" WidthRequest="130"
                                                            HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                                     <Frame Grid.Row="0" Padding="0"
-                                                           CornerRadius="100" BackgroundColor="Red"
+                                                           CornerRadius="100" BackgroundColor="#9F00"
                                                            HeightRequest="40" WidthRequest="40"
                                                            HorizontalOptions="End" VerticalOptions="Start">
                                                         <Label Text="{Binding KhuyenMai, StringFormat='-{0}%'}"
@@ -97,7 +97,8 @@
                                                     <Label Grid.Row="1" Text="{Binding TenMA}" 
                                                            TextColor="Black" FontFamily="ThemeFont" 
                                                            VerticalOptions="End" HorizontalOptions="Center"
-                                                           Margin="10,0,10,10"/>
+                                                           Margin="10,0,10,10"
+                                                           WidthRequest="110" LineBreakMode="TailTruncation"/>
                                                 </Grid>
                                             </Frame>
                                         </StackLayout>
@@ -139,13 +140,13 @@
                                     SelectionMode="Single" VerticalScrollBarVisibility="Never" 
                                     SelectedItem="{Binding selectedMonMuaNhieu}" 
                                     SelectionChangedCommand="{Binding MonMuaNhieuCommand}"
-                                    HeightRequest="150">
+                                    HeightRequest="130">
                                 <CollectionView.ItemsLayout>
                                     <GridItemsLayout Orientation="Horizontal"  Span="1"/>
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <StackLayout HeightRequest="150">
+                                        <StackLayout HeightRequest="130">
                                             <Frame HasShadow="False"
                                        CornerRadius="5"
                                        BackgroundColor="#ffefcc"
@@ -154,13 +155,29 @@
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"/>
                                                         <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
                                                     </Grid.RowDefinitions>
-                                                    <Image Aspect="AspectFill" Source="{Binding Hinh}" Margin="0"
-                                                   HeightRequest="150" WidthRequest="150"
-                                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                                    <Label Grid.Row="1" Text="{Binding TenMA}" TextColor="Black" FontFamily="ThemeFont" 
-                                                    VerticalOptions="End" HorizontalOptions="Center"
-                                                   Margin="10,0,10,10"/>
+                                                    <Image Grid.Row="0" Grid.RowSpan="2" 
+                                                           Aspect="AspectFill" Source="{Binding Hinh}" Margin="0"
+                                                           HeightRequest="100" WidthRequest="130"
+                                                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                                    <Frame Grid.Row="1" Padding="5"
+                                                            BackgroundColor="#9F00"
+                                                            WidthRequest="120"
+                                                           CornerRadius="0">
+                                                        <Label Text="{Binding SLBan, StringFormat='Đã bán: {0}'}" TextColor="#FFF"
+                                                               HorizontalOptions="StartAndExpand"
+                                                               VerticalOptions="EndAndExpand"/>
+                                                    </Frame>
+                                                   
+                                                    <Label  Grid.Row="2" Text="{Binding TenMA}" 
+                                                        TextColor="#000"
+                                                        HorizontalOptions="Center"
+                                                        VerticalOptions="End"
+                                                        Margin="10,0,10,10"
+                                                            WidthRequest="110"
+                                                            LineBreakMode="TailTruncation"/>
+                                                    
                                                 </Grid>
                                             </Frame>
                                         </StackLayout>
@@ -201,13 +218,13 @@
                                     SelectionMode="Single" VerticalScrollBarVisibility="Never" 
                                     SelectedItem="{Binding selectedMonMoiRa}" 
                                     SelectionChangedCommand="{Binding MonMoiRaCommand}"
-                                    HeightRequest="150">
+                                    HeightRequest="130">
                                 <CollectionView.ItemsLayout>
                                     <GridItemsLayout Orientation="Horizontal"  Span="1"/>
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <StackLayout HeightRequest="150">
+                                        <StackLayout HeightRequest="130">
                                             <Frame HasShadow="False"
                                        CornerRadius="5"
                                        BackgroundColor="#ffefcc"
@@ -218,11 +235,13 @@
                                                         <RowDefinition Height="Auto"/>
                                                     </Grid.RowDefinitions>
                                                     <Image Aspect="AspectFill" Source="{Binding Hinh}" Margin="0"
-                                                   HeightRequest="150" WidthRequest="150"
+                                                   HeightRequest="130" WidthRequest="130"
                                                     HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                                     <Label Grid.Row="1" Text="{Binding TenMA}" TextColor="Black" FontFamily="ThemeFont" 
                                                     VerticalOptions="End" HorizontalOptions="Center"
-                                                   Margin="10,0,10,10"/>
+                                                   Margin="10,0,10,10"
+                                                           WidthRequest="110"
+                                                            LineBreakMode="TailTruncation"/>
                                                 </Grid>
                                             </Frame>
                                         </StackLayout>
@@ -235,11 +254,7 @@
                         </StackLayout>
                     </Frame>
 
-                    
-
-                    
-
-                    <Label Text="Hãy chọn loại món!!!" FontSize="20" Margin="0,15,0,0"/>
+                    <Label Text="Hãy chọn loại món!!!" FontSize="20" Margin="0,30,0,0"/>
                     <CollectionView x:Name="burgerList4" Margin="0,0,0,0" Grid.Row="1" ItemsSource="{Binding loaimons}" 
                                     SelectionMode="Single" VerticalScrollBarVisibility="Never" 
                                     SelectedItem="{Binding SelectedBurger}" 
@@ -280,10 +295,10 @@
                         </CollectionView.Footer>
                     </CollectionView>
                     
-                    <!--<StackLayout>
+                    <StackLayout>
                         <Label Text="Nên thử..." FontSize="20"/>
                         <Frame Padding="0" Margin="0,5"
-                               CornerRadius="20"
+                               CornerRadius="10"
                                HasShadow="True">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -309,7 +324,7 @@
                             
                         </Frame>
                         <Frame Padding="0" Margin="0,5"
-                               CornerRadius="20"
+                               CornerRadius="10"
                                HasShadow="True">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -335,7 +350,7 @@
                             
                         </Frame>
                         <Frame Padding="0" Margin="0,5"
-                               CornerRadius="20"
+                               CornerRadius="10"
                                HasShadow="True">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -360,7 +375,7 @@
                             </Grid>
                             
                         </Frame>
-                    </StackLayout>-->
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
