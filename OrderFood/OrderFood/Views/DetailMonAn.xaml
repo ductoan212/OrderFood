@@ -5,8 +5,9 @@
              NavigationPage.HasNavigationBar="True"
              Title="{Binding monan.TenMA}">
     <ContentPage.Content>
-        <StackLayout >
-            <ScrollView Padding="20,10,20,0"> 
+        <StackLayout Spacing="0">
+            <ScrollView Padding="20,10,20,0" Margin="0"
+                        VerticalOptions="StartAndExpand"> 
                 <StackLayout>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -42,9 +43,9 @@
                            FontSize="15"/>
                 </StackLayout>
             </ScrollView>
-            <StackLayout Orientation="Horizontal"
+            <StackLayout Orientation="Horizontal" VerticalOptions="End"
                          BackgroundColor="#F9B522"
-                         Padding="20,10">
+                         Padding="20,10" Margin="0">
                 <Label Text="{Binding tamTinh, StringFormat='Tạm tính: {0} đ'}"
                        TextColor="#FFF"
                        VerticalOptions="Center"

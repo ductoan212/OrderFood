@@ -563,7 +563,14 @@ namespace OrderFood.ViewModels
             cartItems.Clear();
             await Application.Current.MainPage.DisplayAlert("Thông báo", "Đã thanh toán thành công", "OK");
             GetCartItem();
-            //Application.Current.MainPage = new NavigationPage(new BottomNavBarXf.Home());
+
+            //mon mua nhieu
+            response = await httpClient.GetStringAsync("http://www.orderfood213.somee.com/api/ServiceController/getMonMuaNhieu");
+            monmuanhieu = JsonConvert.DeserializeObject<ObservableCollection<MonAn>>(response);
+            for (int i = 0; i < monmuanhieu.Count; i++)
+            {
+                monmuanhieu[i].Gia = Convert.ToInt32(monmuanhieu[i].Gia);
+            }
         }
 
         public ICommand SelectionFavCommand => new Command<MonAn>(DisplayFavDetail);
